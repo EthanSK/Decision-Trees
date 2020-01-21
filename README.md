@@ -49,7 +49,6 @@ and invoke the methods defined in ``classification.py`` and ``eval.py``.
 
 ### Instructions
 
-< Insert your own instructions here >
-
+* We're not using exception handling because that's too much effort.
 
 
