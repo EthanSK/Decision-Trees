@@ -13,13 +13,14 @@
 ##############################################################################
 
 import numpy as np
-
+from nptyping import Array
 
 class Evaluator(object):
     """ Class to perform evaluation
     """
     
-    def confusion_matrix(self, prediction, annotation, class_labels=None):
+    def confusion_matrix(self, prediction: Array, annotation: Array,
+        class_labels: Array=None) -> Array:
         """ Computes the confusion matrix.
         
         Parameters
@@ -57,7 +58,7 @@ class Evaluator(object):
         return confusion
     
     
-    def accuracy(self, confusion):
+    def accuracy(self, confusion: Array) -> float:
         """ Computes the accuracy given a confusion matrix.
         
         Parameters
@@ -82,7 +83,7 @@ class Evaluator(object):
         return accuracy
         
     
-    def precision(self, confusion):
+    def precision(self, confusion: Array) -> (Array, float):
         """ Computes the precision score per class given a confusion matrix.
         
         Also returns the macro-averaged precision across classes.
@@ -115,7 +116,7 @@ class Evaluator(object):
         return (p, macro_p)
     
     
-    def recall(self, confusion):
+    def recall(self, confusion: Array) -> (Array, float):
         """ Computes the recall score per class given a confusion matrix.
         
         Also returns the macro-averaged recall across classes.
@@ -149,7 +150,7 @@ class Evaluator(object):
         return (r, macro_r)
     
     
-    def f1_score(self, confusion):
+    def f1_score(self, confusion: Array) -> (Array, float):
         """ Computes the f1 score per class given a confusion matrix.
         
         Also returns the macro-averaged f1-score across classes.

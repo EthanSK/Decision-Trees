@@ -8,6 +8,7 @@
 ##############################################################################
 
 import numpy as np
+from nptyping import Array
 
 
 class DecisionTreeClassifier(object):
@@ -32,7 +33,7 @@ class DecisionTreeClassifier(object):
         self.is_trained = False
     
     
-    def train(self, x, y):
+    def train(self, x: Array, y: Array) -> object:
         """ Constructs a decision tree classifier from data
         
         Parameters
@@ -68,7 +69,7 @@ class DecisionTreeClassifier(object):
         return self
     
     
-    def predict(self, x):
+    def predict(self, x: Array) -> Array:
         """ Predicts a set of samples using the trained DecisionTreeClassifier.
         
         Assumes that the DecisionTreeClassifier has already been trained.
