@@ -37,8 +37,29 @@
 
 # Part 3
 
-## Tasks
+## Tasks 
+For 3.1-3.5, use scikitlearn's confusion matrix to test the values that our own utilities generate.
 
 ### 3.1
+* Seb (DONE)
+* Ethan
+
+### 3.2
+* Seb (DONE)
+* Ethan
+
+### 3.3
+* Seb (DONE)
+* Ethan
+
+### 3.4
+* Seb (DONE)
+* Ethan
+
+### 3.5
+* Seb (DONE)
+* Ethan
+
+### 3.6
 * Seb (DONE)
 * Ethan

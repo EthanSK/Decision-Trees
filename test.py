@@ -3,9 +3,9 @@ from src.evaluation.eval import Evaluator
 
 if __name__ == "__main__":
     #data_read("data/toy.txt")
-    prediction = ["A","B","B","C","C","B"]
-    annotation = ["A","D","B","C","A","B"]
-    class_labels = ["B","A","C","D","E"]
+    prediction = ["A","B"]
+    annotation = ["A","A"]
+    class_labels = ["B","A"]
     obj = Evaluator()
     matrix = obj.confusion_matrix(prediction, annotation, class_labels)
     print(obj.accuracy(matrix))
