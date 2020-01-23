@@ -48,12 +48,16 @@ class Evaluator(object):
             class_labels = np.unique(annotation)
         
         confusion = np.zeros((len(class_labels), len(class_labels)), dtype=np.int)
-        
-        
+    
         #######################################################################
         #                 ** TASK 3.1: COMPLETE THIS METHOD **
         #######################################################################
-        
+
+        unique = ((class_labels))
+        imap = {key: i for i, key in enumerate(unique)}
+
+        for p, a in zip(prediction, annotation):
+            confusion[imap[p]][imap[a]] += 1        
         
         return confusion
     
@@ -73,13 +77,20 @@ class Evaluator(object):
             The accuracy (between 0.0 to 1.0 inclusive)
         """
         
-        # feel free to remove this
-        accuracy = 0.0
-        
         #######################################################################
         #                 ** TASK 3.2: COMPLETE THIS METHOD **
         #######################################################################
+
+        true_pos = np.diag(confusion)
+        false_pos = np.sum(confusion, axis=0) - true_pos
+        false_neg = np.sum(confusion, axis=1) - true_pos
+        true_neg = confusion.sum() - (true_pos + false_pos + false_neg)
         
+        accuracy_array = (true_neg + true_pos) / (true_neg + true_pos + false_neg + false_pos)
+
+        #divide macro accuracy by number of classes to normalise
+        accuracy = accuracy_array.sum() / len(confusion)
+
         return accuracy
         
     
@@ -96,22 +107,27 @@ class Evaluator(object):
         
         Returns
         -------
-        np.array
+        p : np.array
             A C-dimensional numpy array, with the precision score for each
             class in the same order as given in the confusion matrix.
-        float
+        macro_p : float
             The macro-averaged precision score across C classes.   
         """
         
         # Initialise array to store precision for C classes
+        # NOTA BENE: We do not use this
         p = np.zeros((len(confusion), ))
         
         #######################################################################
         #                 ** TASK 3.3: COMPLETE THIS METHOD **
         #######################################################################
 
-        # You will also need to change this        
-        macro_p = 0
+        true_pos = np.diag(confusion)
+        false_pos = np.sum(confusion, axis=0) - true_pos
+
+        # where= attribute specifies not to divide by zero
+        p = np.divide(true_pos, (false_pos + true_pos), where=(false_pos+true_pos!=0))
+        macro_p = p.sum() / len(confusion)
 
         return (p, macro_p)
     
@@ -138,14 +154,19 @@ class Evaluator(object):
         """
         
         # Initialise array to store recall for C classes
+        # NOTA BENE: we don't use this
         r = np.zeros((len(confusion), ))
         
         #######################################################################
         #                 ** TASK 3.4: COMPLETE THIS METHOD **
         #######################################################################
-        
-        # You will also need to change this        
-        macro_r = 0
+
+        true_pos = np.diag(confusion)
+        false_neg = np.sum(confusion, axis=1) - true_pos
+
+        # where= attribute specifies not to divide by zero
+        r = np.divide(true_pos, (true_pos + false_neg), where=(true_pos+false_neg)!=0)
+        macro_r = r.sum() / len(confusion)
         
         return (r, macro_r)
     
@@ -172,15 +193,25 @@ class Evaluator(object):
         """
         
         # Initialise array to store recall for C classes
+        # NOTA BENE: we don't use this
         f = np.zeros((len(confusion), ))
         
         #######################################################################
         #                 ** YOUR TASK: COMPLETE THIS METHOD **
         #######################################################################
         
-        # You will also need to change this        
-        macro_f = 0
+        true_pos = np.diag(confusion)
+        false_pos = np.sum(confusion, axis=0) - true_pos
+        false_neg = np.sum(confusion, axis=1) - true_pos
+
+        p = np.divide(true_pos, (false_pos + true_pos), where=(false_pos+true_pos!=0))
+        macro_p = p.sum() / len(confusion)
+
+        r = np.divide(true_pos, (true_pos + false_neg), where=(true_pos+false_neg)!=0)
+        macro_r = r.sum() / len(confusion)
         
+        f = 2 * np.divide(p*r, p+r, where=(p+r)!=0)
+        macro_f = (2 * macro_p * macro_r) / (macro_p + macro_r)
         return (f, macro_f)
    
  
