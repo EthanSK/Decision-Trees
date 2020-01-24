@@ -13,7 +13,7 @@ class DataEntry:
         self.label = label
 
     def __repr__(self):  # for printing
-        return f"\nLabel: {self.label} Features: {self.features}"
+        return f"Label: {self.label} Features: {self.features}\n"
 
 
 class Dataset:
@@ -23,7 +23,7 @@ class Dataset:
     """
 
     def __init__(self, data_entries: Array[DataEntry]):
-        self.entries = data_entries
+        self.entries = np.array(data_entries)
 
     def __repr__(self):
-        return str(self.data_entries) + "\n"
+        return str(self.data_entries)

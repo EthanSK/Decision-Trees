@@ -5,10 +5,10 @@
 
 import numpy as np
 import importlib
-from .data_set import DataSet, DataEntry
+from .data_set import Dataset, DataEntry
 
 
-def data_read(filename: str) -> DataSet:
+def data_read(filename: str) -> Dataset:
     """Returns two numpy arrays containing features and ground truths
     respectively. Arrays are dynamically sized based on amount of 
     features in the given .txt file.
@@ -24,10 +24,10 @@ def data_read(filename: str) -> DataSet:
     for line in file_object:
         temp = [attr.strip() for attr in line.split(',')]
         data_entries.append(
-            DataEntry(features=temp[0:-1], label=temp[-1])
+            DataEntry(features=[int(el) for el in temp[0:-1]], label=temp[-1])
         )
 
-    return DataSet(data_entries)
+    return Dataset(data_entries)
 
 
 if __name__ == "__main__":
