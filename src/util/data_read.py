@@ -4,7 +4,8 @@
 ##############################################################################
 
 import numpy as np
-from data_set import DataSet, DataEntry
+import importlib
+from .data_set import DataSet, DataEntry
 
 
 def data_read(filename: str) -> DataSet:
