@@ -9,6 +9,8 @@
 
 import numpy as np
 from nptyping import Array
+from ..util.data_set import Dataset, DataEntry
+from .tree import BinTree
 
 
 class DecisionTreeClassifier(object):
@@ -41,7 +43,7 @@ class DecisionTreeClassifier(object):
             An N by K numpy array (N is the number of instances, K is the 
             number of attributes)
         y : numpy.array
-            An N-dimensional numpy array
+            An N-dimensional numpy array of labels
 
         Returns
         -------
@@ -57,7 +59,13 @@ class DecisionTreeClassifier(object):
         #######################################################################
         #                 ** TASK 2.1: COMPLETE THIS METHOD **
         #######################################################################
+        data_entries = []
+        for i in range(len(x)):
+            data_entries.append(DataEntry(features=y[i][0:-1], label=x[i]))
+        self.dataset = Dataset(data_entries)
 
+        self.tree = BinTree(dataset)
+        self.tree.induce()
         # set a flag so that we know that the classifier has been trained
         self.is_trained = True
 

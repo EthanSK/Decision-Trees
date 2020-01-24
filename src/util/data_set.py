@@ -16,7 +16,7 @@ class DataEntry:
         return f"\nLabel: {self.label} Features: {self.features}"
 
 
-class DataSet:
+class Dataset:
     """
     Holds both attributes and golden standard scraped by 
     dataRead from .txt files  

@@ -1,6 +1,5 @@
 from __future__ import annotations
-
-from src.util.data_set import DataSet
+from ..util.data_set import Dataset
 
 
 class NodeBinTree:
@@ -11,8 +10,10 @@ class NodeBinTree:
 
 
 class BinTree:
-    def __init__(self):
+    def __init__(self, dataset):
         self.root = NodeBinTree()
+        self.dataset = dataset
 
-    def induce(self, dataset: DataSet):
-        pass
+    def induce(self):
+        if dataset:
+            pass
