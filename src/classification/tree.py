@@ -41,37 +41,40 @@ class BinTree:
             node.set_false_child_node(induce_decision_tree(true_child))
             return node
 
-    def split_dataset(self, node: NodeBinTree, dataset: Dataset):
+    def split_dataset(self, node: NodeBinTree, dataset: Dataset) -> Array[NodeBinTree, NodeBinTree]:
         true_set, false_set = [], []
         lt_f_idx = node.data.lt_operand_feature_idx  # which feature to use
         gt_op = node.data.gt_operand
         for entry in dataset.entries:
             true_set.append(
-                x) if entry.features[lt_f_idx] < gt_op else false_set.append(x)
+                entry) if entry.features[lt_f_idx] < gt_op else false_set.append(entry)
         return [false_set, true_set]
 
     def find_best_node(self, dataset: Dataset) -> NodeBinTree:
         num_features = len(dataset.entries[0].features)
         for feature_idx in range(num_features):
             sorted_entry_indices = np.argsort(
-                [entry.features[i] for entry in dataset.entries])
+                [entry.features[feature_idx] for entry in dataset.entries])
             prev_entry = None
             for entry_idx in sorted_entry_indices:
                 entry = dataset.entries[entry_idx]
                 if prev_entry is None or entry.label != prev_entry.label:
                     # the feature idx is feature_idx, the operand is entry.features[entry_idx][feature_idx]]
                     # construct a potential 'test' node to calculate entropy against and see if min entropy
-                    test_node = NodeBinTree(DataNode(lt_operand_feature_idx=feature_idx, gt_operand=entry.features[entry_idx][feature_idx]]))
-                    false_child, true_child = split_dataset(test_node, dataset)
+                    test_node = NodeBinTree(DataNode(
+                        lt_operand_feature_idx=feature_idx, gt_operand=entry.features[feature_idx]))
+                    false_child, true_child = self.split_dataset(
+                        test_node, dataset)
                     test_node.set_false_child_node(false_child)
                     test_node.set_true_child_node(true_child)
-                    calc_entropy(node=test_node)
+                    self.calc_entropy(node=test_node)
                 prev_entry = entry
 
     def calc_entropy(self, node: NodeBinTree):
         pass
 
+
 if __name__ == "__main__":
     dataset = data_read("data/toy.txt")
-    tree = BinTree(dataset)
+    tree = BinTree()
     tree.find_best_node(dataset)
