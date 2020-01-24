@@ -47,5 +47,5 @@ class BinTree:
                 x) if entry.features[lt_f_idx] < gt_op else false_set.append(x)
         return [false_set, true_set]
 
-    def find_best_node(self) -> NodeBinTree:
+    def find_best_node(self, dataset) -> NodeBinTree:
         pass
