@@ -66,6 +66,7 @@ class DecisionTreeClassifier(object):
 
         self.tree = BinTree(dataset)
         self.tree.induce()
+
         # set a flag so that we know that the classifier has been trained
         self.is_trained = True
 

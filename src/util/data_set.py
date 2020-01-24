@@ -23,7 +23,7 @@ class Dataset:
     """
 
     def __init__(self, data_entries: Array[DataEntry]):
-        self.data_entries = data_entries
+        self.entries = data_entries
 
     def __repr__(self):
         return str(self.data_entries) + "\n"
