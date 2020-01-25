@@ -13,6 +13,12 @@ class DataNode:
         self.lt_operand_feature_idx = lt_operand_feature_idx
         self.gt_operand = gt_operand
 
+    def __repr__(self):
+        if self.label is not None:
+            return f"Leaf: {self.label}"
+        else:
+            return f"x_{self.lt_operand_feature_idx} < {self.gt_operand}"
+
 
 class NodeBinTree:
     def __init__(self, data: DataNode, false_child: NodeBinTree = None, true_child: NodeBinTree = None):
@@ -26,11 +32,21 @@ class NodeBinTree:
     def set_true_child_node(self, node: NodeBinTree):
         self.true_child = node
 
+    def __repr__(self):
+        string = f"{self.data}"
+        if self.false_child is not None:
+            string += f"\n    {self.false_child}"
+        if self.true_child is not None:
+            string += f"\n    {self.true_child}"
+        return string
+
 
 class BinTree:
-    def __init__(self):
-        # self.root = NodeBinTree()
-        pass
+    def __init__(self, dataset: Dataset):
+        self.root_node = self.induce_decision_tree(dataset)
+
+    def __repr__(self):
+        return str(self.root_node)
 
     def induce_decision_tree(self, dataset: Dataset):
         if len(dataset.entries) == 1 or all(x.label == dataset.entries[0].label for x in dataset.entries):
@@ -94,6 +110,5 @@ class BinTree:
 
 if __name__ == "__main__":
     dataset = data_read("data/toy.txt")
-    tree = BinTree()
-    res = tree.induce_decision_tree(dataset)
+    tree = BinTree(dataset)
     pass

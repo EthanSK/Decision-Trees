@@ -26,4 +26,4 @@ class Dataset:
         self.entries = np.array(data_entries)
 
     def __repr__(self):
-        return str(self.data_entries)
+        return str(self.entries)
