@@ -41,7 +41,7 @@ class DecisionTreeClassifier(object):
         Parameters
         ----------
         x : numpy.array
-            An N by K numpy array (N is the number of instances, K is the 
+            An N by K numpy array (N is the number of instances, K is the
             number of attributes)
         y : numpy.array
             An N-dimensional numpy array of labels
@@ -62,14 +62,14 @@ class DecisionTreeClassifier(object):
         #######################################################################
         data_entries = []
         for i in range(len(x)):
-            data_entries.append(DataEntry(features=y[i][0:-1], label=x[i]))
+            data_entries.append(DataEntry(features=x[i], label=y[i]))
         self.dataset = Dataset(data_entries)
 
-        self.tree = BinTree(dataset)
+        self.tree = BinTree(self.dataset, should_try_load=False)
+        self.tree.save_tree()
 
         # set a flag so that we know that the classifier has been trained
         self.is_trained = True
-
         return self
 
     def predict(self, x: Array) -> Array:
@@ -80,7 +80,7 @@ class DecisionTreeClassifier(object):
         Parameters
         ----------
         x : numpy.array
-            An N by K numpy array (N is the number of samples, K is the 
+            An N by K numpy array (N is the number of samples, K is the
             number of attributes)
 
         Returns

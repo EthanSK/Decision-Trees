@@ -4,6 +4,8 @@ from ..util.data_read import data_read
 import collections  # piazza says this is allowed
 import math  # piazza says this is allowed
 import numpy as np
+from pathlib import Path
+import pickle
 
 
 class NodeData:
@@ -48,8 +50,14 @@ class NodeBinTree:
 
 
 class BinTree:
-    def __init__(self, dataset: Dataset):
-        self.root_node = self.induce_decision_tree(dataset)
+    def __init__(self, dataset: Dataset = None, should_try_load: bool = True):
+        if should_try_load:
+            try:
+                self.load_tree()
+            except:
+                self.root_node = self.induce_decision_tree(dataset)
+        else:
+            self.root_node = self.induce_decision_tree(dataset)
 
     def __repr__(self, max_depth: int):
         return self.root_node.__repr__(level=0, max_depth=max_depth)
@@ -112,6 +120,17 @@ class BinTree:
             probability = label_counts[label] / len(dataset.entries)
             entropy += -probability * math.log2(probability)
         return entropy
+
+    def save_tree(self, filename: str = "trained_tree.obj"):
+        Path("out").mkdir(parents=True, exist_ok=True)
+        f = open("out/" + filename, "wb")
+        pickle.dump(self.root_node, f)
+        f.close()
+
+    def load_tree(self, filename: str = "trained_tree.obj"):
+        f = open("out/" + filename, 'rb')
+        self.root_node = pickle.load(f)
+        f.close()
 
 
 if __name__ == "__main__":

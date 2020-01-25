@@ -27,3 +27,6 @@ class Dataset:
 
     def __repr__(self):
         return str(self.entries)
+
+    def shim_to_arrays(self):
+        return (np.array([entry.features for entry in self.entries]), np.array([entry.label for entry in self.entries]))

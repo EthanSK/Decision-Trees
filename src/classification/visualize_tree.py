@@ -5,7 +5,7 @@ from pathlib import Path
 # todo - write to file functionality
 
 
-def visualize_tree(tree: BinTree, max_depth: int = 10, save_filename: str = None):
+def visualize_tree(tree: BinTree, max_depth: int = 10, save_filename: str = "visualize_tree.txt"):
     tree_str = tree.__repr__(max_depth=max_depth)
     print(tree_str)
     if save_filename is not None:
@@ -18,4 +18,4 @@ def visualize_tree(tree: BinTree, max_depth: int = 10, save_filename: str = None
 if __name__ == "__main__":
     dataset = data_read("data/toy.txt")
     tree = BinTree(dataset)
-    visualize_tree(tree, max_depth=3, save_filename="tree.txt")
+    visualize_tree(tree, max_depth=3, save_filename="visualize_tree.txt")
