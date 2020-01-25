@@ -32,12 +32,12 @@ class NodeBinTree:
     def set_true_child_node(self, node: NodeBinTree):
         self.true_child = node
 
-    def __repr__(self, level=0, max_depth=10):
+    def __repr__(self, level, max_depth):
         indent = "    " * (level + 1)
         is_max_depth_exceeded = level >= max_depth - 1
-        max_depth_warning_msg = "✋ Deeper branches not shown as max depth exceeded ✋"
+        max_depth_warning_msg = "✋"
         extra_msg = max_depth_warning_msg if is_max_depth_exceeded else ""
-        string = f"{self.data} [Lvl {level}] {extra_msg} \n"
+        string = f"{self.data} [L{level}] {extra_msg} \n"
         if is_max_depth_exceeded:
             return string
         if self.false_child is not None:
@@ -92,7 +92,7 @@ class BinTree:
                         test_node, dataset)
                     test_node.set_false_child_node(false_child)
                     test_node.set_true_child_node(true_child)
-                    # we don't need to calculate the entropy of the current node in order to find IG coz it's the same
+                    # we don't need to calculate the entropy of the parent node in order to find IG coz it's the same
                     child_entropy_combined = \
                         len(false_child.entries)/len(dataset.entries) * \
                         self.calc_entropy(false_child) + \

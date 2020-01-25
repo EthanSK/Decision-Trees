@@ -4,7 +4,6 @@
 ##############################################################################
 
 import numpy as np
-import importlib
 from .data_set import Dataset, DataEntry
 
 

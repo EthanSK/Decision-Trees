@@ -6,11 +6,12 @@
 # Your tasks: Complete the train() and predict() methods of the
 # DecisionTreeClassifier
 ##############################################################################
+from __future__ import annotations
 
 import numpy as np
 from nptyping import Array
-from ..util.data_set import Dataset, DataEntry
-from .tree import BinTree
+from src.util.data_set import Dataset, DataEntry
+from src.classification.tree import BinTree
 
 
 class DecisionTreeClassifier(object):
