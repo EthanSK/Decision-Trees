@@ -38,18 +38,18 @@ class BinTree:
         else:
             node = self.find_best_node(dataset)
             false_child, true_child = self.split_dataset(node, dataset)
-            node.set_false_child_node(induce_decision_tree(false_child))
-            node.set_false_child_node(induce_decision_tree(true_child))
+            node.set_false_child_node(self.induce_decision_tree(false_child))
+            node.set_false_child_node(self.induce_decision_tree(true_child))
             return node
 
-    def split_dataset(self, node: NodeBinTree, dataset: Dataset) -> Array[NodeBinTree, NodeBinTree]:
+    def split_dataset(self, node: NodeBinTree, dataset: Dataset) -> Array[Dataset, Dataset]:
         true_set, false_set = [], []
         lt_f_idx = node.data.lt_operand_feature_idx  # which feature to use
         gt_op = node.data.gt_operand
         for entry in dataset.entries:
             true_set.append(
                 entry) if entry.features[lt_f_idx] < gt_op else false_set.append(entry)
-        return [false_set, true_set]
+        return [Dataset(false_set), Dataset(true_set)]
 
     def find_best_node(self, dataset: Dataset) -> NodeBinTree:
         num_features = len(dataset.entries[0].features)
@@ -80,21 +80,20 @@ class BinTree:
                         min_entropy = child_entropy_combined
                         node_min_entropy = test_node
                 prev_entry = entry
+        return node_min_entropy
 
     def calc_entropy(self, dataset: Dataset):
         label_counts = collections.Counter(
             [entry.label for entry in dataset.entries])
         entropy = 0
-        for label, count in label_counts:
-            probability = count / len(dataset.entries)
+        for label in label_counts:
+            probability = label_counts[label] / len(dataset.entries)
             entropy += -probability * math.log2(probability)
         return entropy
-
-    def calc_info_gain(self, node: NodeBinTree):
-        # does node entrop - (entrop of children ie average entrop of childern)
 
 
 if __name__ == "__main__":
     dataset = data_read("data/toy.txt")
     tree = BinTree()
-    tree.find_best_node(dataset)
+    res = tree.induce_decision_tree(dataset)
+    pass
