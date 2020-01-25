@@ -6,7 +6,7 @@ import math  # piazza says this is allowed
 import numpy as np
 
 
-class DataNode:
+class NodeData:
     def __init__(self, label: str = None, lt_operand_feature_idx: int = None, gt_operand: float = None):
         self.label = label
         # we store the operands needed for a < condition check
@@ -21,7 +21,7 @@ class DataNode:
 
 
 class NodeBinTree:
-    def __init__(self, data: DataNode, false_child: NodeBinTree = None, true_child: NodeBinTree = None):
+    def __init__(self, data: NodeData, false_child: NodeBinTree = None, true_child: NodeBinTree = None):
         self.data = data
         self.false_child = false_child
         self.true_child = true_child
@@ -34,11 +34,11 @@ class NodeBinTree:
 
     def __repr__(self, level=0):
         indent = "    " * (level + 1)
-        string = f"\n{indent}{self.data}"
+        string = f"{self.data}\n"
         if self.false_child is not None:
-            string += self.false_child.__repr__(level+1)
+            string += indent + "F: " + self.false_child.__repr__(level+1)
         if self.true_child is not None:
-            string += self.true_child.__repr__(level+1)
+            string += indent + "T: " + self.true_child.__repr__(level+1)
         return string
 
 
@@ -51,7 +51,7 @@ class BinTree:
 
     def induce_decision_tree(self, dataset: Dataset):
         if len(dataset.entries) == 1 or all(x.label == dataset.entries[0].label for x in dataset.entries):
-            return NodeBinTree(DataNode(label=dataset.entries[0].label))
+            return NodeBinTree(NodeData(label=dataset.entries[0].label))
         else:
             node = self.find_best_node(dataset)
             false_child, true_child = self.split_dataset(node, dataset)
@@ -81,7 +81,7 @@ class BinTree:
                 if prev_entry is None or entry.label != prev_entry.label:
                     # the feature idx is feature_idx, the operand is entry.features[entry_idx][feature_idx]]
                     # construct a potential 'test' node to calculate entropy against and see if min entropy
-                    test_node = NodeBinTree(DataNode(
+                    test_node = NodeBinTree(NodeData(
                         lt_operand_feature_idx=feature_idx, gt_operand=entry.features[feature_idx]))
                     false_child, true_child = self.split_dataset(
                         test_node, dataset)
