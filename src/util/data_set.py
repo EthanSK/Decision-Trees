@@ -1,23 +1,32 @@
 ##############################################################################
-# Task 1.1 
+# Task 1.1
 # Part of answer - Dataset class
 ##############################################################################
 
 import numpy as np
 from nptyping import Array
 
-class data_set():
+
+class DataEntry:
+    def __init__(self, features: Array, label: str):
+        self.features = features
+        self.label = label
+
+    def __repr__(self):  # for printing
+        return f"Label: {self.label} Features: {self.features}\n"
+
+
+class Dataset:
     """
     Holds both attributes and golden standard scraped by 
     dataRead from .txt files  
-
-    Attributes
-    ----------
-    features : Array
-        NumPy array holding the 16 features for each entry
-    ground_truths : Array
-        NumPy array holding the ground truth values for each entry    
     """
-    def __init__(self, features: Array, ground_truths: Array):
-        self.features = features
-        self.ground_truths = ground_truths
+
+    def __init__(self, data_entries: Array[DataEntry]):
+        self.entries = np.array(data_entries)
+
+    def __repr__(self):
+        return str(self.entries)
+
+    def shim_to_arrays(self):
+        return (np.array([entry.features for entry in self.entries]), np.array([entry.label for entry in self.entries]))

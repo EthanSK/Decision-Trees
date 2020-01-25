@@ -3,8 +3,8 @@ def calc_entropy(parent: Array, parent_entropy: float, children: list) -> float:
 
     Args:
         parent_size -- a string giving the path to the .txt data file
-        parent_entropy -- a 
-        children -- 
+        parent_entropy -- a
+        children --
     Returns:
         data_set -- a data_set object containing both the attributes
             np array and the features np array

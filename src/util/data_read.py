@@ -1,12 +1,13 @@
 ##############################################################################
-# Task 1.1 
+# Task 1.1
 # Part of answer - Data read method
 ##############################################################################
 
 import numpy as np
-from .data_set import data_set
+from .data_set import Dataset, DataEntry
 
-def data_read(filename: str) -> data_set:
+
+def data_read(filename: str) -> Dataset:
     """Returns two numpy arrays containing features and ground truths
     respectively. Arrays are dynamically sized based on amount of 
     features in the given .txt file.
@@ -17,14 +18,18 @@ def data_read(filename: str) -> data_set:
         data_set -- a data_set object containing both the attributes
             np array and the features np array
     """
-    features, ground_truths = [], []
+    data_entries = []
     file_object = open(filename, "r+")
     for line in file_object:
         temp = [attr.strip() for attr in line.split(',')]
-        features.append(temp[0:-1])
-        ground_truths.append(temp[-1])
-    
-    return data_set(
-              np.asarray(features, dtype=np.int),
-              np.asarray(ground_truths, dtype=np.str)
-           )
+        data_entries.append(
+            DataEntry(features=[int(el) for el in temp[0:-1]], label=temp[-1])
+        )
+
+    return Dataset(data_entries)
+
+
+if __name__ == "__main__":
+    # test data_read
+    data = data_read("data/toy.txt")
+    print(data)
