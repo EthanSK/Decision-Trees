@@ -210,13 +210,14 @@ class Evaluator(object):
         r = np.divide(true_pos, (true_pos + false_neg), where=(true_pos+false_neg)!=0)
         macro_r = r.sum() / len(confusion)
         
+        #TODO(seb): is this the right formula?
         f = 2 * np.divide(p*r, p+r, where=(p+r)!=0)
 
         # This definiton is valid but not the one used in the coursework as per the specification
         # macro_f = (2 * macro_p * macro_r) / (macro_p + macro_r)
 
         macro_f = f.sum() / len(confusion)
-        
+
         return (f, macro_f)
    
  

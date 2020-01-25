@@ -61,5 +61,5 @@ For 3.1-3.5, use scikitlearn's confusion matrix to test the values that our own 
 * Ethan
 
 ### 3.6
-* Seb (DONE)
+* Seb 
 * Ethan
