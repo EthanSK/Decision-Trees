@@ -1,7 +1,8 @@
 from __future__ import annotations
 from ..util.data_set import Dataset
 from ..util.data_read import data_read
-
+import collections  # piazza says this is allowed
+import math  # piazza says this is allowed
 import numpy as np
 
 
@@ -52,6 +53,8 @@ class BinTree:
 
     def find_best_node(self, dataset: Dataset) -> NodeBinTree:
         num_features = len(dataset.entries[0].features)
+        min_entropy = math.inf
+        node_min_entropy = None
         for feature_idx in range(num_features):
             sorted_entry_indices = np.argsort(
                 [entry.features[feature_idx] for entry in dataset.entries])
@@ -67,11 +70,28 @@ class BinTree:
                         test_node, dataset)
                     test_node.set_false_child_node(false_child)
                     test_node.set_true_child_node(true_child)
-                    self.calc_entropy(node=test_node)
+                    # we don't need to calculate the entropy of the current node in order to find IG coz it's the same
+                    child_entropy_combined = \
+                        len(false_child.entries)/len(dataset.entries) * \
+                        self.calc_entropy(false_child) + \
+                        len(true_child.entries)/len(dataset.entries) * \
+                        self.calc_entropy(true_child)
+                    if child_entropy_combined < min_entropy:
+                        min_entropy = child_entropy_combined
+                        node_min_entropy = test_node
                 prev_entry = entry
 
-    def calc_entropy(self, node: NodeBinTree):
-        pass
+    def calc_entropy(self, dataset: Dataset):
+        label_counts = collections.Counter(
+            [entry.label for entry in dataset.entries])
+        entropy = 0
+        for label, count in label_counts:
+            probability = count / len(dataset.entries)
+            entropy += -probability * math.log2(probability)
+        return entropy
+
+    def calc_info_gain(self, node: NodeBinTree):
+        # does node entrop - (entrop of children ie average entrop of childern)
 
 
 if __name__ == "__main__":
