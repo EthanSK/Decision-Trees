@@ -50,7 +50,7 @@ class NodeBinTree:
 
 
 class BinTree:
-    def __init__(self, dataset: Dataset = None, should_try_load: bool = True):
+    def __init__(self, dataset: Dataset = None, should_try_load: bool = False):
         if should_try_load:
             try:
                 self.load_tree()

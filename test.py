@@ -9,14 +9,19 @@ import time
 
 
 def test_DecisionTreeClassifier():
+    start = time.time()
     cl = DecisionTreeClassifier()
-    dataset = data_read("data/train_sub.txt")
+    dataset = data_read("data/test.txt")
     x, y = dataset.shim_to_arrays()
     cl.train(x, y)
+    cl.tree.save_tree()
+    visualize_tree(cl.tree)
+    duration = time.time() - start
+    print("duration: ", duration)
 
 
 def test_tree_load_file():
-    tree = BinTree()
+    tree = BinTree(should_try_load=True)
     visualize_tree(tree)
 
 
@@ -43,5 +48,5 @@ def old_test():
 
 
 if __name__ == "__main__":
-    test_DecisionTreeClassifier()
-    # test_tree_load_file()
+    # test_DecisionTreeClassifier()
+    test_tree_load_file()
