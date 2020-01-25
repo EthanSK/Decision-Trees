@@ -21,7 +21,7 @@ def test_DecisionTreeClassifier():
 
 
 def test_tree_load_file():
-    tree = BinTree(should_try_load=True)
+    tree = BinTree(should_load_file=True)
     visualize_tree(tree)
 
 

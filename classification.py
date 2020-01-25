@@ -65,7 +65,7 @@ class DecisionTreeClassifier(object):
             data_entries.append(DataEntry(features=x[i], label=y[i]))
         self.dataset = Dataset(data_entries)
 
-        self.tree = BinTree(self.dataset, should_try_load=False)
+        self.tree = BinTree(self.dataset, should_load_file=False)
 
         # set a flag so that we know that the classifier has been trained
         self.is_trained = True
@@ -101,6 +101,6 @@ class DecisionTreeClassifier(object):
         #######################################################################
         #                 ** TASK 2.2: COMPLETE THIS METHOD **
         #######################################################################
-
+        predictions = [self.tree.predict(features) for features in x]
         # remember to change this if you rename the variable
         return predictions

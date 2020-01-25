@@ -50,8 +50,8 @@ class NodeBinTree:
 
 
 class BinTree:
-    def __init__(self, dataset: Dataset = None, should_try_load: bool = False):
-        if should_try_load:
+    def __init__(self, dataset: Dataset = None, should_load_file: bool = False):
+        if should_load_file:
             try:
                 self.load_tree()
             except:
@@ -61,6 +61,17 @@ class BinTree:
 
     def __repr__(self, max_depth: int):
         return self.root_node.__repr__(level=0, max_depth=max_depth)
+
+    def predict(self, features: Array) -> str:
+        return self.traverse_until_label(features=features, node=self.root_node)
+
+    def traverse_until_label(self, features: Array, node: NodeBinTree):
+        if node.data.label is not None:
+            return node.data.label
+        if features[node.data.lt_operand_feature_idx] < node.data.gt_operand:
+            return traverse_until_label(features, node.true_child)
+        else:
+            return traverse_until_label(features, node.false_child)
 
     def induce_decision_tree(self, dataset: Dataset):
         if len(dataset.entries) == 1 or all(x.label == dataset.entries[0].label for x in dataset.entries):
