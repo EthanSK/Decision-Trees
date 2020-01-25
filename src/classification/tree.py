@@ -32,13 +32,18 @@ class NodeBinTree:
     def set_true_child_node(self, node: NodeBinTree):
         self.true_child = node
 
-    def __repr__(self, level=0):
+    def __repr__(self, level=0, max_depth=10):
         indent = "    " * (level + 1)
-        string = f"{self.data}\n"
+        is_max_depth_exceeded = level >= max_depth - 1
+        max_depth_warning_msg = "✋ Deeper branches not shown as max depth exceeded ✋"
+        extra_msg = max_depth_warning_msg if is_max_depth_exceeded else ""
+        string = f"{self.data} [Lvl {level}] {extra_msg} \n"
+        if is_max_depth_exceeded:
+            return string
         if self.false_child is not None:
-            string += indent + "❌ " + self.false_child.__repr__(level+1)
+            string += f"{indent} ❌ {self.false_child.__repr__(level+1, max_depth)}"
         if self.true_child is not None:
-            string += indent + "✅ " + self.true_child.__repr__(level+1)
+            string += f"{indent} ✅ {self.true_child.__repr__(level+1, max_depth)}"
         return string
 
 
@@ -46,8 +51,8 @@ class BinTree:
     def __init__(self, dataset: Dataset):
         self.root_node = self.induce_decision_tree(dataset)
 
-    def __repr__(self):
-        return str(self.root_node)
+    def __repr__(self, max_depth: int):
+        return self.root_node.__repr__(level=0, max_depth=max_depth)
 
     def induce_decision_tree(self, dataset: Dataset):
         if len(dataset.entries) == 1 or all(x.label == dataset.entries[0].label for x in dataset.entries):
