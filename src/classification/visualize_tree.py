@@ -9,6 +9,6 @@ def visualize_tree(tree: BinTree, max_deth: int = 10):
 
 
 if __name__ == "__main__":
-    dataset = data_read("data/toy.txt")
+    dataset = data_read("data/train_sub.txt")
     tree = BinTree(dataset)
     visualize_tree(tree)

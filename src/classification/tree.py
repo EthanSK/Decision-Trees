@@ -32,12 +32,13 @@ class NodeBinTree:
     def set_true_child_node(self, node: NodeBinTree):
         self.true_child = node
 
-    def __repr__(self):
-        string = f"{self.data}"
+    def __repr__(self, level=0):
+        indent = "    " * (level + 1)
+        string = f"\n{indent}{self.data}"
         if self.false_child is not None:
-            string += f"\n    {self.false_child}"
+            string += self.false_child.__repr__(level+1)
         if self.true_child is not None:
-            string += f"\n    {self.true_child}"
+            string += self.true_child.__repr__(level+1)
         return string
 
 
@@ -55,7 +56,7 @@ class BinTree:
             node = self.find_best_node(dataset)
             false_child, true_child = self.split_dataset(node, dataset)
             node.set_false_child_node(self.induce_decision_tree(false_child))
-            node.set_false_child_node(self.induce_decision_tree(true_child))
+            node.set_true_child_node(self.induce_decision_tree(true_child))
             return node
 
     def split_dataset(self, node: NodeBinTree, dataset: Dataset) -> Array[Dataset, Dataset]:
