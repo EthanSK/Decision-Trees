@@ -69,9 +69,9 @@ class BinTree:
         if node.data.label is not None:
             return node.data.label
         if features[node.data.lt_operand_feature_idx] < node.data.gt_operand:
-            return traverse_until_label(features, node.true_child)
+            return self.traverse_until_label(features, node.true_child)
         else:
-            return traverse_until_label(features, node.false_child)
+            return self.traverse_until_label(features, node.false_child)
 
     def induce_decision_tree(self, dataset: Dataset):
         if len(dataset.entries) == 1 or all(x.label == dataset.entries[0].label for x in dataset.entries):

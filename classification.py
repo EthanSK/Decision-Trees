@@ -32,8 +32,9 @@ class DecisionTreeClassifier(object):
 
     """
 
-    def __init__(self):
+    def __init__(self, should_load_file=False):
         self.is_trained = False
+        self.should_load_file = should_load_file
 
     def train(self, x: Array, y: Array) -> DecisionTreeClassifier:
         """ Constructs a decision tree classifier from data
@@ -65,7 +66,8 @@ class DecisionTreeClassifier(object):
             data_entries.append(DataEntry(features=x[i], label=y[i]))
         self.dataset = Dataset(data_entries)
 
-        self.tree = BinTree(self.dataset, should_load_file=False)
+        self.tree = BinTree(
+            self.dataset, should_load_file=self.should_load_file)
 
         # set a flag so that we know that the classifier has been trained
         self.is_trained = True
