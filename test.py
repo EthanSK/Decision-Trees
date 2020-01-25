@@ -9,15 +9,29 @@ import time
 
 
 def test_DecisionTreeClassifier():
+    # train
     start = time.time()
     cl = DecisionTreeClassifier()
-    dataset = data_read("data/test.txt")
+    dataset = data_read("data/train_sub.txt")
     x, y = dataset.shim_to_arrays()
     cl.train(x, y)
     cl.tree.save_tree()
     visualize_tree(cl.tree)
     duration = time.time() - start
     print("duration: ", duration)
+
+    # predict
+    val_dataset = data_read("data/validation.txt")
+    x_val, y_val = val_dataset.shim_to_arrays()
+    preds = cl.predict(x_val)
+
+    # evaluate
+    evaluator = Evaluator()
+    matrix = obj.confusion_matrix(preds, y_val)
+    print(obj.accuracy(matrix))
+    print(obj.precision(matrix))
+    print(obj.recall(matrix))
+    print(obj.f1_score(matrix))
 
 
 def test_tree_load_file():
@@ -48,5 +62,6 @@ def old_test():
 
 
 if __name__ == "__main__":
-    # test_DecisionTreeClassifier()
-    test_tree_load_file()
+    test_DecisionTreeClassifier()
+    # test_tree_load_file()
+    # test_prediction()
