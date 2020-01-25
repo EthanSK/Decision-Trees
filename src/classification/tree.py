@@ -36,9 +36,9 @@ class NodeBinTree:
         indent = "    " * (level + 1)
         string = f"{self.data}\n"
         if self.false_child is not None:
-            string += indent + "F: " + self.false_child.__repr__(level+1)
+            string += indent + "❌ " + self.false_child.__repr__(level+1)
         if self.true_child is not None:
-            string += indent + "T: " + self.true_child.__repr__(level+1)
+            string += indent + "✅ " + self.true_child.__repr__(level+1)
         return string
 
 
