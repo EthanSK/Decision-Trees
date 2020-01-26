@@ -3,8 +3,7 @@ from src.evaluation.eval import Evaluator
 from src.classification.visualize_tree import visualize_tree
 from src.classification.tree import BinTree
 from classification import DecisionTreeClassifier
-
-
+import sys
 import time
 
 
@@ -12,7 +11,7 @@ def test_DecisionTreeClassifier():
     # train
     start = time.time()
     cl = DecisionTreeClassifier(should_load_file=False)
-    dataset = data_read("data/train_full.txt")
+    dataset = data_read("data/train_sub.txt")
     x, y = dataset.shim_to_arrays()
     cl.train(x, y)
     cl.tree.save_tree()
@@ -41,7 +40,7 @@ def test_tree_load_file():
 
 def run_manual_test():
     start = time.time()
-    dataset = data_read("data/toy.txt")
+    dataset = data_read("data/simple1.txt")
     tree = BinTree(dataset)
     visualize_tree(tree, max_depth=50)
     duration = time.time() - start
@@ -64,4 +63,4 @@ def old_test():
 if __name__ == "__main__":
     test_DecisionTreeClassifier()
     # test_tree_load_file()
-    # test_prediction()
+    # run_manual_test()
