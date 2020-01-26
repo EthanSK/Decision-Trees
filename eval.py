@@ -83,16 +83,19 @@ class Evaluator(object):
         #                 ** TASK 3.2: COMPLETE THIS METHOD **
         #######################################################################
 
-        true_pos = np.diag(confusion)
-        false_pos = np.sum(confusion, axis=0) - true_pos
-        false_neg = np.sum(confusion, axis=1) - true_pos
-        true_neg = np.sum(confusion) - (true_pos + false_pos + false_neg)
+        # true_pos = np.diag(confusion)
+        # false_pos = np.sum(confusion, axis=0) - true_pos
+        # false_neg = np.sum(confusion, axis=1) - true_pos
+        # true_neg = np.sum(confusion) - (true_pos + false_pos + false_neg)
 
-        accuracy_array = (true_neg + true_pos) / \
-            (true_neg + true_pos + false_neg + false_pos)
+        # accuracy_array = (true_neg + true_pos) / \
+        #     (true_neg + true_pos + false_neg + false_pos)
 
-        # divide macro accuracy by number of classes to normalise
-        accuracy = np.sum(accuracy_array) / len(confusion)
+        # # divide macro accuracy by number of classes to normalise
+        # accuracy = np.sum(accuracy_array) / len(confusion)
+
+        accurate = confusion.trace()
+        accuracy = float(str(float(accurate/np.sum(confusion)))[0:5])
 
         return accuracy
 
