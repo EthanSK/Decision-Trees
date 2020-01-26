@@ -1,6 +1,7 @@
 from __future__ import annotations
 from ..util.data_set import Dataset
 from ..util.data_read import data_read
+from collections import Counter
 import math  # piazza says this is allowed
 import numpy as np
 from pathlib import Path
@@ -147,6 +148,15 @@ class BinTree:
         node_min_entropy.data.set_entropy(min_entropy)
         return node_min_entropy
 
+    def calc_entropy(self, dataset: Dataset):
+        label_counts = Counter(
+            [entry.label for entry in dataset.entries])
+        entropy = 0
+        for label in label_counts:
+            probability = label_counts[label] / len(dataset.entries)
+            entropy += -probability * math.log2(probability)
+        return entropy
+
     def prune_tree(self):
         count = 0
         while prev_tree != self.root_node:
@@ -174,16 +184,6 @@ class BinTree:
             true_node = self.prune_leaf(node.true_child)
 
         return node
-
-    def calc_entropy(self, dataset: Dataset):
-        entry_labels = [entry.label for entry in dataset.entries]
-        label_counts = {lb: entry_labels.count(
-            lb) for lb in np.unique(entry_labels)}
-        entropy = 0
-        for label in label_counts:
-            probability = label_counts[label] / len(dataset.entries)
-            entropy += -probability * math.log2(probability)
-        return entropy
 
     def save_tree(self, filename: str = "trained_tree.obj"):
         Path("out").mkdir(parents=True, exist_ok=True)

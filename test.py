@@ -17,10 +17,10 @@ def run_all():
         test_DecisionTreeClassifier(file)
 
 
-def test_DecisionTreeClassifier(dataset_filename: str = "toy.txt"):
+def test_DecisionTreeClassifier(dataset_filename: str = "toy.txt", should_load_file=False):
     # train
     start = time.time()
-    cl = DecisionTreeClassifier(should_load_file=False)
+    cl = DecisionTreeClassifier(should_load_file=should_load_file)
     dataset = data_read("data/" + dataset_filename)
     x, y = dataset.shim_to_arrays()
     cl.train(x, y)
@@ -34,7 +34,8 @@ def test_DecisionTreeClassifier(dataset_filename: str = "toy.txt"):
     val_dataset = data_read("data/validation.txt")
     x_val, y_val = val_dataset.shim_to_arrays()
     preds = cl.predict(x_val)
-    # preds = [random.choice('ACEGQ') for _ in range(len(y_val))] #testing random
+    # preds = [random.choice('ACEGOQ')
+    #  for _ in range(len(y_val))]  # testing random
     # evaluate
     ev = Evaluator()
     matrix = ev.confusion_matrix(preds, y_val)
@@ -73,7 +74,8 @@ def old_test():
 
 
 if __name__ == "__main__":
-    test_DecisionTreeClassifier(dataset_filename="test.txt")
+    test_DecisionTreeClassifier(
+        dataset_filename="train_sub.txt", should_load_file=False)
     # test_tree_load_file()
     # run_manual_test()
     # run_all()
