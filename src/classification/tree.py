@@ -1,4 +1,3 @@
-from __future__ import annotations
 from ..util.data_set import Dataset
 from ..util.data_read import data_read
 from collections import Counter
@@ -6,6 +5,7 @@ import math  # piazza says this is allowed
 import numpy as np
 from pathlib import Path
 import pickle
+from nptyping import Array
 
 
 class NodeData:
@@ -26,15 +26,15 @@ class NodeData:
 
 
 class NodeBinTree:
-    def __init__(self, data: NodeData, false_child: NodeBinTree = None, true_child: NodeBinTree = None):
+    def __init__(self, data: NodeData, false_child=None, true_child=None):
         self.data = data
         self.false_child = false_child
         self.true_child = true_child
 
-    def set_false_child_node(self, node: NodeBinTree):
+    def set_false_child_node(self, node):
         self.false_child = node
 
-    def set_true_child_node(self, node: NodeBinTree):
+    def set_true_child_node(self, node):
         self.true_child = node
 
     def __repr__(self, level=0, max_depth=10):
@@ -53,10 +53,10 @@ class NodeBinTree:
 
 
 class BinTree:
-    def __init__(self, dataset: Dataset = None, should_load_file: bool = False):
-        if should_load_file:
+    def __init__(self, dataset: Dataset = None, saved_tree_file: str = None):
+        if saved_tree_file is not None:
             try:
-                self.load_tree()
+                self.load_tree(filename=saved_tree_file)
             except:
                 self.root_node = self.induce_decision_tree(dataset)
         else:
@@ -79,7 +79,7 @@ class BinTree:
     def find_majority_label(self, dataset: Dataset):
         max_value = 0
         label_max_value = None
-        label_counts = collections.Counter(
+        label_counts = Counter(
             [entry.label for entry in dataset.entries])
         for label in label_counts:
             if label_counts[label] > max_value:
@@ -163,26 +163,13 @@ class BinTree:
             prune_leaf(self.root_node, count)
             count += 1
 
-    def prune_leaf(self, node: NodeBinTree, count: int):
-        pred1, pred2 = False, False
-        if node.false_child.label is not None:
-            if count == 0:
-                return NodeBinTree(NodeData(label=node.data.label))
-            else:
-                pred1 = True
-                count -= 1
-        if node.true_child.label is not None:
-            if count == 0:
-                return NodeBinTree(NodeData(label=node.data.label))
-            else:
-                pred2 = True
-                count -= 1
-        if not pred1:
-            false_node = self.prune_leaf(node.false_child)
-        if not pred2:
-            true_node = self.prune_leaf(node.true_child)
-
-        return node
+    # def prune(self, features: Array, node: NodeBinTree):
+    #     if node.data.label is not None:
+    #         return node.data.label
+    #     if features[node.data.lt_operand_feature_idx] < node.data.gt_operand:
+    #         return self.traverse_until_leaf(features, node.true_child)
+    #     else:
+    #         return self.traverse_until_leaf(features, node.false_child)
 
     def save_tree(self, filename: str = "trained_tree.obj"):
         Path("out").mkdir(parents=True, exist_ok=True)

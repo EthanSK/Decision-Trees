@@ -19,19 +19,21 @@ def run_all():
 
 def test_DecisionTreeClassifier(dataset_filename: str = "toy.txt", should_load_file=False):
     # train
+    extless_filename = dataset_filename[:-4]
     start = time.time()
-    cl = DecisionTreeClassifier(should_load_file=should_load_file)
+    cl = DecisionTreeClassifier(
+        saved_tree_file="tree_" + extless_filename + ".obj")
     dataset = data_read("data/" + dataset_filename)
     x, y = dataset.shim_to_arrays()
     cl.train(x, y)
-    cl.tree.save_tree()
+    cl.tree.save_tree("tree_" + extless_filename + ".obj")
     visualize_tree(
-        cl.tree, save_filename=f"visualize_tree_{dataset_filename[:-4]}.txt", max_depth=30)
+        cl.tree, save_filename=f"visualize_tree_{extless_filename}.txt", max_depth=30)
     duration = time.time() - start
     print("duration: ", duration)
 
     # predict
-    val_dataset = data_read("data/validation.txt")
+    val_dataset = data_read("data/test.txt")
     x_val, y_val = val_dataset.shim_to_arrays()
     preds = cl.predict(x_val)
     # preds = [random.choice('ACEGOQ')
@@ -75,7 +77,7 @@ def old_test():
 
 if __name__ == "__main__":
     test_DecisionTreeClassifier(
-        dataset_filename="simple1.txt", should_load_file=False)
+        dataset_filename="train_sub.txt", should_load_file=False)
     # test_tree_load_file()
     # run_manual_test()
     # run_all()
