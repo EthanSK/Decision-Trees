@@ -119,7 +119,7 @@ class BinTree:
         return [Dataset(false_set), Dataset(true_set)]
 
     def find_best_node(self, dataset: Dataset) -> NodeBinTree:
-        start_time = time.time()
+        # start_time = time.time()
         num_features = len(dataset.entries[0].features)
         min_entropy = math.inf
         node_min_entropy = None
@@ -147,7 +147,7 @@ class BinTree:
                         node_min_entropy = test_node
                 prev_entry = entry
         node_min_entropy.data.set_entropy(min_entropy)
-        print("durationnnn: ", time.time() - start_time)
+        # print("durationnnn: ", time.time() - start_time)
         return node_min_entropy
 
     def calc_entropy(self, dataset: Dataset):
@@ -187,6 +187,6 @@ class BinTree:
 
 
 if __name__ == "__main__":
-    dataset = data_read("data/toy.txt")
+    dataset = data_read("data/train_sub.txt")
     tree = BinTree(dataset)
     pass
