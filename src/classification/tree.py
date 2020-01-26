@@ -66,15 +66,15 @@ class BinTree:
         return self.root_node.__repr__(level=0, max_depth=max_depth)
 
     def predict(self, features: Array) -> str:
-        return self.traverse_until_label(features=features, node=self.root_node)
+        return self.traverse_until_leaf(features=features, node=self.root_node)
 
-    def traverse_until_label(self, features: Array, node: NodeBinTree):
+    def traverse_until_leaf(self, features: Array, node: NodeBinTree):
         if node.data.label is not None:
             return node.data.label
         if features[node.data.lt_operand_feature_idx] < node.data.gt_operand:
-            return self.traverse_until_label(features, node.true_child)
+            return self.traverse_until_leaf(features, node.true_child)
         else:
-            return self.traverse_until_label(features, node.false_child)
+            return self.traverse_until_leaf(features, node.false_child)
 
     def find_majority_label(self, dataset: Dataset):
         max_value = 0
