@@ -1,5 +1,5 @@
 from src.util.data_read import data_read
-from src.evaluation.eval import Evaluator
+from evaluator import Evaluator
 from src.classification.visualize_tree import visualize_tree
 from src.classification.tree import BinTree
 from classification import DecisionTreeClassifier
