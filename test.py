@@ -8,6 +8,10 @@ import time
 import numpy as np
 import random
 from sklearn.metrics import accuracy_score
+from sklearn.metrics import recall_score
+from sklearn.metrics import precision_score
+from sklearn.metrics import f1_score
+
 
 
 def run_all():
@@ -40,8 +44,11 @@ def test_DecisionTreeClassifier(dataset_filename: str = "toy.txt"):
     matrix = ev.confusion_matrix(preds, y_val)
     print("real accuracy: ", accuracy_score(y_val, preds))
     print("\nour calc accuracy: ", str.format('{0:.15f}', ev.accuracy(matrix)))
-    print("\n precision: ", ev.precision(matrix))
-    print("\n recall: ", ev.recall(matrix))
+    print("\n precision:", precision_score(y_val, preds, average="macro"))
+    print("\n our precision: ", ev.precision(matrix))
+    print("\nreal recall: ", recall_score(y_val, preds, average="macro"))
+    print("\n our recall: ", ev.recall(matrix))
+    print("\n f1_score", f1_score(y_val, preds, average="macro"))
     print("\n f1_score: ", ev.f1_score(matrix))
 
 
@@ -73,7 +80,7 @@ def old_test():
 
 
 if __name__ == "__main__":
-    test_DecisionTreeClassifier(dataset_filename="train_noisy.txt")
+    test_DecisionTreeClassifier(dataset_filename="train_sub.txt")
     # test_tree_load_file()
     # run_manual_test()
     # run_all()
