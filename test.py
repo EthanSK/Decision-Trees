@@ -71,7 +71,7 @@ def old_test():
 
 
 if __name__ == "__main__":
-    test_DecisionTreeClassifier(dataset_filename="train_sub.txt")
+    test_DecisionTreeClassifier(dataset_filename="train_noisy.txt")
     # test_tree_load_file()
     # run_manual_test()
     # run_all()

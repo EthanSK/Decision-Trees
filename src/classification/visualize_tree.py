@@ -18,4 +18,4 @@ def visualize_tree(tree: BinTree, max_depth: int = 10, save_filename: str = None
 if __name__ == "__main__":
     dataset = data_read("data/toy.txt")
     tree = BinTree(dataset)
-    visualize_tree(tree, max_depth=3, save_filename="visualize_tree.txt")
+    visualize_tree(tree, max_depth=3, save_filename="visualize_tree_full.txt")

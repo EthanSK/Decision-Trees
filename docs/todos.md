@@ -40,6 +40,7 @@
 
 ## Tasks 
 For 3.1-3.5, use scikitlearn's confusion matrix to test the values that our own utilities generate.
+Check F1 Score formula!!
 
 ### 3.1
 * Seb (DONE)

@@ -1,0 +1,937 @@
+[L0] | x_10 < 3 | Child entropy: 2.16 |  
+     ✅ [L1] | x_15 < 11 | Child entropy: 0.08 |  
+         ✅ [L2] | x_12 < 3 | Child entropy: 0.07 |  
+             ✅ [L3] | x_8 < 2 | Child entropy: 0.02 |  
+                 ✅ [L4] Leaf: A  
+                 ❌ [L4] | x_13 < 6 | Child entropy: 0.02 |  
+                     ✅ [L5] | x_1 < 4 | Child entropy: 0.00 |  
+                         ✅ [L6] Leaf: Q  
+                         ❌ [L6] Leaf: A  
+                     ❌ [L5] Leaf: A  
+             ❌ [L3] | x_1 < 5 | Child entropy: 0.13 |  
+                 ✅ [L4] | x_8 < 3 | Child entropy: 0.25 |  
+                     ✅ [L5] Leaf: A  
+                     ❌ [L5] | x_5 < 8 | Child entropy: 0.00 |  
+                         ✅ [L6] Leaf: Q  
+                         ❌ [L6] Leaf: A  
+                 ❌ [L4] | x_3 < 9 | Child entropy: 0.02 |  
+                     ✅ [L5] Leaf: A  
+                     ❌ [L5] | x_5 < 11 | Child entropy: 0.00 |  
+                         ✅ [L6] Leaf: Q  
+                         ❌ [L6] Leaf: A  
+         ❌ [L2] Leaf: Q  
+     ❌ [L1] | x_5 < 7 | Child entropy: 2.07 |  
+         ✅ [L2] | x_14 < 6 | Child entropy: 1.33 |  
+             ✅ [L3] | x_11 < 11 | Child entropy: 1.14 |  
+                 ✅ [L4] | x_7 < 5 | Child entropy: 1.43 |  
+                     ✅ [L5] | x_8 < 7 | Child entropy: 0.32 |  
+                         ✅ [L6] | x_5 < 6 | Child entropy: 0.86 |  
+                             ✅ [L7] Leaf: C  
+                             ❌ [L7] | x_1 < 6 | Child entropy: 1.04 |  
+                                 ✅ [L8] | x_0 < 3 | Child entropy: 0.00 |  
+                                     ✅ [L9] Leaf: E  
+                                     ❌ [L9] Leaf: G  
+                                 ❌ [L8] | x_13 < 7 | Child entropy: 0.52 |  
+                                     ✅ [L9] Leaf: A  
+                                     ❌ [L9] | x_4 < 8 | Child entropy: 0.29 |  
+                                         ✅ [L10] Leaf: C  
+                                         ❌ [L10] | x_0 < 7 | Child entropy: 0.00 |  
+                                             ✅ [L11] Leaf: G  
+                                             ❌ [L11] Leaf: C  
+                         ❌ [L6] | x_14 < 3 | Child entropy: 0.00 |  
+                             ✅ [L7] Leaf: C  
+                             ❌ [L7] Leaf: E  
+                     ❌ [L5] | x_6 < 8 | Child entropy: 1.36 |  
+                         ✅ [L6] | x_12 < 3 | Child entropy: 0.98 |  
+                             ✅ [L7] | x_8 < 6 | Child entropy: 0.57 |  
+                                 ✅ [L8] | x_5 < 6 | Child entropy: 0.20 |  
+                                     ✅ [L9] | x_4 < 4 | Child entropy: 0.31 |  
+                                         ✅ [L10] | x_1 < 9 | Child entropy: 0.00 |  
+                                             ✅ [L11] Leaf: C  
+                                             ❌ [L11] Leaf: G  
+                                         ❌ [L10] Leaf: G  
+                                     ❌ [L9] | x_9 < 9 | Child entropy: 0.11 |  
+                                         ✅ [L10] Leaf: G  
+                                         ❌ [L10] | x_4 < 2 | Child entropy: 0.08 |  
+                                             ✅ [L11] | x_1 < 4 | Child entropy: 0.00 |  
+                                                 ✅ [L12] Leaf: G  
+                                                 ❌ [L12] Leaf: C  
+                                             ❌ [L11] Leaf: G  
+                                 ❌ [L8] | x_12 < 2 | Child entropy: 0.86 |  
+                                     ✅ [L9] | x_10 < 6 | Child entropy: 0.00 |  
+                                         ✅ [L10] Leaf: G  
+                                         ❌ [L10] Leaf: E  
+                                     ❌ [L9] | x_8 < 8 | Child entropy: 0.76 |  
+                                         ✅ [L10] | x_4 < 3 | Child entropy: 0.67 |  
+                                             ✅ [L11] | x_13 < 10 | Child entropy: 0.79 |  
+                                                 ✅ [L12] | x_6 < 7 | Child entropy: 0.74 |  
+                                                     ✅ [L13] Leaf: G  
+                                                     ❌ [L13] | x_3 < 3 | Child entropy: 0.67 |  
+                                                         ✅ [L14] Leaf: C  
+                                                         ❌ [L14] | x_8 < 7 | Child entropy: 0.56 |  
+                                                             ✅ [L15] | x_0 < 4 | Child entropy: 0.33 |  
+                                                                 ✅ [L16] Leaf: G  
+                                                                 ❌ [L16] | x_1 < 7 | Child entropy: 0.00 |  
+                                                                     ✅ [L17] Leaf: C  
+                                                                     ❌ [L17] Leaf: G  
+                                                             ❌ [L15] Leaf: C  
+                                                 ❌ [L12] Leaf: C  
+                                             ❌ [L11] | x_1 < 6 | Child entropy: 0.47 |  
+                                                 ✅ [L12] Leaf: G  
+                                                 ❌ [L12] | x_7 < 7 | Child entropy: 0.54 |  
+                                                     ✅ [L13] | x_7 < 6 | Child entropy: 0.74 |  
+                                                         ✅ [L14] | x_0 < 4 | Child entropy: 0.69 |  
+                                                             ✅ [L15] Leaf: G  
+                                                             ❌ [L15] | x_0 < 5 | Child entropy: 0.00 |  
+                                                                 ✅ [L16] Leaf: C  
+                                                                 ❌ [L16] Leaf: G  
+                                                         ❌ [L14] | x_1 < 9 | Child entropy: 0.46 |  
+                                                             ✅ [L15] Leaf: G  
+                                                             ❌ [L15] | x_4 < 4 | Child entropy: 0.60 |  
+                                                                 ✅ [L16] Leaf: C  
+                                                                 ❌ [L16] | x_1 < 10 | Child entropy: 0.40 |  
+                                                                     ✅ [L17] Leaf: G  
+                                                                     ❌ [L17] | x_0 < 6 | Child entropy: 0.00 |  
+                                                                         ✅ [L18] Leaf: C  
+                                                                         ❌ [L18] Leaf: G  
+                                                     ❌ [L13] Leaf: G  
+                                         ❌ [L10] | x_0 < 4 | Child entropy: 0.00 |  
+                                             ✅ [L11] Leaf: E  
+                                             ❌ [L11] Leaf: G  
+                             ❌ [L7] | x_12 < 5 | Child entropy: 1.31 |  
+                                 ✅ [L8] | x_15 < 9 | Child entropy: 1.15 |  
+                                     ✅ [L9] | x_9 < 7 | Child entropy: 0.87 |  
+                                         ✅ [L10] | x_7 < 9 | Child entropy: 0.35 |  
+                                             ✅ [L11] | x_13 < 9 | Child entropy: 0.27 |  
+                                                 ✅ [L12] Leaf: G  
+                                                 ❌ [L12] | x_5 < 6 | Child entropy: 0.00 |  
+                                                     ✅ [L13] Leaf: C  
+                                                     ❌ [L13] Leaf: G  
+                                             ❌ [L11] Leaf: O  
+                                         ❌ [L10] | x_7 < 6 | Child entropy: 0.57 |  
+                                             ✅ [L11] | x_1 < 6 | Child entropy: 0.00 |  
+                                                 ✅ [L12] Leaf: O  
+                                                 ❌ [L12] Leaf: G  
+                                             ❌ [L11] | x_13 < 10 | Child entropy: 0.20 |  
+                                                 ✅ [L12] Leaf: O  
+                                                 ❌ [L12] | x_1 < 9 | Child entropy: 0.00 |  
+                                                     ✅ [L13] Leaf: G  
+                                                     ❌ [L13] Leaf: O  
+                                     ❌ [L9] | x_1 < 6 | Child entropy: 0.00 |  
+                                         ✅ [L10] Leaf: G  
+                                         ❌ [L10] Leaf: E  
+                                 ❌ [L8] | x_10 < 7 | Child entropy: 0.82 |  
+                                     ✅ [L9] | x_8 < 5 | Child entropy: 0.00 |  
+                                         ✅ [L10] Leaf: O  
+                                         ❌ [L10] Leaf: C  
+                                     ❌ [L9] | x_11 < 9 | Child entropy: 0.83 |  
+                                         ✅ [L10] Leaf: O  
+                                         ❌ [L10] | x_5 < 6 | Child entropy: 0.62 |  
+                                             ✅ [L11] Leaf: C  
+                                             ❌ [L11] | x_1 < 14 | Child entropy: 0.69 |  
+                                                 ✅ [L12] | x_1 < 12 | Child entropy: 0.46 |  
+                                                     ✅ [L13] | x_13 < 10 | Child entropy: 0.00 |  
+                                                         ✅ [L14] Leaf: O  
+                                                         ❌ [L14] Leaf: C  
+                                                     ❌ [L13] Leaf: O  
+                                                 ❌ [L12] Leaf: C  
+                         ❌ [L6] | x_7 < 7 | Child entropy: 1.03 |  
+                             ✅ [L7] | x_10 < 7 | Child entropy: 0.75 |  
+                                 ✅ [L8] Leaf: O  
+                                 ❌ [L8] | x_15 < 6 | Child entropy: 0.40 |  
+                                     ✅ [L9] Leaf: E  
+                                     ❌ [L9] | x_15 < 9 | Child entropy: 0.31 |  
+                                         ✅ [L10] Leaf: C  
+                                         ❌ [L10] | x_9 < 10 | Child entropy: 0.78 |  
+                                             ✅ [L11] | x_0 < 5 | Child entropy: 0.60 |  
+                                                 ✅ [L12] | x_0 < 3 | Child entropy: 0.40 |  
+                                                     ✅ [L13] | x_1 < 4 | Child entropy: 0.00 |  
+                                                         ✅ [L14] Leaf: C  
+                                                         ❌ [L14] Leaf: G  
+                                                     ❌ [L13] Leaf: C  
+                                                 ❌ [L12] Leaf: G  
+                                             ❌ [L11] | x_0 < 5 | Child entropy: 0.00 |  
+                                                 ✅ [L12] Leaf: E  
+                                                 ❌ [L12] Leaf: C  
+                             ❌ [L7] | x_11 < 9 | Child entropy: 0.49 |  
+                                 ✅ [L8] Leaf: O  
+                                 ❌ [L8] | x_5 < 6 | Child entropy: 0.76 |  
+                                     ✅ [L9] | x_2 < 6 | Child entropy: 0.00 |  
+                                         ✅ [L10] Leaf: C  
+                                         ❌ [L10] Leaf: O  
+                                     ❌ [L9] | x_0 < 5 | Child entropy: 0.00 |  
+                                         ✅ [L10] Leaf: G  
+                                         ❌ [L10] Leaf: O  
+                 ❌ [L4] | x_12 < 2 | Child entropy: 0.39 |  
+                     ✅ [L5] | x_15 < 11 | Child entropy: 0.01 |  
+                         ✅ [L6] Leaf: C  
+                         ❌ [L6] | x_0 < 3 | Child entropy: 0.00 |  
+                             ✅ [L7] Leaf: E  
+                             ❌ [L7] Leaf: C  
+                     ❌ [L5] | x_11 < 12 | Child entropy: 0.72 |  
+                         ✅ [L6] | x_7 < 5 | Child entropy: 0.88 |  
+                             ✅ [L7] Leaf: C  
+                             ❌ [L7] | x_5 < 6 | Child entropy: 0.89 |  
+                                 ✅ [L8] | x_8 < 7 | Child entropy: 0.85 |  
+                                     ✅ [L9] | x_1 < 9 | Child entropy: 0.80 |  
+                                         ✅ [L10] Leaf: C  
+                                         ❌ [L10] | x_15 < 10 | Child entropy: 0.67 |  
+                                             ✅ [L11] | x_0 < 7 | Child entropy: 0.00 |  
+                                                 ✅ [L12] Leaf: C  
+                                                 ❌ [L12] Leaf: G  
+                                             ❌ [L11] | x_0 < 7 | Child entropy: 0.29 |  
+                                                 ✅ [L12] Leaf: G  
+                                                 ❌ [L12] | x_1 < 10 | Child entropy: 0.00 |  
+                                                     ✅ [L13] Leaf: C  
+                                                     ❌ [L13] Leaf: G  
+                                     ❌ [L9] | x_4 < 7 | Child entropy: 0.00 |  
+                                         ✅ [L10] Leaf: C  
+                                         ❌ [L10] Leaf: E  
+                                 ❌ [L8] | x_2 < 4 | Child entropy: 0.54 |  
+                                     ✅ [L9] Leaf: C  
+                                     ❌ [L9] | x_6 < 7 | Child entropy: 0.45 |  
+                                         ✅ [L10] Leaf: G  
+                                         ❌ [L10] | x_7 < 7 | Child entropy: 0.42 |  
+                                             ✅ [L11] | x_4 < 5 | Child entropy: 0.65 |  
+                                                 ✅ [L12] | x_1 < 7 | Child entropy: 0.50 |  
+                                                     ✅ [L13] | x_7 < 6 | Child entropy: 0.00 |  
+                                                         ✅ [L14] Leaf: C  
+                                                         ❌ [L14] Leaf: G  
+                                                     ❌ [L13] Leaf: C  
+                                                 ❌ [L12] Leaf: G  
+                                             ❌ [L11] Leaf: G  
+                         ❌ [L6] | x_6 < 7 | Child entropy: 0.26 |  
+                             ✅ [L7] | x_8 < 7 | Child entropy: 0.87 |  
+                                 ✅ [L8] | x_7 < 4 | Child entropy: 0.77 |  
+                                     ✅ [L9] Leaf: C  
+                                     ❌ [L9] | x_0 < 6 | Child entropy: 0.73 |  
+                                         ✅ [L10] | x_0 < 4 | Child entropy: 0.78 |  
+                                             ✅ [L11] Leaf: G  
+                                             ❌ [L11] | x_2 < 6 | Child entropy: 0.83 |  
+                                                 ✅ [L12] | x_0 < 5 | Child entropy: 0.46 |  
+                                                     ✅ [L13] | x_1 < 8 | Child entropy: 0.00 |  
+                                                         ✅ [L14] Leaf: C  
+                                                         ❌ [L14] Leaf: G  
+                                                     ❌ [L13] Leaf: C  
+                                                 ❌ [L12] | x_1 < 11 | Child entropy: 0.00 |  
+                                                     ✅ [L13] Leaf: G  
+                                                     ❌ [L13] Leaf: C  
+                                         ❌ [L10] Leaf: G  
+                                 ❌ [L8] | x_7 < 8 | Child entropy: 0.00 |  
+                                     ✅ [L9] Leaf: C  
+                                     ❌ [L9] Leaf: G  
+                             ❌ [L7] | x_10 < 8 | Child entropy: 0.05 |  
+                                 ✅ [L8] | x_3 < 7 | Child entropy: 0.24 |  
+                                     ✅ [L9] | x_13 < 9 | Child entropy: 0.00 |  
+                                         ✅ [L10] Leaf: G  
+                                         ❌ [L10] Leaf: C  
+                                     ❌ [L9] Leaf: C  
+                                 ❌ [L8] Leaf: C  
+             ❌ [L3] | x_12 < 1 | Child entropy: 0.57 |  
+                 ✅ [L4] Leaf: E  
+                 ❌ [L4] | x_6 < 7 | Child entropy: 1.13 |  
+                     ✅ [L5] | x_9 < 8 | Child entropy: 1.41 |  
+                         ✅ [L6] | x_7 < 4 | Child entropy: 1.16 |  
+                             ✅ [L7] | x_14 < 7 | Child entropy: 0.55 |  
+                                 ✅ [L8] Leaf: C  
+                                 ❌ [L8] | x_0 < 5 | Child entropy: 0.00 |  
+                                     ✅ [L9] Leaf: E  
+                                     ❌ [L9] Leaf: C  
+                             ❌ [L7] | x_13 < 6 | Child entropy: 0.79 |  
+                                 ✅ [L8] | x_7 < 5 | Child entropy: 0.00 |  
+                                     ✅ [L9] Leaf: E  
+                                     ❌ [L9] Leaf: Q  
+                                 ❌ [L8] | x_14 < 8 | Child entropy: 0.23 |  
+                                     ✅ [L9] Leaf: G  
+                                     ❌ [L9] | x_0 < 6 | Child entropy: 0.00 |  
+                                         ✅ [L10] Leaf: E  
+                                         ❌ [L10] Leaf: G  
+                         ❌ [L6] | x_2 < 8 | Child entropy: 0.00 |  
+                             ✅ [L7] Leaf: C  
+                             ❌ [L7] Leaf: E  
+                     ❌ [L5] | x_0 < 6 | Child entropy: 0.83 |  
+                         ✅ [L6] | x_15 < 11 | Child entropy: 0.45 |  
+                             ✅ [L7] | x_8 < 4 | Child entropy: 0.22 |  
+                                 ✅ [L8] | x_5 < 6 | Child entropy: 0.50 |  
+                                     ✅ [L9] Leaf: E  
+                                     ❌ [L9] | x_0 < 5 | Child entropy: 0.00 |  
+                                         ✅ [L10] Leaf: C  
+                                         ❌ [L10] Leaf: O  
+                                 ❌ [L8] | x_2 < 7 | Child entropy: 0.08 |  
+                                     ✅ [L9] Leaf: E  
+                                     ❌ [L9] | x_1 < 8 | Child entropy: 0.00 |  
+                                         ✅ [L10] Leaf: G  
+                                         ❌ [L10] Leaf: E  
+                             ❌ [L7] | x_11 < 11 | Child entropy: 0.63 |  
+                                 ✅ [L8] | x_14 < 8 | Child entropy: 0.48 |  
+                                     ✅ [L9] Leaf: G  
+                                     ❌ [L9] | x_13 < 11 | Child entropy: 0.34 |  
+                                         ✅ [L10] Leaf: E  
+                                         ❌ [L10] | x_1 < 8 | Child entropy: 0.00 |  
+                                             ✅ [L11] Leaf: G  
+                                             ❌ [L11] Leaf: E  
+                                 ❌ [L8] Leaf: G  
+                         ❌ [L6] | x_14 < 7 | Child entropy: 0.85 |  
+                             ✅ [L7] | x_10 < 8 | Child entropy: 0.91 |  
+                                 ✅ [L8] | x_3 < 8 | Child entropy: 0.00 |  
+                                     ✅ [L9] Leaf: C  
+                                     ❌ [L9] Leaf: O  
+                                 ❌ [L8] | x_5 < 6 | Child entropy: 0.00 |  
+                                     ✅ [L9] Leaf: C  
+                                     ❌ [L9] Leaf: G  
+                             ❌ [L7] | x_14 < 9 | Child entropy: 0.38 |  
+                                 ✅ [L8] Leaf: E  
+                                 ❌ [L8] | x_9 < 7 | Child entropy: 0.52 |  
+                                     ✅ [L9] Leaf: C  
+                                     ❌ [L9] | x_0 < 7 | Child entropy: 0.29 |  
+                                         ✅ [L10] Leaf: E  
+                                         ❌ [L10] | x_0 < 8 | Child entropy: 0.00 |  
+                                             ✅ [L11] Leaf: C  
+                                             ❌ [L11] Leaf: E  
+         ❌ [L2] | x_7 < 6 | Child entropy: 1.99 |  
+             ✅ [L3] | x_8 < 7 | Child entropy: 1.80 |  
+                 ✅ [L4] | x_13 < 7 | Child entropy: 1.97 |  
+                     ✅ [L5] | x_8 < 4 | Child entropy: 0.61 |  
+                         ✅ [L6] Leaf: A  
+                         ❌ [L6] | x_6 < 5 | Child entropy: 1.26 |  
+                             ✅ [L7] | x_9 < 8 | Child entropy: 1.05 |  
+                                 ✅ [L8] | x_2 < 7 | Child entropy: 0.91 |  
+                                     ✅ [L9] Leaf: Q  
+                                     ❌ [L9] | x_14 < 6 | Child entropy: 1.02 |  
+                                         ✅ [L10] | x_0 < 6 | Child entropy: 0.00 |  
+                                             ✅ [L11] Leaf: O  
+                                             ❌ [L11] Leaf: A  
+                                         ❌ [L10] | x_8 < 5 | Child entropy: 0.39 |  
+                                             ✅ [L11] Leaf: A  
+                                             ❌ [L11] | x_8 < 6 | Child entropy: 0.20 |  
+                                                 ✅ [L12] Leaf: Q  
+                                                 ❌ [L12] | x_1 < 9 | Child entropy: 0.00 |  
+                                                     ✅ [L13] Leaf: O  
+                                                     ❌ [L13] Leaf: Q  
+                                 ❌ [L8] | x_1 < 14 | Child entropy: 0.00 |  
+                                     ✅ [L9] Leaf: A  
+                                     ❌ [L9] Leaf: O  
+                             ❌ [L7] | x_1 < 7 | Child entropy: 0.54 |  
+                                 ✅ [L8] | x_15 < 7 | Child entropy: 0.33 |  
+                                     ✅ [L9] | x_0 < 5 | Child entropy: 0.00 |  
+                                         ✅ [L10] Leaf: O  
+                                         ❌ [L10] Leaf: A  
+                                     ❌ [L9] Leaf: G  
+                                 ❌ [L8] Leaf: A  
+                     ❌ [L5] | x_7 < 4 | Child entropy: 1.97 |  
+                         ✅ [L6] | x_14 < 7 | Child entropy: 1.28 |  
+                             ✅ [L7] | x_10 < 7 | Child entropy: 0.89 |  
+                                 ✅ [L8] | x_6 < 6 | Child entropy: 0.74 |  
+                                     ✅ [L9] | x_13 < 8 | Child entropy: 0.43 |  
+                                         ✅ [L10] | x_4 < 5 | Child entropy: 0.46 |  
+                                             ✅ [L11] | x_0 < 4 | Child entropy: 0.00 |  
+                                                 ✅ [L12] Leaf: A  
+                                                 ❌ [L12] Leaf: Q  
+                                             ❌ [L11] Leaf: A  
+                                         ❌ [L10] Leaf: Q  
+                                     ❌ [L9] | x_1 < 8 | Child entropy: 0.00 |  
+                                         ✅ [L10] Leaf: E  
+                                         ❌ [L10] Leaf: A  
+                                 ❌ [L8] | x_6 < 9 | Child entropy: 0.20 |  
+                                     ✅ [L9] | x_12 < 7 | Child entropy: 0.07 |  
+                                         ✅ [L10] Leaf: A  
+                                         ❌ [L10] | x_0 < 6 | Child entropy: 0.00 |  
+                                             ✅ [L11] Leaf: C  
+                                             ❌ [L11] Leaf: A  
+                                     ❌ [L9] Leaf: C  
+                             ❌ [L7] | x_0 < 7 | Child entropy: 0.24 |  
+                                 ✅ [L8] | x_8 < 3 | Child entropy: 0.10 |  
+                                     ✅ [L9] | x_0 < 5 | Child entropy: 0.00 |  
+                                         ✅ [L10] Leaf: E  
+                                         ❌ [L10] Leaf: Q  
+                                     ❌ [L9] Leaf: E  
+                                 ❌ [L8] Leaf: G  
+                         ❌ [L6] | x_11 < 9 | Child entropy: 1.82 |  
+                             ✅ [L7] | x_7 < 5 | Child entropy: 1.76 |  
+                                 ✅ [L8] | x_14 < 8 | Child entropy: 1.48 |  
+                                     ✅ [L9] | x_3 < 5 | Child entropy: 1.22 |  
+                                         ✅ [L10] | x_0 < 5 | Child entropy: 0.00 |  
+                                             ✅ [L11] Leaf: A  
+                                             ❌ [L11] Leaf: G  
+                                         ❌ [L10] | x_2 < 7 | Child entropy: 0.98 |  
+                                             ✅ [L11] | x_0 < 8 | Child entropy: 0.52 |  
+                                                 ✅ [L12] | x_6 < 6 | Child entropy: 0.43 |  
+                                                     ✅ [L13] | x_9 < 11 | Child entropy: 0.20 |  
+                                                         ✅ [L14] Leaf: Q  
+                                                         ❌ [L14] | x_12 < 4 | Child entropy: 0.00 |  
+                                                             ✅ [L15] Leaf: Q  
+                                                             ❌ [L15] Leaf: O  
+                                                     ❌ [L13] | x_9 < 7 | Child entropy: 0.00 |  
+                                                         ✅ [L14] Leaf: Q  
+                                                         ❌ [L14] Leaf: G  
+                                                 ❌ [L12] Leaf: O  
+                                             ❌ [L11] | x_9 < 9 | Child entropy: 0.86 |  
+                                                 ✅ [L12] | x_0 < 6 | Child entropy: 0.50 |  
+                                                     ✅ [L13] | x_6 < 5 | Child entropy: 0.00 |  
+                                                         ✅ [L14] Leaf: Q  
+                                                         ❌ [L14] Leaf: A  
+                                                     ❌ [L13] Leaf: Q  
+                                                 ❌ [L12] | x_11 < 8 | Child entropy: 0.00 |  
+                                                     ✅ [L13] Leaf: G  
+                                                     ❌ [L13] Leaf: A  
+                                     ❌ [L9] | x_6 < 6 | Child entropy: 1.09 |  
+                                         ✅ [L10] Leaf: Q  
+                                         ❌ [L10] | x_0 < 7 | Child entropy: 0.98 |  
+                                             ✅ [L11] | x_8 < 3 | Child entropy: 0.14 |  
+                                                 ✅ [L12] | x_1 < 12 | Child entropy: 0.00 |  
+                                                     ✅ [L13] Leaf: Q  
+                                                     ❌ [L13] Leaf: G  
+                                                 ❌ [L12] Leaf: E  
+                                             ❌ [L11] | x_14 < 10 | Child entropy: 0.86 |  
+                                                 ✅ [L12] | x_9 < 9 | Child entropy: 0.69 |  
+                                                     ✅ [L13] Leaf: Q  
+                                                     ❌ [L13] | x_5 < 8 | Child entropy: 0.55 |  
+                                                         ✅ [L14] Leaf: G  
+                                                         ❌ [L14] | x_6 < 8 | Child entropy: 0.00 |  
+                                                             ✅ [L15] Leaf: Q  
+                                                             ❌ [L15] Leaf: G  
+                                                 ❌ [L12] Leaf: E  
+                                 ❌ [L8] | x_14 < 7 | Child entropy: 1.31 |  
+                                     ✅ [L9] | x_12 < 4 | Child entropy: 0.93 |  
+                                         ✅ [L10] | x_8 < 6 | Child entropy: 0.80 |  
+                                             ✅ [L11] | x_4 < 2 | Child entropy: 0.52 |  
+                                                 ✅ [L12] Leaf: O  
+                                                 ❌ [L12] | x_15 < 7 | Child entropy: 0.00 |  
+                                                     ✅ [L13] Leaf: G  
+                                                     ❌ [L13] Leaf: Q  
+                                             ❌ [L11] Leaf: E  
+                                         ❌ [L10] | x_9 < 7 | Child entropy: 0.46 |  
+                                             ✅ [L11] Leaf: G  
+                                             ❌ [L11] | x_13 < 10 | Child entropy: 0.26 |  
+                                                 ✅ [L12] | x_6 < 6 | Child entropy: 0.06 |  
+                                                     ✅ [L13] | x_0 < 10 | Child entropy: 0.00 |  
+                                                         ✅ [L14] Leaf: Q  
+                                                         ❌ [L14] Leaf: O  
+                                                     ❌ [L13] Leaf: O  
+                                                 ❌ [L12] | x_0 < 6 | Child entropy: 0.00 |  
+                                                     ✅ [L13] Leaf: G  
+                                                     ❌ [L13] Leaf: O  
+                                     ❌ [L9] | x_12 < 5 | Child entropy: 0.94 |  
+                                         ✅ [L10] | x_13 < 9 | Child entropy: 0.77 |  
+                                             ✅ [L11] Leaf: E  
+                                             ❌ [L11] | x_8 < 4 | Child entropy: 0.46 |  
+                                                 ✅ [L12] | x_1 < 11 | Child entropy: 0.50 |  
+                                                     ✅ [L13] | x_0 < 5 | Child entropy: 0.00 |  
+                                                         ✅ [L14] Leaf: Q  
+                                                         ❌ [L14] Leaf: G  
+                                                     ❌ [L13] Leaf: Q  
+                                                 ❌ [L12] Leaf: G  
+                                         ❌ [L10] | x_1 < 11 | Child entropy: 0.35 |  
+                                             ✅ [L11] | x_6 < 7 | Child entropy: 0.00 |  
+                                                 ✅ [L12] Leaf: O  
+                                                 ❌ [L12] Leaf: G  
+                                             ❌ [L11] | x_0 < 7 | Child entropy: 0.00 |  
+                                                 ✅ [L12] Leaf: E  
+                                                 ❌ [L12] Leaf: O  
+                             ❌ [L7] | x_8 < 3 | Child entropy: 1.35 |  
+                                 ✅ [L8] | x_15 < 11 | Child entropy: 0.59 |  
+                                     ✅ [L9] | x_6 < 7 | Child entropy: 0.35 |  
+                                         ✅ [L10] | x_0 < 4 | Child entropy: 0.56 |  
+                                             ✅ [L11] Leaf: A  
+                                             ❌ [L11] | x_8 < 2 | Child entropy: 0.00 |  
+                                                 ✅ [L12] Leaf: O  
+                                                 ❌ [L12] Leaf: Q  
+                                         ❌ [L10] | x_7 < 5 | Child entropy: 0.23 |  
+                                             ✅ [L11] | x_3 < 3 | Child entropy: 0.18 |  
+                                                 ✅ [L12] | x_0 < 2 | Child entropy: 0.00 |  
+                                                     ✅ [L13] Leaf: Q  
+                                                     ❌ [L13] Leaf: G  
+                                                 ❌ [L12] Leaf: Q  
+                                             ❌ [L11] | x_14 < 8 | Child entropy: 0.03 |  
+                                                 ✅ [L12] Leaf: Q  
+                                                 ❌ [L12] | x_0 < 7 | Child entropy: 0.00 |  
+                                                     ✅ [L13] Leaf: G  
+                                                     ❌ [L13] Leaf: Q  
+                                     ❌ [L9] | x_5 < 9 | Child entropy: 0.77 |  
+                                         ✅ [L10] | x_6 < 10 | Child entropy: 0.35 |  
+                                             ✅ [L11] | x_1 < 6 | Child entropy: 0.00 |  
+                                                 ✅ [L12] Leaf: Q  
+                                                 ❌ [L12] Leaf: G  
+                                             ❌ [L11] Leaf: Q  
+                                         ❌ [L10] | x_14 < 5 | Child entropy: 0.00 |  
+                                             ✅ [L11] Leaf: O  
+                                             ❌ [L11] Leaf: Q  
+                                 ❌ [L8] | x_15 < 9 | Child entropy: 1.49 |  
+                                     ✅ [L9] | x_10 < 8 | Child entropy: 1.43 |  
+                                         ✅ [L10] | x_5 < 8 | Child entropy: 1.55 |  
+                                             ✅ [L11] | x_14 < 7 | Child entropy: 1.19 |  
+                                                 ✅ [L12] | x_1 < 7 | Child entropy: 0.68 |  
+                                                     ✅ [L13] | x_13 < 10 | Child entropy: 0.00 |  
+                                                         ✅ [L14] Leaf: G  
+                                                         ❌ [L14] Leaf: C  
+                                                     ❌ [L13] | x_0 < 6 | Child entropy: 0.00 |  
+                                                         ✅ [L14] Leaf: A  
+                                                         ❌ [L14] Leaf: G  
+                                                 ❌ [L12] | x_1 < 10 | Child entropy: 0.43 |  
+                                                     ✅ [L13] | x_2 < 6 | Child entropy: 0.00 |  
+                                                         ✅ [L14] Leaf: E  
+                                                         ❌ [L14] Leaf: G  
+                                                     ❌ [L13] Leaf: E  
+                                             ❌ [L11] | x_11 < 10 | Child entropy: 0.38 |  
+                                                 ✅ [L12] Leaf: Q  
+                                                 ❌ [L12] | x_6 < 10 | Child entropy: 0.00 |  
+                                                     ✅ [L13] Leaf: A  
+                                                     ❌ [L13] Leaf: C  
+                                         ❌ [L10] | x_12 < 5 | Child entropy: 0.09 |  
+                                             ✅ [L11] Leaf: Q  
+                                             ❌ [L11] | x_0 < 6 | Child entropy: 0.00 |  
+                                                 ✅ [L12] Leaf: C  
+                                                 ❌ [L12] Leaf: E  
+                                     ❌ [L9] | x_10 < 4 | Child entropy: 1.00 |  
+                                         ✅ [L10] Leaf: Q  
+                                         ❌ [L10] | x_6 < 8 | Child entropy: 0.90 |  
+                                             ✅ [L11] | x_3 < 7 | Child entropy: 0.63 |  
+                                                 ✅ [L12] | x_8 < 6 | Child entropy: 0.37 |  
+                                                     ✅ [L13] | x_5 < 8 | Child entropy: 0.24 |  
+                                                         ✅ [L14] Leaf: G  
+                                                         ❌ [L14] | x_1 < 6 | Child entropy: 0.37 |  
+                                                             ✅ [L15] | x_0 < 2 | Child entropy: 0.43 |  
+                                                                 ✅ [L16] | x_2 < 2 | Child entropy: 0.25 |  
+                                                                     ✅ [L17] | x_6 < 7 | Child entropy: 0.00 |  
+                                                                         ✅ [L18] Leaf: Q  
+                                                                         ❌ [L18] Leaf: G  
+                                                                     ❌ [L17] Leaf: G  
+                                                                 ❌ [L16] Leaf: Q  
+                                                             ❌ [L15] Leaf: G  
+                                                     ❌ [L13] | x_0 < 2 | Child entropy: 0.67 |  
+                                                         ✅ [L14] Leaf: G  
+                                                         ❌ [L14] | x_0 < 5 | Child entropy: 0.00 |  
+                                                             ✅ [L15] Leaf: E  
+                                                             ❌ [L15] Leaf: Q  
+                                                 ❌ [L12] | x_15 < 14 | Child entropy: 0.76 |  
+                                                     ✅ [L13] | x_11 < 10 | Child entropy: 0.61 |  
+                                                         ✅ [L14] | x_4 < 10 | Child entropy: 0.72 |  
+                                                             ✅ [L15] | x_1 < 14 | Child entropy: 0.34 |  
+                                                                 ✅ [L16] Leaf: G  
+                                                                 ❌ [L16] | x_0 < 9 | Child entropy: 0.00 |  
+                                                                     ✅ [L17] Leaf: E  
+                                                                     ❌ [L17] Leaf: G  
+                                                             ❌ [L15] Leaf: E  
+                                                         ❌ [L14] | x_10 < 9 | Child entropy: 0.15 |  
+                                                             ✅ [L15] Leaf: G  
+                                                             ❌ [L15] | x_0 < 7 | Child entropy: 0.00 |  
+                                                                 ✅ [L16] Leaf: Q  
+                                                                 ❌ [L16] Leaf: G  
+                                                     ❌ [L13] Leaf: E  
+                                             ❌ [L11] | x_8 < 5 | Child entropy: 1.34 |  
+                                                 ✅ [L12] | x_3 < 9 | Child entropy: 1.02 |  
+                                                     ✅ [L13] | x_9 < 10 | Child entropy: 0.18 |  
+                                                         ✅ [L14] Leaf: G  
+                                                         ❌ [L14] | x_1 < 13 | Child entropy: 0.00 |  
+                                                             ✅ [L15] Leaf: C  
+                                                             ❌ [L15] Leaf: E  
+                                                     ❌ [L13] | x_0 < 6 | Child entropy: 0.67 |  
+                                                         ✅ [L14] Leaf: C  
+                                                         ❌ [L14] | x_0 < 7 | Child entropy: 0.00 |  
+                                                             ✅ [L15] Leaf: Q  
+                                                             ❌ [L15] Leaf: E  
+                                                 ❌ [L12] | x_0 < 9 | Child entropy: 0.54 |  
+                                                     ✅ [L13] | x_0 < 5 | Child entropy: 0.00 |  
+                                                         ✅ [L14] Leaf: C  
+                                                         ❌ [L14] Leaf: E  
+                                                     ❌ [L13] Leaf: C  
+                 ❌ [L4] | x_6 < 5 | Child entropy: 0.48 |  
+                     ✅ [L5] | x_0 < 6 | Child entropy: 0.92 |  
+                         ✅ [L6] Leaf: E  
+                         ❌ [L6] | x_13 < 9 | Child entropy: 0.66 |  
+                             ✅ [L7] | x_0 < 9 | Child entropy: 0.63 |  
+                                 ✅ [L8] | x_0 < 8 | Child entropy: 0.79 |  
+                                     ✅ [L9] | x_1 < 10 | Child entropy: 0.60 |  
+                                         ✅ [L10] Leaf: Q  
+                                         ❌ [L10] | x_3 < 7 | Child entropy: 0.40 |  
+                                             ✅ [L11] Leaf: G  
+                                             ❌ [L11] | x_0 < 7 | Child entropy: 0.00 |  
+                                                 ✅ [L12] Leaf: G  
+                                                 ❌ [L12] Leaf: Q  
+                                     ❌ [L9] Leaf: Q  
+                                 ❌ [L8] Leaf: G  
+                             ❌ [L7] Leaf: Q  
+                     ❌ [L5] | x_11 < 11 | Child entropy: 0.31 |  
+                         ✅ [L6] | x_13 < 9 | Child entropy: 0.19 |  
+                             ✅ [L7] | x_5 < 10 | Child entropy: 0.05 |  
+                                 ✅ [L8] Leaf: E  
+                                 ❌ [L8] | x_10 < 5 | Child entropy: 0.27 |  
+                                     ✅ [L9] | x_0 < 7 | Child entropy: 0.10 |  
+                                         ✅ [L10] Leaf: E  
+                                         ❌ [L10] | x_1 < 14 | Child entropy: 0.00 |  
+                                             ✅ [L11] Leaf: Q  
+                                             ❌ [L11] Leaf: E  
+                                     ❌ [L9] Leaf: Q  
+                             ❌ [L7] | x_7 < 4 | Child entropy: 0.54 |  
+                                 ✅ [L8] Leaf: E  
+                                 ❌ [L8] | x_8 < 8 | Child entropy: 0.94 |  
+                                     ✅ [L9] | x_6 < 8 | Child entropy: 0.67 |  
+                                         ✅ [L10] | x_15 < 9 | Child entropy: 0.56 |  
+                                             ✅ [L11] Leaf: E  
+                                             ❌ [L11] | x_9 < 11 | Child entropy: 0.33 |  
+                                                 ✅ [L12] Leaf: G  
+                                                 ❌ [L12] | x_0 < 8 | Child entropy: 0.00 |  
+                                                     ✅ [L13] Leaf: E  
+                                                     ❌ [L13] Leaf: G  
+                                         ❌ [L10] Leaf: E  
+                                     ❌ [L9] | x_4 < 3 | Child entropy: 0.00 |  
+                                         ✅ [L10] Leaf: C  
+                                         ❌ [L10] Leaf: E  
+                         ❌ [L6] | x_6 < 8 | Child entropy: 0.41 |  
+                             ✅ [L7] | x_2 < 7 | Child entropy: 0.00 |  
+                                 ✅ [L8] Leaf: C  
+                                 ❌ [L8] Leaf: E  
+                             ❌ [L7] Leaf: E  
+             ❌ [L3] | x_14 < 5 | Child entropy: 1.52 |  
+                 ✅ [L4] | x_15 < 9 | Child entropy: 1.01 |  
+                     ✅ [L5] | x_9 < 7 | Child entropy: 0.65 |  
+                         ✅ [L6] | x_5 < 8 | Child entropy: 1.30 |  
+                             ✅ [L7] | x_7 < 8 | Child entropy: 1.06 |  
+                                 ✅ [L8] | x_1 < 11 | Child entropy: 0.84 |  
+                                     ✅ [L9] | x_8 < 6 | Child entropy: 0.45 |  
+                                         ✅ [L10] Leaf: O  
+                                         ❌ [L10] | x_0 < 4 | Child entropy: 0.43 |  
+                                             ✅ [L11] Leaf: G  
+                                             ❌ [L11] | x_1 < 5 | Child entropy: 0.00 |  
+                                                 ✅ [L12] Leaf: Q  
+                                                 ❌ [L12] Leaf: G  
+                                     ❌ [L9] Leaf: C  
+                                 ❌ [L8] | x_11 < 12 | Child entropy: 0.60 |  
+                                     ✅ [L9] | x_1 < 5 | Child entropy: 0.20 |  
+                                         ✅ [L10] | x_3 < 7 | Child entropy: 0.00 |  
+                                             ✅ [L11] Leaf: O  
+                                             ❌ [L11] Leaf: Q  
+                                         ❌ [L10] Leaf: O  
+                                     ❌ [L9] | x_0 < 6 | Child entropy: 0.52 |  
+                                         ✅ [L10] | x_2 < 6 | Child entropy: 0.00 |  
+                                             ✅ [L11] Leaf: O  
+                                             ❌ [L11] Leaf: C  
+                                         ❌ [L10] Leaf: O  
+                             ❌ [L7] | x_1 < 10 | Child entropy: 0.98 |  
+                                 ✅ [L8] | x_7 < 7 | Child entropy: 0.85 |  
+                                     ✅ [L9] | x_3 < 1 | Child entropy: 0.34 |  
+                                         ✅ [L10] | x_11 < 9 | Child entropy: 0.00 |  
+                                             ✅ [L11] Leaf: Q  
+                                             ❌ [L11] Leaf: O  
+                                         ❌ [L10] | x_0 < 4 | Child entropy: 0.00 |  
+                                             ✅ [L11] Leaf: Q  
+                                             ❌ [L11] Leaf: O  
+                                     ❌ [L9] | x_4 < 3 | Child entropy: 0.85 |  
+                                         ✅ [L10] | x_10 < 8 | Child entropy: 0.77 |  
+                                             ✅ [L11] | x_6 < 7 | Child entropy: 0.62 |  
+                                                 ✅ [L12] | x_10 < 6 | Child entropy: 0.41 |  
+                                                     ✅ [L13] Leaf: O  
+                                                     ❌ [L13] | x_2 < 3 | Child entropy: 0.00 |  
+                                                         ✅ [L14] Leaf: O  
+                                                         ❌ [L14] Leaf: Q  
+                                                 ❌ [L12] | x_2 < 2 | Child entropy: 0.00 |  
+                                                     ✅ [L13] Leaf: Q  
+                                                     ❌ [L13] Leaf: O  
+                                             ❌ [L11] Leaf: Q  
+                                         ❌ [L10] | x_1 < 8 | Child entropy: 0.49 |  
+                                             ✅ [L11] Leaf: Q  
+                                             ❌ [L11] | x_11 < 7 | Child entropy: 0.73 |  
+                                                 ✅ [L12] Leaf: O  
+                                                 ❌ [L12] | x_8 < 7 | Child entropy: 0.49 |  
+                                                     ✅ [L13] Leaf: Q  
+                                                     ❌ [L13] | x_9 < 6 | Child entropy: 0.00 |  
+                                                         ✅ [L14] Leaf: Q  
+                                                         ❌ [L14] Leaf: O  
+                                 ❌ [L8] | x_6 < 8 | Child entropy: 0.92 |  
+                                     ✅ [L9] | x_9 < 6 | Child entropy: 0.00 |  
+                                         ✅ [L10] Leaf: Q  
+                                         ❌ [L10] Leaf: O  
+                                     ❌ [L9] | x_0 < 5 | Child entropy: 0.55 |  
+                                         ✅ [L10] | x_0 < 4 | Child entropy: 0.00 |  
+                                             ✅ [L11] Leaf: A  
+                                             ❌ [L11] Leaf: O  
+                                         ❌ [L10] Leaf: G  
+                         ❌ [L6] | x_13 < 9 | Child entropy: 0.27 |  
+                             ✅ [L7] | x_6 < 6 | Child entropy: 0.12 |  
+                                 ✅ [L8] | x_1 < 6 | Child entropy: 0.52 |  
+                                     ✅ [L9] Leaf: Q  
+                                     ❌ [L9] | x_7 < 8 | Child entropy: 0.33 |  
+                                         ✅ [L10] | x_11 < 10 | Child entropy: 0.00 |  
+                                             ✅ [L11] Leaf: Q  
+                                             ❌ [L11] Leaf: O  
+                                         ❌ [L10] Leaf: O  
+                                 ❌ [L8] | x_11 < 9 | Child entropy: 0.07 |  
+                                     ✅ [L9] | x_10 < 8 | Child entropy: 0.02 |  
+                                         ✅ [L10] Leaf: O  
+                                         ❌ [L10] | x_8 < 6 | Child entropy: 0.23 |  
+                                             ✅ [L11] Leaf: O  
+                                             ❌ [L11] | x_6 < 8 | Child entropy: 0.00 |  
+                                                 ✅ [L12] Leaf: G  
+                                                 ❌ [L12] Leaf: O  
+                                     ❌ [L9] | x_3 < 9 | Child entropy: 0.21 |  
+                                         ✅ [L10] | x_10 < 8 | Child entropy: 0.12 |  
+                                             ✅ [L11] | x_5 < 9 | Child entropy: 0.07 |  
+                                                 ✅ [L12] Leaf: O  
+                                                 ❌ [L12] | x_2 < 6 | Child entropy: 0.34 |  
+                                                     ✅ [L13] Leaf: O  
+                                                     ❌ [L13] | x_0 < 5 | Child entropy: 0.00 |  
+                                                         ✅ [L14] Leaf: Q  
+                                                         ❌ [L14] Leaf: O  
+                                             ❌ [L11] Leaf: Q  
+                                         ❌ [L10] Leaf: Q  
+                             ❌ [L7] | x_12 < 3 | Child entropy: 1.08 |  
+                                 ✅ [L8] | x_8 < 5 | Child entropy: 0.28 |  
+                                     ✅ [L9] Leaf: Q  
+                                     ❌ [L9] | x_1 < 5 | Child entropy: 0.00 |  
+                                         ✅ [L10] Leaf: C  
+                                         ❌ [L10] Leaf: G  
+                                 ❌ [L8] | x_1 < 7 | Child entropy: 0.50 |  
+                                     ✅ [L9] | x_3 < 6 | Child entropy: 0.67 |  
+                                         ✅ [L10] | x_7 < 7 | Child entropy: 0.00 |  
+                                             ✅ [L11] Leaf: O  
+                                             ❌ [L11] Leaf: G  
+                                         ❌ [L10] Leaf: Q  
+                                     ❌ [L9] Leaf: O  
+                     ❌ [L5] | x_5 < 8 | Child entropy: 1.04 |  
+                         ✅ [L6] | x_12 < 3 | Child entropy: 0.72 |  
+                             ✅ [L7] | x_11 < 13 | Child entropy: 0.34 |  
+                                 ✅ [L8] | x_6 < 8 | Child entropy: 0.21 |  
+                                     ✅ [L9] | x_7 < 7 | Child entropy: 0.08 |  
+                                         ✅ [L10] Leaf: G  
+                                         ❌ [L10] | x_1 < 7 | Child entropy: 0.29 |  
+                                             ✅ [L11] | x_0 < 3 | Child entropy: 0.00 |  
+                                                 ✅ [L12] Leaf: G  
+                                                 ❌ [L12] Leaf: C  
+                                             ❌ [L11] Leaf: G  
+                                     ❌ [L9] | x_2 < 3 | Child entropy: 0.00 |  
+                                         ✅ [L10] Leaf: C  
+                                         ❌ [L10] Leaf: G  
+                                 ❌ [L8] | x_4 < 3 | Child entropy: 0.00 |  
+                                     ✅ [L9] Leaf: C  
+                                     ❌ [L9] Leaf: G  
+                             ❌ [L7] | x_14 < 4 | Child entropy: 0.65 |  
+                                 ✅ [L8] Leaf: O  
+                                 ❌ [L8] | x_4 < 4 | Child entropy: 0.67 |  
+                                     ✅ [L9] Leaf: G  
+                                     ❌ [L9] | x_9 < 7 | Child entropy: 0.81 |  
+                                         ✅ [L10] | x_0 < 5 | Child entropy: 0.00 |  
+                                             ✅ [L11] Leaf: O  
+                                             ❌ [L11] Leaf: G  
+                                         ❌ [L10] | x_0 < 5 | Child entropy: 0.00 |  
+                                             ✅ [L11] Leaf: G  
+                                             ❌ [L11] Leaf: O  
+                         ❌ [L6] | x_0 < 4 | Child entropy: 0.69 |  
+                             ✅ [L7] | x_3 < 3 | Child entropy: 0.12 |  
+                                 ✅ [L8] | x_4 < 2 | Child entropy: 0.00 |  
+                                     ✅ [L9] Leaf: Q  
+                                     ❌ [L9] Leaf: G  
+                                 ❌ [L8] Leaf: Q  
+                             ❌ [L7] | x_11 < 8 | Child entropy: 1.04 |  
+                                 ✅ [L8] Leaf: O  
+                                 ❌ [L8] | x_12 < 4 | Child entropy: 1.13 |  
+                                     ✅ [L9] | x_3 < 8 | Child entropy: 0.92 |  
+                                         ✅ [L10] | x_7 < 8 | Child entropy: 0.52 |  
+                                             ✅ [L11] | x_4 < 4 | Child entropy: 0.00 |  
+                                                 ✅ [L12] Leaf: G  
+                                                 ❌ [L12] Leaf: Q  
+                                             ❌ [L11] Leaf: G  
+                                         ❌ [L10] | x_10 < 7 | Child entropy: 0.00 |  
+                                             ✅ [L11] Leaf: O  
+                                             ❌ [L11] Leaf: Q  
+                                     ❌ [L9] | x_1 < 7 | Child entropy: 0.00 |  
+                                         ✅ [L10] Leaf: Q  
+                                         ❌ [L10] Leaf: O  
+                 ❌ [L4] | x_5 < 8 | Child entropy: 1.51 |  
+                     ✅ [L5] | x_15 < 11 | Child entropy: 1.73 |  
+                         ✅ [L6] | x_14 < 6 | Child entropy: 1.86 |  
+                             ✅ [L7] | x_12 < 4 | Child entropy: 1.10 |  
+                                 ✅ [L8] | x_11 < 9 | Child entropy: 1.15 |  
+                                     ✅ [L9] | x_0 < 5 | Child entropy: 0.46 |  
+                                         ✅ [L10] | x_6 < 8 | Child entropy: 0.56 |  
+                                             ✅ [L11] | x_0 < 4 | Child entropy: 0.33 |  
+                                                 ✅ [L12] Leaf: Q  
+                                                 ❌ [L12] | x_1 < 7 | Child entropy: 0.00 |  
+                                                     ✅ [L13] Leaf: Q  
+                                                     ❌ [L13] Leaf: G  
+                                             ❌ [L11] Leaf: G  
+                                         ❌ [L10] Leaf: O  
+                                     ❌ [L9] | x_6 < 8 | Child entropy: 0.58 |  
+                                         ✅ [L10] | x_0 < 7 | Child entropy: 0.22 |  
+                                             ✅ [L11] Leaf: G  
+                                             ❌ [L11] | x_10 < 7 | Child entropy: 0.00 |  
+                                                 ✅ [L12] Leaf: G  
+                                                 ❌ [L12] Leaf: C  
+                                         ❌ [L10] | x_0 < 5 | Child entropy: 0.67 |  
+                                             ✅ [L11] Leaf: Q  
+                                             ❌ [L11] | x_0 < 8 | Child entropy: 0.00 |  
+                                                 ✅ [L12] Leaf: O  
+                                                 ❌ [L12] Leaf: C  
+                                 ❌ [L8] | x_6 < 5 | Child entropy: 0.00 |  
+                                     ✅ [L9] Leaf: Q  
+                                     ❌ [L9] Leaf: O  
+                             ❌ [L7] | x_0 < 4 | Child entropy: 1.70 |  
+                                 ✅ [L8] | x_4 < 3 | Child entropy: 0.00 |  
+                                     ✅ [L9] Leaf: Q  
+                                     ❌ [L9] Leaf: E  
+                                 ❌ [L8] | x_10 < 8 | Child entropy: 1.66 |  
+                                     ✅ [L9] | x_15 < 7 | Child entropy: 1.56 |  
+                                         ✅ [L10] | x_4 < 8 | Child entropy: 1.35 |  
+                                             ✅ [L11] | x_0 < 5 | Child entropy: 0.86 |  
+                                                 ✅ [L12] | x_6 < 7 | Child entropy: 0.50 |  
+                                                     ✅ [L13] Leaf: Q  
+                                                     ❌ [L13] | x_1 < 9 | Child entropy: 0.00 |  
+                                                         ✅ [L14] Leaf: A  
+                                                         ❌ [L14] Leaf: E  
+                                                 ❌ [L12] Leaf: O  
+                                             ❌ [L11] | x_12 < 4 | Child entropy: 0.56 |  
+                                                 ✅ [L12] Leaf: E  
+                                                 ❌ [L12] | x_7 < 8 | Child entropy: 0.46 |  
+                                                     ✅ [L13] Leaf: A  
+                                                     ❌ [L13] | x_1 < 11 | Child entropy: 0.00 |  
+                                                         ✅ [L14] Leaf: E  
+                                                         ❌ [L14] Leaf: A  
+                                         ❌ [L10] | x_11 < 8 | Child entropy: 1.26 |  
+                                             ✅ [L11] | x_0 < 6 | Child entropy: 0.00 |  
+                                                 ✅ [L12] Leaf: Q  
+                                                 ❌ [L12] Leaf: O  
+                                             ❌ [L11] | x_15 < 8 | Child entropy: 1.11 |  
+                                                 ✅ [L12] | x_6 < 9 | Child entropy: 0.99 |  
+                                                     ✅ [L13] | x_3 < 7 | Child entropy: 0.67 |  
+                                                         ✅ [L14] Leaf: G  
+                                                         ❌ [L14] | x_0 < 6 | Child entropy: 0.54 |  
+                                                             ✅ [L15] | x_6 < 6 | Child entropy: 0.00 |  
+                                                                 ✅ [L16] Leaf: G  
+                                                                 ❌ [L16] Leaf: Q  
+                                                             ❌ [L15] Leaf: G  
+                                                     ❌ [L13] | x_1 < 8 | Child entropy: 0.52 |  
+                                                         ✅ [L14] Leaf: G  
+                                                         ❌ [L14] | x_8 < 5 | Child entropy: 0.00 |  
+                                                             ✅ [L15] Leaf: E  
+                                                             ❌ [L15] Leaf: O  
+                                                 ❌ [L12] | x_8 < 7 | Child entropy: 0.46 |  
+                                                     ✅ [L13] | x_1 < 11 | Child entropy: 0.13 |  
+                                                         ✅ [L14] Leaf: G  
+                                                         ❌ [L14] | x_7 < 7 | Child entropy: 0.00 |  
+                                                             ✅ [L15] Leaf: E  
+                                                             ❌ [L15] Leaf: G  
+                                                     ❌ [L13] | x_0 < 5 | Child entropy: 0.61 |  
+                                                         ✅ [L14] Leaf: E  
+                                                         ❌ [L14] | x_6 < 8 | Child entropy: 0.55 |  
+                                                             ✅ [L15] Leaf: G  
+                                                             ❌ [L15] | x_0 < 7 | Child entropy: 0.00 |  
+                                                                 ✅ [L16] Leaf: E  
+                                                                 ❌ [L16] Leaf: G  
+                                     ❌ [L9] Leaf: Q  
+                         ❌ [L6] | x_1 < 6 | Child entropy: 0.37 |  
+                             ✅ [L7] | x_7 < 8 | Child entropy: 0.85 |  
+                                 ✅ [L8] | x_2 < 5 | Child entropy: 0.36 |  
+                                     ✅ [L9] | x_3 < 5 | Child entropy: 0.00 |  
+                                         ✅ [L10] Leaf: G  
+                                         ❌ [L10] Leaf: Q  
+                                     ❌ [L9] Leaf: G  
+                                 ❌ [L8] | x_1 < 4 | Child entropy: 0.77 |  
+                                     ✅ [L9] Leaf: G  
+                                     ❌ [L9] | x_14 < 7 | Child entropy: 0.75 |  
+                                         ✅ [L10] | x_14 < 6 | Child entropy: 0.61 |  
+                                             ✅ [L11] | x_0 < 3 | Child entropy: 0.00 |  
+                                                 ✅ [L12] Leaf: Q  
+                                                 ❌ [L12] Leaf: G  
+                                             ❌ [L11] | x_0 < 5 | Child entropy: 0.22 |  
+                                                 ✅ [L12] Leaf: Q  
+                                                 ❌ [L12] | x_10 < 6 | Child entropy: 0.00 |  
+                                                     ✅ [L13] Leaf: G  
+                                                     ❌ [L13] Leaf: Q  
+                                         ❌ [L10] Leaf: G  
+                             ❌ [L7] Leaf: G  
+                     ❌ [L5] | x_1 < 10 | Child entropy: 1.03 |  
+                         ✅ [L6] | x_8 < 7 | Child entropy: 0.76 |  
+                             ✅ [L7] | x_15 < 5 | Child entropy: 0.60 |  
+                                 ✅ [L8] | x_7 < 8 | Child entropy: 0.00 |  
+                                     ✅ [L9] Leaf: A  
+                                     ❌ [L9] Leaf: Q  
+                                 ❌ [L8] | x_3 < 8 | Child entropy: 0.52 |  
+                                     ✅ [L9] | x_1 < 6 | Child entropy: 0.61 |  
+                                         ✅ [L10] | x_8 < 6 | Child entropy: 0.10 |  
+                                             ✅ [L11] Leaf: Q  
+                                             ❌ [L11] | x_14 < 6 | Child entropy: 0.28 |  
+                                                 ✅ [L12] | x_2 < 3 | Child entropy: 0.25 |  
+                                                     ✅ [L13] Leaf: Q  
+                                                     ❌ [L13] | x_3 < 2 | Child entropy: 0.00 |  
+                                                         ✅ [L14] Leaf: G  
+                                                         ❌ [L14] Leaf: Q  
+                                                 ❌ [L12] Leaf: G  
+                                         ❌ [L10] | x_12 < 4 | Child entropy: 1.04 |  
+                                             ✅ [L11] | x_3 < 7 | Child entropy: 0.67 |  
+                                                 ✅ [L12] | x_15 < 10 | Child entropy: 0.63 |  
+                                                     ✅ [L13] | x_6 < 5 | Child entropy: 0.32 |  
+                                                         ✅ [L14] Leaf: G  
+                                                         ❌ [L14] | x_9 < 7 | Child entropy: 0.12 |  
+                                                             ✅ [L15] Leaf: Q  
+                                                             ❌ [L15] | x_2 < 5 | Child entropy: 0.00 |  
+                                                                 ✅ [L16] Leaf: G  
+                                                                 ❌ [L16] Leaf: Q  
+                                                     ❌ [L13] | x_14 < 6 | Child entropy: 0.37 |  
+                                                         ✅ [L14] | x_11 < 9 | Child entropy: 0.18 |  
+                                                             ✅ [L15] | x_4 < 4 | Child entropy: 0.00 |  
+                                                                 ✅ [L16] Leaf: Q  
+                                                                 ❌ [L16] Leaf: G  
+                                                             ❌ [L15] Leaf: G  
+                                                         ❌ [L14] Leaf: Q  
+                                                 ❌ [L12] | x_13 < 7 | Child entropy: 0.00 |  
+                                                     ✅ [L13] Leaf: O  
+                                                     ❌ [L13] Leaf: Q  
+                                             ❌ [L11] | x_12 < 5 | Child entropy: 1.00 |  
+                                                 ✅ [L12] | x_6 < 9 | Child entropy: 0.93 |  
+                                                     ✅ [L13] | x_8 < 3 | Child entropy: 0.72 |  
+                                                         ✅ [L14] Leaf: G  
+                                                         ❌ [L14] | x_1 < 8 | Child entropy: 0.44 |  
+                                                             ✅ [L15] | x_6 < 5 | Child entropy: 0.00 |  
+                                                                 ✅ [L16] Leaf: Q  
+                                                                 ❌ [L16] Leaf: G  
+                                                             ❌ [L15] Leaf: Q  
+                                                     ❌ [L13] | x_0 < 4 | Child entropy: 0.00 |  
+                                                         ✅ [L14] Leaf: A  
+                                                         ❌ [L14] Leaf: G  
+                                                 ❌ [L12] | x_0 < 5 | Child entropy: 0.00 |  
+                                                     ✅ [L13] Leaf: O  
+                                                     ❌ [L13] Leaf: G  
+                                     ❌ [L9] | x_8 < 2 | Child entropy: 0.06 |  
+                                         ✅ [L10] | x_6 < 12 | Child entropy: 0.60 |  
+                                             ✅ [L11] | x_9 < 7 | Child entropy: 0.00 |  
+                                                 ✅ [L12] Leaf: Q  
+                                                 ❌ [L12] Leaf: O  
+                                             ❌ [L11] Leaf: A  
+                                         ❌ [L10] Leaf: Q  
+                             ❌ [L7] | x_1 < 6 | Child entropy: 0.65 |  
+                                 ✅ [L8] | x_3 < 5 | Child entropy: 0.00 |  
+                                     ✅ [L9] Leaf: E  
+                                     ❌ [L9] Leaf: Q  
+                                 ❌ [L8] | x_0 < 5 | Child entropy: 0.24 |  
+                                     ✅ [L9] Leaf: G  
+                                     ❌ [L9] | x_1 < 8 | Child entropy: 0.46 |  
+                                         ✅ [L10] Leaf: Q  
+                                         ❌ [L10] | x_5 < 9 | Child entropy: 0.00 |  
+                                             ✅ [L11] Leaf: G  
+                                             ❌ [L11] Leaf: Q  
+                         ❌ [L6] | x_9 < 8 | Child entropy: 1.41 |  
+                             ✅ [L7] | x_15 < 8 | Child entropy: 1.42 |  
+                                 ✅ [L8] | x_14 < 7 | Child entropy: 0.43 |  
+                                     ✅ [L9] Leaf: O  
+                                     ❌ [L9] | x_3 < 9 | Child entropy: 0.00 |  
+                                         ✅ [L10] Leaf: A  
+                                         ❌ [L10] Leaf: Q  
+                                 ❌ [L8] | x_3 < 9 | Child entropy: 1.10 |  
+                                     ✅ [L9] | x_8 < 6 | Child entropy: 1.14 |  
+                                         ✅ [L10] | x_14 < 7 | Child entropy: 1.04 |  
+                                             ✅ [L11] | x_6 < 5 | Child entropy: 0.00 |  
+                                                 ✅ [L12] Leaf: Q  
+                                                 ❌ [L12] Leaf: O  
+                                             ❌ [L11] | x_0 < 6 | Child entropy: 0.98 |  
+                                                 ✅ [L12] Leaf: Q  
+                                                 ❌ [L12] | x_7 < 8 | Child entropy: 0.76 |  
+                                                     ✅ [L13] | x_2 < 10 | Child entropy: 0.00 |  
+                                                         ✅ [L14] Leaf: G  
+                                                         ❌ [L14] Leaf: O  
+                                                     ❌ [L13] | x_12 < 6 | Child entropy: 0.00 |  
+                                                         ✅ [L14] Leaf: Q  
+                                                         ❌ [L14] Leaf: O  
+                                         ❌ [L10] Leaf: G  
+                                     ❌ [L9] Leaf: Q  
+                             ❌ [L7] | x_14 < 8 | Child entropy: 0.00 |  
+                                 ✅ [L8] Leaf: O  
+                                 ❌ [L8] Leaf: G  
