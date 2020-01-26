@@ -142,9 +142,33 @@ class BinTree:
                 prev_entry = entry
         return node_min_entropy
 
-    # if all of the data elements giv ethe same entropy, then we know the data cant be split. therefore, that should be a recursion finishing condition in the induce dataset
+    def prune_tree(self):
+        count = 0
+        while prev_tree != self.root_node:
+            self.root_node = prev_tree
+            prune_leaf(self.root_node, count)
+            count += 1
 
-    # if the child node is a copy of the parent node, then we stop recursing and convert the current node into a leaf node of majority labels in data set
+    def prune_leaf(self, node: NodeBinTree, count: int):
+        pred1, pred2 = False, False
+        if node.false_child.label is not None:
+            if count == 0:
+                return NodeBinTree(NodeData(label=node.data.label))
+            else:
+                pred1 = True
+                count -= 1
+        if node.true_child.label is not None:
+            if count == 0:
+                return NodeBinTree(NodeData(label=node.data.label))
+            else:
+                pred2 = True
+                count -= 1
+        if not pred1:
+            false_node = self.prune_leaf(node.false_child)
+        if not pred2:
+            true_node = self.prune_leaf(node.true_child)
+
+        return node
 
     def calc_entropy(self, dataset: Dataset):
         entry_labels = [entry.label for entry in dataset.entries]

@@ -11,7 +11,7 @@ def test_DecisionTreeClassifier():
     # train
     start = time.time()
     cl = DecisionTreeClassifier(should_load_file=False)
-    dataset = data_read("data/toy.txt")
+    dataset = data_read("data/simple2.txt")
     x, y = dataset.shim_to_arrays()
     cl.train(x, y)
     cl.tree.save_tree()
@@ -40,7 +40,7 @@ def test_tree_load_file():
 
 def run_manual_test():
     start = time.time()
-    dataset = data_read("data/simple2.txt")
+    dataset = data_read("data/simple1.txt")
     tree = BinTree(dataset)
     visualize_tree(tree, max_depth=50)
     duration = time.time() - start
