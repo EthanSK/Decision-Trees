@@ -1,7 +1,6 @@
 from __future__ import annotations
 from ..util.data_set import Dataset
 from ..util.data_read import data_read
-import collections  # piazza says this is allowed
 import math  # piazza says this is allowed
 import numpy as np
 from pathlib import Path
@@ -34,7 +33,7 @@ class NodeBinTree:
     def set_true_child_node(self, node: NodeBinTree):
         self.true_child = node
 
-    def __repr__(self, level, max_depth):
+    def __repr__(self, level=0, max_depth=10):
         indent = "    " * (level + 1)
         is_max_depth_exceeded = level >= max_depth - 1
         max_depth_warning_msg = "✋"
@@ -73,14 +72,36 @@ class BinTree:
         else:
             return self.traverse_until_label(features, node.false_child)
 
+    def find_majority_label(self, dataset: Dataset):
+        entry_labels = [entry.label for entry in dataset.entries]
+        max_value = 0
+        label_max_value = None
+        label_counts = {lb: entry_labels.count(
+            lb) for lb in np.unique(entry_labels)}
+        for label in label_counts:
+            if label_counts[label] > max_value:
+                max_value = label_counts[label]
+                label_max_value = label
+        return label
+
     def induce_decision_tree(self, dataset: Dataset):
-        if len(dataset.entries) == 1 or all(x.label == dataset.entries[0].label for x in dataset.entries):
+        if all(x.label == dataset.entries[0].label for x in dataset.entries):
+            # should return majority element. this is wrong
             return NodeBinTree(NodeData(label=dataset.entries[0].label))
         else:
             node = self.find_best_node(dataset)
-            false_child, true_child = self.split_dataset(node, dataset)
-            node.set_false_child_node(self.induce_decision_tree(false_child))
-            node.set_true_child_node(self.induce_decision_tree(true_child))
+            false_set, true_set = self.split_dataset(node, dataset)
+            if np.array_equal(false_set.entries, dataset.entries):
+                return NodeBinTree(NodeData(label=self.find_majority_label(dataset)))
+            else:
+                node.set_false_child_node(
+                    self.induce_decision_tree(false_set))
+
+            if np.array_equal(true_set.entries, dataset.entries):
+                return NodeBinTree(NodeData(label=self.find_majority_label(dataset)))
+            else:
+                node.set_true_child_node(self.induce_decision_tree(true_set))
+
             return node
 
     def split_dataset(self, node: NodeBinTree, dataset: Dataset) -> Array[Dataset, Dataset]:
@@ -97,8 +118,9 @@ class BinTree:
         min_entropy = math.inf
         node_min_entropy = None
         for feature_idx in range(num_features):
-            sorted_entry_indices = np.argsort(
-                [entry.features[feature_idx] for entry in dataset.entries])
+            feature_col = [entry.features[feature_idx]
+                           for entry in dataset.entries]
+            sorted_entry_indices = np.argsort(feature_col)
             prev_entry = None
             for entry_idx in sorted_entry_indices:
                 entry = dataset.entries[entry_idx]
@@ -107,25 +129,27 @@ class BinTree:
                     # construct a potential 'test' node to calculate entropy against and see if min entropy
                     test_node = NodeBinTree(NodeData(
                         lt_operand_feature_idx=feature_idx, gt_operand=entry.features[feature_idx]))
-                    false_child, true_child = self.split_dataset(
+                    false_set, true_set = self.split_dataset(
                         test_node, dataset)
-                    test_node.set_false_child_node(false_child)
-                    test_node.set_true_child_node(true_child)
                     # we don't need to calculate the entropy of the parent node in order to find IG coz it's the same
-                    child_entropy_combined = \
-                        len(false_child.entries)/len(dataset.entries) * \
-                        self.calc_entropy(false_child) + \
-                        len(true_child.entries)/len(dataset.entries) * \
-                        self.calc_entropy(true_child)
+                    child_entropy_combined = len(false_set.entries)/len(dataset.entries) * \
+                        self.calc_entropy(false_set) + \
+                        len(true_set.entries)/len(dataset.entries) * \
+                        self.calc_entropy(true_set)
                     if child_entropy_combined < min_entropy:
                         min_entropy = child_entropy_combined
                         node_min_entropy = test_node
                 prev_entry = entry
         return node_min_entropy
 
+    # if all of the data elements giv ethe same entropy, then we know the data cant be split. therefore, that should be a recursion finishing condition in the induce dataset
+
+    # if the child node is a copy of the parent node, then we stop recursing and convert the current node into a leaf node of majority labels in data set
+
     def calc_entropy(self, dataset: Dataset):
-        label_counts = collections.Counter(
-            [entry.label for entry in dataset.entries])
+        entry_labels = [entry.label for entry in dataset.entries]
+        label_counts = {lb: entry_labels.count(
+            lb) for lb in np.unique(entry_labels)}
         entropy = 0
         for label in label_counts:
             probability = label_counts[label] / len(dataset.entries)
