@@ -1,83 +1,83 @@
-[L0] | x_0 < 6 | Entropy: 0.37 |  
-     ✅ [L1] | x_3 < 6 | Entropy: 0.33 |  
-         ✅ [L2] | x_1 < 11 | Entropy: 0.06 |  
+[L0] | x_0 < 6 | ChldEntr: 0.37 |  
+     ✅ [L1] | x_3 < 6 | ChldEntr: 0.33 |  
+         ✅ [L2] | x_1 < 11 | ChldEntr: 0.06 |  
              ✅ [L3] Leaf: A  
-             ❌ [L3] | x_3 < 4 | Entropy: 0.20 |  
+             ❌ [L3] | x_3 < 4 | ChldEntr: 0.20 |  
                  ✅ [L4] Leaf: A  
-                 ❌ [L4] | x_3 < 5 | Entropy: 0.28 |  
-                     ✅ [L5] | x_0 < 3 | Entropy: 0.65 |  
+                 ❌ [L4] | x_3 < 5 | ChldEntr: 0.28 |  
+                     ✅ [L5] | x_0 < 3 | ChldEntr: 0.65 |  
                          ✅ [L6] Leaf: A  
-                         ❌ [L6] | x_2 < 10 | Entropy: 0.50 |  
-                             ✅ [L7] | x_2 < 8 | Entropy: 0.00 |  
+                         ❌ [L6] | x_2 < 10 | ChldEntr: 0.50 |  
+                             ✅ [L7] | x_2 < 8 | ChldEntr: 0.00 |  
                                  ✅ [L8] Leaf: A  
                                  ❌ [L8] Leaf: C  
                              ❌ [L7] Leaf: A  
                      ❌ [L5] Leaf: C  
-         ❌ [L2] | x_1 < 10 | Entropy: 0.50 |  
-             ✅ [L3] | x_2 < 9 | Entropy: 0.35 |  
-                 ✅ [L4] | x_1 < 9 | Entropy: 0.27 |  
-                     ✅ [L5] | x_3 < 10 | Entropy: 0.00 |  
+         ❌ [L2] | x_1 < 10 | ChldEntr: 0.50 |  
+             ✅ [L3] | x_2 < 9 | ChldEntr: 0.35 |  
+                 ✅ [L4] | x_1 < 9 | ChldEntr: 0.27 |  
+                     ✅ [L5] | x_3 < 10 | ChldEntr: 0.00 |  
                          ✅ [L6] Leaf: A  
                          ❌ [L6] Leaf: C  
-                     ❌ [L5] | x_0 < 5 | Entropy: 0.74 |  
-                         ✅ [L6] | x_3 < 7 | Entropy: 0.47 |  
+                     ❌ [L5] | x_0 < 5 | ChldEntr: 0.74 |  
+                         ✅ [L6] | x_3 < 7 | ChldEntr: 0.47 |  
                              ✅ [L7] Leaf: C  
-                             ❌ [L7] | x_3 < 8 | Entropy: 0.26 |  
+                             ❌ [L7] | x_3 < 8 | ChldEntr: 0.26 |  
                                  ✅ [L8] Leaf: C  
                                  ❌ [L8] Leaf: A  
-                         ❌ [L6] | x_2 < 7 | Entropy: 0.65 |  
+                         ❌ [L6] | x_2 < 7 | ChldEntr: 0.65 |  
                              ✅ [L7] Leaf: A  
-                             ❌ [L7] | x_3 < 8 | Entropy: 0.00 |  
+                             ❌ [L7] | x_3 < 8 | ChldEntr: 0.00 |  
                                  ✅ [L8] Leaf: C  
                                  ❌ [L8] Leaf: A  
                  ❌ [L4] Leaf: C  
-             ❌ [L3] | x_0 < 5 | Entropy: 0.32 |  
-                 ✅ [L4] | x_0 < 4 | Entropy: 0.12 |  
+             ❌ [L3] | x_0 < 5 | ChldEntr: 0.32 |  
+                 ✅ [L4] | x_0 < 4 | ChldEntr: 0.12 |  
                      ✅ [L5] Leaf: C  
-                     ❌ [L5] | x_3 < 7 | Entropy: 0.18 |  
+                     ❌ [L5] | x_3 < 7 | ChldEntr: 0.18 |  
                          ✅ [L6] Leaf: C  
-                         ❌ [L6] | x_2 < 7 | Entropy: 0.28 |  
+                         ❌ [L6] | x_2 < 7 | ChldEntr: 0.28 |  
                              ✅ [L7] Leaf: C  
-                             ❌ [L7] | x_1 < 11 | Entropy: 0.29 |  
-                                 ✅ [L8] | x_2 < 9 | Entropy: 0.45 |  
+                             ❌ [L7] | x_1 < 11 | ChldEntr: 0.29 |  
+                                 ✅ [L8] | x_2 < 9 | ChldEntr: 0.45 |  
                                      ✅ [L9] Leaf: C  
                                      ❌ [L9] Leaf: C  
                                  ❌ [L8] Leaf: C  
-                 ❌ [L4] | x_1 < 11 | Entropy: 0.48 |  
-                     ✅ [L5] | x_3 < 8 | Entropy: 0.95 |  
-                         ✅ [L6] | x_3 < 7 | Entropy: 0.95 |  
+                 ❌ [L4] | x_1 < 11 | ChldEntr: 0.48 |  
+                     ✅ [L5] | x_3 < 8 | ChldEntr: 0.95 |  
+                         ✅ [L6] | x_3 < 7 | ChldEntr: 0.95 |  
                              ✅ [L7] Leaf: C  
                              ❌ [L7] Leaf: C  
                          ❌ [L6] Leaf: C  
-                     ❌ [L5] | x_3 < 8 | Entropy: 0.17 |  
+                     ❌ [L5] | x_3 < 8 | ChldEntr: 0.17 |  
                          ✅ [L6] Leaf: C  
-                         ❌ [L6] | x_2 < 7 | Entropy: 0.65 |  
+                         ❌ [L6] | x_2 < 7 | ChldEntr: 0.65 |  
                              ✅ [L7] Leaf: C  
                              ❌ [L7] Leaf: C  
-     ❌ [L1] | x_1 < 10 | Entropy: 0.06 |  
-         ✅ [L2] | x_1 < 6 | Entropy: 0.34 |  
+     ❌ [L1] | x_1 < 10 | ChldEntr: 0.06 |  
+         ✅ [L2] | x_1 < 6 | ChldEntr: 0.34 |  
              ✅ [L3] Leaf: A  
-             ❌ [L3] | x_3 < 8 | Entropy: 0.30 |  
-                 ✅ [L4] | x_1 < 8 | Entropy: 0.43 |  
+             ❌ [L3] | x_3 < 8 | ChldEntr: 0.30 |  
+                 ✅ [L4] | x_1 < 8 | ChldEntr: 0.43 |  
                      ✅ [L5] Leaf: A  
-                     ❌ [L5] | x_1 < 9 | Entropy: 0.36 |  
+                     ❌ [L5] | x_1 < 9 | ChldEntr: 0.36 |  
                          ✅ [L6] Leaf: C  
-                         ❌ [L6] | x_2 < 7 | Entropy: 0.55 |  
+                         ❌ [L6] | x_2 < 7 | ChldEntr: 0.55 |  
                              ✅ [L7] Leaf: C  
-                             ❌ [L7] | x_0 < 7 | Entropy: 0.00 |  
+                             ❌ [L7] | x_0 < 7 | ChldEntr: 0.00 |  
                                  ✅ [L8] Leaf: A  
                                  ❌ [L8] Leaf: C  
-                 ❌ [L4] | x_1 < 9 | Entropy: 0.14 |  
+                 ❌ [L4] | x_1 < 9 | ChldEntr: 0.14 |  
                      ✅ [L5] Leaf: C  
-                     ❌ [L5] | x_2 < 11 | Entropy: 0.14 |  
-                         ✅ [L6] | x_2 < 7 | Entropy: 0.00 |  
+                     ❌ [L5] | x_2 < 11 | ChldEntr: 0.14 |  
+                         ✅ [L6] | x_2 < 7 | ChldEntr: 0.00 |  
                              ✅ [L7] Leaf: C  
                              ❌ [L7] Leaf: A  
                          ❌ [L6] Leaf: C  
-         ❌ [L2] | x_1 < 11 | Entropy: 0.01 |  
-             ✅ [L3] | x_3 < 8 | Entropy: 0.23 |  
+         ❌ [L2] | x_1 < 11 | ChldEntr: 0.01 |  
+             ✅ [L3] | x_3 < 8 | ChldEntr: 0.23 |  
                  ✅ [L4] Leaf: C  
-                 ❌ [L4] | x_2 < 9 | Entropy: 0.00 |  
+                 ❌ [L4] | x_2 < 9 | ChldEntr: 0.00 |  
                      ✅ [L5] Leaf: A  
                      ❌ [L5] Leaf: C  
              ❌ [L3] Leaf: C  

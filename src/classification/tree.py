@@ -22,7 +22,7 @@ class NodeData:
         if self.label is not None:
             return f"Leaf: {self.label}"
         else:
-            return f"| x_{self.lt_operand_feature_idx} < {self.gt_operand} | Child entropy: {'%.2f' % self.entropy} |"
+            return f"| x_{self.lt_operand_feature_idx} < {self.gt_operand} | ChldEntr: {'%.2f' % self.entropy} |"
 
 
 class NodeBinTree:
@@ -40,15 +40,15 @@ class NodeBinTree:
     def __repr__(self, level=0, max_depth=10):
         indent = "    " * (level + 1)
         is_max_depth_exceeded = level >= max_depth - 1
-        max_depth_warning_msg = "✋"
+        max_depth_warning_msg = "!MDE"  # max depth exceeded
         extra_msg = max_depth_warning_msg if is_max_depth_exceeded else ""
         string = f"[L{level}] {self.data} {extra_msg} \n"
         if is_max_depth_exceeded:
             return string
         if self.true_child is not None:
-            string += f"{indent} ✅ {self.true_child.__repr__(level+1, max_depth)}"
+            string += f"{indent} T: {self.true_child.__repr__(level+1, max_depth)}"
         if self.false_child is not None:
-            string += f"{indent} ❌ {self.false_child.__repr__(level+1, max_depth)}"
+            string += f"{indent} F: {self.false_child.__repr__(level+1, max_depth)}"
         return string
 
 
@@ -77,11 +77,10 @@ class BinTree:
             return self.traverse_until_label(features, node.false_child)
 
     def find_majority_label(self, dataset: Dataset):
-        entry_labels = [entry.label for entry in dataset.entries]
         max_value = 0
         label_max_value = None
-        label_counts = {lb: entry_labels.count(
-            lb) for lb in np.unique(entry_labels)}
+        label_counts = collections.Counter(
+            [entry.label for entry in dataset.entries])
         for label in label_counts:
             if label_counts[label] > max_value:
                 max_value = label_counts[label]
