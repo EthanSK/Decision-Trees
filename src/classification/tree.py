@@ -14,11 +14,14 @@ class NodeData:
         self.lt_operand_feature_idx = lt_operand_feature_idx
         self.gt_operand = gt_operand
 
+    def set_entropy(self, value: float):
+        self.entropy = value
+
     def __repr__(self):
         if self.label is not None:
             return f"Leaf: {self.label}"
         else:
-            return f"x_{self.lt_operand_feature_idx} < {self.gt_operand}"
+            return f"| x_{self.lt_operand_feature_idx} < {self.gt_operand} | Child entropy: {'%.2f' % self.entropy} |"
 
 
 class NodeBinTree:
@@ -38,13 +41,13 @@ class NodeBinTree:
         is_max_depth_exceeded = level >= max_depth - 1
         max_depth_warning_msg = "✋"
         extra_msg = max_depth_warning_msg if is_max_depth_exceeded else ""
-        string = f"{self.data} [L{level}] {extra_msg} \n"
+        string = f"[L{level}] {self.data} {extra_msg} \n"
         if is_max_depth_exceeded:
             return string
-        if self.false_child is not None:
-            string += f"{indent} ❌ {self.false_child.__repr__(level+1, max_depth)}"
         if self.true_child is not None:
             string += f"{indent} ✅ {self.true_child.__repr__(level+1, max_depth)}"
+        if self.false_child is not None:
+            string += f"{indent} ❌ {self.false_child.__repr__(level+1, max_depth)}"
         return string
 
 
@@ -86,11 +89,12 @@ class BinTree:
 
     def induce_decision_tree(self, dataset: Dataset):
         if all(x.label == dataset.entries[0].label for x in dataset.entries):
-            # should return majority element. this is wrong
             return NodeBinTree(NodeData(label=dataset.entries[0].label))
         else:
             node = self.find_best_node(dataset)
             false_set, true_set = self.split_dataset(node, dataset)
+
+            # check if data can't be split any further
             if np.array_equal(false_set.entries, dataset.entries):
                 return NodeBinTree(NodeData(label=self.find_majority_label(dataset)))
             else:
@@ -106,7 +110,7 @@ class BinTree:
 
     def split_dataset(self, node: NodeBinTree, dataset: Dataset) -> Array[Dataset, Dataset]:
         true_set, false_set = [], []
-        lt_f_idx = node.data.lt_operand_feature_idx  # which feature to use
+        lt_f_idx = node.data.lt_operand_feature_idx  # the feature to use
         gt_op = node.data.gt_operand
         for entry in dataset.entries:
             true_set.append(
@@ -140,6 +144,7 @@ class BinTree:
                         min_entropy = child_entropy_combined
                         node_min_entropy = test_node
                 prev_entry = entry
+        node_min_entropy.data.set_entropy(min_entropy)
         return node_min_entropy
 
     def prune_tree(self):

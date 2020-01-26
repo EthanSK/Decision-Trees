@@ -5,7 +5,7 @@ from pathlib import Path
 # todo - write to file functionality
 
 
-def visualize_tree(tree: BinTree, max_depth: int = 10, save_filename: str = "visualize_tree.txt"):
+def visualize_tree(tree: BinTree, max_depth: int = 10, save_filename: str = None):
     tree_str = tree.__repr__(max_depth=max_depth)
     print(tree_str)
     if save_filename is not None:
