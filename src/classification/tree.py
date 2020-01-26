@@ -6,6 +6,7 @@ import numpy as np
 from pathlib import Path
 import pickle
 from nptyping import Array
+import time
 
 
 class NodeData:
@@ -118,6 +119,7 @@ class BinTree:
         return [Dataset(false_set), Dataset(true_set)]
 
     def find_best_node(self, dataset: Dataset) -> NodeBinTree:
+        start_time = time.time()
         num_features = len(dataset.entries[0].features)
         min_entropy = math.inf
         node_min_entropy = None
@@ -145,6 +147,7 @@ class BinTree:
                         node_min_entropy = test_node
                 prev_entry = entry
         node_min_entropy.data.set_entropy(min_entropy)
+        print("durationnnn: ", time.time() - start_time)
         return node_min_entropy
 
     def calc_entropy(self, dataset: Dataset):

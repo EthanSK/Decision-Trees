@@ -21,14 +21,17 @@ def test_DecisionTreeClassifier(dataset_filename: str = "toy.txt", should_load_f
     # train
     extless_filename = dataset_filename[:-4]
     start = time.time()
+    saved_tree_file = None
+    if should_load_file:
+        saved_tree_file = "tree_" + extless_filename + ".obj"
     cl = DecisionTreeClassifier(
-        saved_tree_file="tree_" + extless_filename + ".obj")
+        saved_tree_file=saved_tree_file)
     dataset = data_read("data/" + dataset_filename)
     x, y = dataset.shim_to_arrays()
     cl.train(x, y)
     cl.tree.save_tree("tree_" + extless_filename + ".obj")
     visualize_tree(
-        cl.tree, save_filename=f"visualize_tree_{extless_filename}.txt", max_depth=30)
+        cl.tree, save_filename=f"visualize_tree_{extless_filename}.txt", max_depth=10)
     duration = time.time() - start
     print("duration: ", duration)
 
@@ -57,7 +60,7 @@ def run_manual_test():
     start = time.time()
     dataset = data_read("data/train.txt")
     tree = BinTree(dataset)
-    visualize_tree(tree, max_depth=50)
+    visualize_tree(tree, max_depth=10)
     duration = time.time() - start
     print("duration: ", duration)
 
