@@ -1,5 +1,0 @@
-[L0] | x_1 < 5 | Child entropy: 0.39 |  
-     ✅ [L1] Leaf: C  
-     ❌ [L1] | x_2 < 1 | Child entropy: 0.00 |  
-         ✅ [L2] Leaf: C  
-         ❌ [L2] Leaf: A  
