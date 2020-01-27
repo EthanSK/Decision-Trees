@@ -4,23 +4,12 @@
 ##############################################################################
 
 import numpy as np
-from nptyping import Array
 from typing import List
 
 # Can't type hint List of numpy.array
 
 
-def data_split(array: Array, k: int):
-    """Returns a list of k numpy arrays, which are randomly split
-    subsections of array.
-
-    Args:
-        array -- numpy.array to be split
-        k -- number of sub-arrays to make from main array
-    Returns:
-        sub_arraays -- a list of k numpy.arrays which form a
-            partition of array
-    """
+def data_split(array, k: int):
 
     if k > len(array) or k == 1:
         return array

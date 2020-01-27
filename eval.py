@@ -13,7 +13,6 @@
 ##############################################################################
 
 import numpy as np
-from nptyping import Array
 import math
 
 
@@ -21,8 +20,8 @@ class Evaluator(object):
     """ Class to perform evaluation
     """
 
-    def confusion_matrix(self, prediction: Array, annotation: Array,
-                         class_labels: Array = None) -> Array:
+    def confusion_matrix(self, prediction, annotation,
+                         class_labels=None):
         """ Computes the confusion matrix.
 
         Parameters
@@ -64,7 +63,7 @@ class Evaluator(object):
 
         return confusion
 
-    def accuracy(self, confusion: Array) -> float:
+    def accuracy(self, confusion) -> float:
         """ Computes the accuracy given a confusion matrix.
 
         Parameters
@@ -94,13 +93,14 @@ class Evaluator(object):
         # # divide macro accuracy by number of classes to normalise
         # accuracy = np.sum(accuracy_array) / len(confusion)
 
-        #TODO(seb): make this dynamic
+        # TODO(seb): make this dynamic
         accurate = confusion.trace()
-        accuracy = float(str(float(accurate/np.sum(confusion)))[0:len(confusion)])
+        accuracy = float(str(float(accurate/np.sum(confusion)))
+                         [0:len(confusion)])
 
         return accuracy
 
-    def precision(self, confusion: Array) -> (Array, float):
+    def precision(self, confusion):
         """ Computes the precision score per class given a confusion matrix.
 
         Also returns the macro-averaged precision across classes.
@@ -120,7 +120,7 @@ class Evaluator(object):
             The macro-averaged precision score across C classes.
         """
 
-                # Initialise array to store recall for C classes
+        # Initialise array to store recall for C classes
         # NOTA BENE: we don't use this
         p = np.zeros((len(confusion), ))
 
@@ -138,9 +138,7 @@ class Evaluator(object):
 
         return (p, macro_p)
 
-
-
-    def recall(self, confusion: Array) -> (Array, float):
+    def recall(self, confusion):
         """ Computes the recall score per class given a confusion matrix.
 
         Also returns the macro-averaged recall across classes.
@@ -161,7 +159,7 @@ class Evaluator(object):
             The macro-averaged recall score across C classes.
         """
 
-                # Initialise array to store precision for C classes
+        # Initialise array to store precision for C classes
         # NOTA BENE: We do not use this
         p = np.zeros((len(confusion), ))
 
@@ -179,9 +177,7 @@ class Evaluator(object):
 
         return (r, macro_r)
 
-
-
-    def f1_score(self, confusion: Array) -> (Array, float):
+    def f1_score(self, confusion):
         """ Computes the f1 score per class given a confusion matrix.
 
         Also returns the macro-averaged f1-score across classes.

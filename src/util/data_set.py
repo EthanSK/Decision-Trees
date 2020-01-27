@@ -4,11 +4,10 @@
 ##############################################################################
 
 import numpy as np
-from nptyping import Array
 
 
 class DataEntry:
-    def __init__(self, features: Array, label: str):
+    def __init__(self, features, label: str):
         self.features = features
         self.label = label
 
@@ -25,7 +24,7 @@ class Dataset:
     dataRead from .txt files  
     """
 
-    def __init__(self, data_entries: Array[DataEntry]):
+    def __init__(self, data_entries):
         self.entries = data_entries
 
     def __repr__(self):
