@@ -61,7 +61,7 @@ class DecisionTreeClassifier(object):
         #######################################################################
         data_entries = []
         for i in range(len(x)):
-            data_entries.append(DataEntry(features=x[i], label=y[i]))
+            data_entries.append(DataEntry(features=x[i], label=y[i], id=i))
         self.dataset = Dataset(data_entries)
 
         self.tree = BinTree(

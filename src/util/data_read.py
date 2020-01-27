@@ -20,11 +20,14 @@ def data_read(filename: str) -> Dataset:
     """
     data_entries = []
     file_object = open(filename, "r+")
+    count = 0
     for line in file_object:
         temp = [attr.strip() for attr in line.split(',')]
         data_entries.append(
-            DataEntry(features=[int(el) for el in temp[0:-1]], label=temp[-1])
+            DataEntry(features=[int(el)
+                                for el in temp[0:-1]], label=temp[-1], id=count)
         )
+        count += 1
 
     return Dataset(np.array(data_entries))
 

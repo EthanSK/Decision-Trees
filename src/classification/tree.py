@@ -110,6 +110,20 @@ class BinTree:
                 entry) if entry.features[lt_f_idx] < gt_op else false_set.append(entry)
         return [Dataset(false_set), Dataset(true_set)]
 
+    def counting_sort(self, dataset, feature_idx: int):
+        # feature_counts = Counter(
+        #     [entry.features[feature_idx] for entry in dataset.entries])
+        dic = {}
+        min_f, max_f = math.inf, 0
+        for entry in dataset.entries:
+            f = entry
+            dic[f] = dic.get(f, 0) + 1
+        sorted = []
+        for key in dic:
+            for _ in range(dic.get(key, 0)):
+                sorted.append(key)
+        return sorted
+
     def find_best_node(self, dataset: Dataset) -> NodeBinTree:
         start_time = time.time()
         num_features = len(dataset.entries[0].features)
@@ -117,8 +131,9 @@ class BinTree:
         node_min_entropy = None
         false_set_min, true_set_min = None, None
         for feature_idx in range(num_features):
-            sorted_entries = sorted(
-                dataset.entries, key=lambda en: en.features[feature_idx])
+            # sorted_entries = sorted(
+            #     dataset.entries, key=lambda en: en.features[feature_idx])
+            sorted_entries = self.counting_sort(dataset, feature_idx)
             prev_entry = None
             for i in range(len(sorted_entries)):
                 entry = sorted_entries[i]
