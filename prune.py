@@ -1,6 +1,7 @@
 from src.classification.tree import BinTree
 from eval import Evaluator
 from src.util.data_read import data_read
+import random
 
 
 def prune(tree: BinTree):
@@ -8,7 +9,7 @@ def prune(tree: BinTree):
     x_val, y_val = val_dataset.shim_to_arrays()
     ev = Evaluator()
     for i in range(10):
-        print("-------")
+        print(f"----prune attempt {i}---")
         tree.prune(node=tree.root_node, val_feats=x_val, val_lbls=y_val, ev=ev)
 
 

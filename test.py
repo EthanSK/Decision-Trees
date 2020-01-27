@@ -34,7 +34,7 @@ def test_DecisionTreeClassifier(dataset_filename: str = "toy.txt", should_load_f
     cl.train(x, y)
     cl.tree.save_tree("tree_" + extless_filename + ".obj")
     visualize_tree(
-        cl.tree, save_filename=f"visualize_tree_{extless_filename}.txt", max_depth=10)
+        cl.tree, save_filename=f"visualize_tree_{extless_filename}.txt", max_depth=1000)
     duration = time.time() - start
     print("duration: ", duration)
 
@@ -86,7 +86,7 @@ def old_test():
 
 if __name__ == "__main__":
     test_DecisionTreeClassifier(
-        dataset_filename="train_full.txt", should_load_file=True)
+        dataset_filename="train_sub.txt", should_load_file=False)
     # test_tree_load_file()
     # run_manual_test()
     # run_all()
