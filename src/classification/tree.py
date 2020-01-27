@@ -1,4 +1,3 @@
-from __future__ import annotations
 from ..util.data_set import Dataset
 from ..util.data_read import data_read
 from collections import Counter
@@ -6,6 +5,8 @@ import math  # piazza says this is allowed
 import numpy as np
 from pathlib import Path
 import pickle
+from nptyping import Array
+import time
 
 
 class NodeData:
@@ -26,15 +27,15 @@ class NodeData:
 
 
 class NodeBinTree:
-    def __init__(self, data: NodeData, false_child: NodeBinTree = None, true_child: NodeBinTree = None):
+    def __init__(self, data: NodeData, false_child=None, true_child=None):
         self.data = data
         self.false_child = false_child
         self.true_child = true_child
 
-    def set_false_child_node(self, node: NodeBinTree):
+    def set_false_child_node(self, node):
         self.false_child = node
 
-    def set_true_child_node(self, node: NodeBinTree):
+    def set_true_child_node(self, node):
         self.true_child = node
 
     def __repr__(self, level=0, max_depth=10):
@@ -53,10 +54,10 @@ class NodeBinTree:
 
 
 class BinTree:
-    def __init__(self, dataset: Dataset = None, should_load_file: bool = False):
-        if should_load_file:
+    def __init__(self, dataset: Dataset = None, saved_tree_file: str = None):
+        if saved_tree_file is not None:
             try:
-                self.load_tree()
+                self.load_tree(filename=saved_tree_file)
             except:
                 self.root_node = self.induce_decision_tree(dataset)
         else:
@@ -79,7 +80,7 @@ class BinTree:
     def find_majority_label(self, dataset: Dataset):
         max_value = 0
         label_max_value = None
-        label_counts = collections.Counter(
+        label_counts = Counter(
             [entry.label for entry in dataset.entries])
         for label in label_counts:
             if label_counts[label] > max_value:
@@ -92,23 +93,15 @@ class BinTree:
             return NodeBinTree(NodeData(label=dataset.entries[0].label))
         else:
             node = self.find_best_node(dataset)
+            if node is None:
+                return NodeBinTree(NodeData(label=self.find_majority_label(dataset)))
             false_set, true_set = self.split_dataset(node, dataset)
-
-            # check if data can't be split any further
-            if np.array_equal(false_set.entries, dataset.entries):
-                return NodeBinTree(NodeData(label=self.find_majority_label(dataset)))
-            else:
-                node.set_false_child_node(
-                    self.induce_decision_tree(false_set))
-
-            if np.array_equal(true_set.entries, dataset.entries):
-                return NodeBinTree(NodeData(label=self.find_majority_label(dataset)))
-            else:
-                node.set_true_child_node(self.induce_decision_tree(true_set))
-
+            node.set_false_child_node(
+                self.induce_decision_tree(false_set))
+            node.set_true_child_node(self.induce_decision_tree(true_set))
             return node
 
-    def split_dataset(self, node: NodeBinTree, dataset: Dataset) -> Array[Dataset, Dataset]:
+    def split_dataset(self, node: NodeBinTree, dataset: Dataset) -> [Dataset, Dataset]:
         true_set, false_set = [], []
         lt_f_idx = node.data.lt_operand_feature_idx  # the feature to use
         gt_op = node.data.gt_operand
@@ -118,6 +111,7 @@ class BinTree:
         return [Dataset(false_set), Dataset(true_set)]
 
     def find_best_node(self, dataset: Dataset) -> NodeBinTree:
+        start_time = time.time()
         num_features = len(dataset.entries[0].features)
         min_entropy = math.inf
         node_min_entropy = None
@@ -128,23 +122,24 @@ class BinTree:
             prev_entry = None
             for entry_idx in sorted_entry_indices:
                 entry = dataset.entries[entry_idx]
-                if prev_entry is None or entry.label != prev_entry.label:
+                if prev_entry is not None and entry.label != prev_entry.label:
                     # the feature idx is feature_idx, the operand is entry.features[entry_idx][feature_idx]]
                     # construct a potential 'test' node to calculate entropy against and see if min entropy
                     test_node = NodeBinTree(NodeData(
                         lt_operand_feature_idx=feature_idx, gt_operand=entry.features[feature_idx]))
                     false_set, true_set = self.split_dataset(
                         test_node, dataset)
-                    # we don't need to calculate the entropy of the parent node in order to find IG coz it's the same
                     child_entropy_combined = len(false_set.entries)/len(dataset.entries) * \
                         self.calc_entropy(false_set) + \
                         len(true_set.entries)/len(dataset.entries) * \
                         self.calc_entropy(true_set)
-                    if child_entropy_combined < min_entropy:
+                    if child_entropy_combined < min_entropy and dataset.entries[sorted_entry_indices[0]].features[feature_idx] != entry.features[feature_idx]:
                         min_entropy = child_entropy_combined
                         node_min_entropy = test_node
                 prev_entry = entry
-        node_min_entropy.data.set_entropy(min_entropy)
+        if node_min_entropy is not None:
+            node_min_entropy.data.set_entropy(min_entropy)
+        # print("durationnnn: ", time.time() - start_time)
         return node_min_entropy
 
     def calc_entropy(self, dataset: Dataset):
@@ -156,33 +151,20 @@ class BinTree:
             entropy += -probability * math.log2(probability)
         return entropy
 
-    def prune_tree(self):
-        count = 0
-        while prev_tree != self.root_node:
-            self.root_node = prev_tree
-            prune_leaf(self.root_node, count)
-            count += 1
+    # def prune_tree(self):
+    #     count = 0
+    #     while prev_tree != self.root_node:
+    #         self.root_node = prev_tree
+    #         prune_leaf(self.root_node, count)
+    #         count += 1
 
-    def prune_leaf(self, node: NodeBinTree, count: int):
-        pred1, pred2 = False, False
-        if node.false_child.label is not None:
-            if count == 0:
-                return NodeBinTree(NodeData(label=node.data.label))
-            else:
-                pred1 = True
-                count -= 1
-        if node.true_child.label is not None:
-            if count == 0:
-                return NodeBinTree(NodeData(label=node.data.label))
-            else:
-                pred2 = True
-                count -= 1
-        if not pred1:
-            false_node = self.prune_leaf(node.false_child)
-        if not pred2:
-            true_node = self.prune_leaf(node.true_child)
-
-        return node
+    def prune(self, features: Array, node: NodeBinTree):
+        if node.data.label is not None:
+            return node.data.label
+        if features[node.data.lt_operand_feature_idx] < node.data.gt_operand:
+            return self.traverse_until_leaf(features, node.true_child)
+        else:
+            return self.traverse_until_leaf(features, node.false_child)
 
     def save_tree(self, filename: str = "trained_tree.obj"):
         Path("out").mkdir(parents=True, exist_ok=True)
@@ -197,6 +179,6 @@ class BinTree:
 
 
 if __name__ == "__main__":
-    dataset = data_read("data/toy.txt")
+    dataset = data_read("data/train_sub.txt")
     tree = BinTree(dataset)
     pass

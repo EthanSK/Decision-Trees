@@ -6,7 +6,6 @@
 # Your tasks: Complete the train() and predict() methods of the
 # DecisionTreeClassifier
 ##############################################################################
-from __future__ import annotations
 
 import numpy as np
 from nptyping import Array
@@ -32,11 +31,11 @@ class DecisionTreeClassifier(object):
 
     """
 
-    def __init__(self, should_load_file=False):
+    def __init__(self, saved_tree_file: str = None):
         self.is_trained = False
-        self.should_load_file = should_load_file
+        self.saved_tree_file = saved_tree_file
 
-    def train(self, x: Array, y: Array) -> DecisionTreeClassifier:
+    def train(self, x: Array, y: Array):
         """ Constructs a decision tree classifier from data
 
         Parameters
@@ -67,7 +66,7 @@ class DecisionTreeClassifier(object):
         self.dataset = Dataset(data_entries)
 
         self.tree = BinTree(
-            self.dataset, should_load_file=self.should_load_file)
+            self.dataset, saved_tree_file=self.saved_tree_file)
 
         # set a flag so that we know that the classifier has been trained
         self.is_trained = True
