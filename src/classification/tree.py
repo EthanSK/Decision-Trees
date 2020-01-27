@@ -168,7 +168,8 @@ class BinTree:
                 node.data.label = None  # back to being a non leaf node
                 # print("prune failed")
             else:
-                print("prune succ")
+                print("pruned leaves", node.false_child.data,
+                      node.true_child.data, " into ", node.data)
 
         if node.false_child.data.label is None:
             f = self.prune(node.false_child, val_feats, val_lbls, ev)

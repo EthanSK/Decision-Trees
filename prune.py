@@ -9,11 +9,22 @@ def prune(tree: BinTree):
     ev = Evaluator()
     for i in range(10):
         tree.prune(node=tree.root_node, val_feats=x_val, val_lbls=y_val, ev=ev)
-        print("\n\n-------")
+        print("-------")
 
 
 if __name__ == "__main__":
-    train_file = "train_full"
+
+    train_file = "train_sub"
     dataset = data_read(f"data/{train_file}.txt")
     tree = BinTree(train_file, f"tree_{train_file}.obj")
+    test_dataset = data_read("data/test.txt")
+
+    ev = Evaluator()
+    x_test, y_test = test_dataset.shim_to_arrays()
+    preds = [tree.predict(x) for x in x_test]
+    matrix = ev.confusion_matrix(preds, y_test)
+    print("accuracy before pruning:",  ev.accuracy(matrix))
+
     prune(tree)
+    preds = [tree.predict(x) for x in x_test]
+    print("accuracy after pruning:",  ev.accuracy(matrix))

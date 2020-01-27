@@ -36,8 +36,8 @@ def test_DecisionTreeClassifier(dataset_filename: str = "toy.txt", should_load_f
     print("duration: ", duration)
 
     # predict
-    val_dataset = data_read("data/test.txt")
-    x_val, y_val = val_dataset.shim_to_arrays()
+    test_dataset = data_read("data/test.txt")
+    x_test, y_test = test_dataset.shim_to_arrays()
     preds = cl.predict(x_val)
     # preds = [random.choice('ACEGOQ')
     #  for _ in range(len(y_val))]  # testing random
@@ -80,7 +80,7 @@ def old_test():
 
 if __name__ == "__main__":
     test_DecisionTreeClassifier(
-        dataset_filename="train_noisy.txt", should_load_file=False)
+        dataset_filename="train_sub.txt", should_load_file=False)
     # test_tree_load_file()
     # run_manual_test()
     # run_all()
