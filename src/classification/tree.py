@@ -158,20 +158,14 @@ class BinTree:
             entropy += -probability * math.log2(probability)
         return entropy
 
-    def prune_tree(self):
-        count = 0
-        while prev_tree != self.root_node:
-            self.root_node = prev_tree
-            prune_leaf(self.root_node, count)
-            count += 1
+  def prune_any_leaf(self, node: NodeBinTree):
+        if node.false_child.data.label is not None and node.true_child.data.label is not None:
+            node.data.label = node.false_child.data.label  # no majority since 2 children
+            return
+        else:
+            self.prune_any_leaf(node.false_child)
+            self.prune_any_leaf(node.true_child)
 
-    # def prune(self, features, node: NodeBinTree):
-    #     if node.data.label is not None:
-    #         return node.data.label
-    #     if features[node.data.lt_operand_feature_idx] < node.data.gt_operand:
-    #         return self.traverse_until_leaf(features, node.true_child)
-    #     else:
-    #         return self.traverse_until_leaf(features, node.false_child)
 
     def save_tree(self, filename: str = "trained_tree.obj"):
         Path("out").mkdir(parents=True, exist_ok=True)
