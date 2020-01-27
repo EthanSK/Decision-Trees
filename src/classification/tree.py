@@ -154,17 +154,26 @@ class BinTree:
 # first get all nodes where children are all leaves
 # then test each one and remove if accuracy is higher
 
-    def prune(self, node: NodeBinTree, val_set: Dataset, eval: Evaluator):
-        if node.false_child.data.label is not None and node.true_child.data.label is not None:
-            node.data.label = node.false_child.data.label  # no majority since 2 children
-            self.root_node
-            return node  # needs to stop and do a test when we get here
-        elif node.false_child.data.label is None:
-            f = self.prune(node.false_child)
-        elif node.true_child.data.label is None:
-            t = self.prune(node.true_child)
+    def prune(self, node: NodeBinTree, val_feats, val_lbls, ev: Evaluator):
+        def accuracy():
+            conf = ev.confusion_matrix([self.predict(f)
+                                        for f in val_feats], val_lbls)
+            return ev.accuracy(conf)
 
-        return None
+        if node.false_child.data.label is not None and node.true_child.data.label is not None:
+            acc_before = accuracy()
+            node.data.label = node.false_child.data.label  # no majority since 2 children
+            acc_after = accuracy()
+            if acc_after <= acc_before:
+                node.data.label = None  # back to being a non leaf node
+                print("prune failed")
+            else:
+                print("prune succ")
+
+        elif node.false_child.data.label is None:
+            f = self.prune(node.false_child, val_feats, val_lbls, ev)
+        elif node.true_child.data.label is None:
+            t = self.prune(node.true_child,  val_feats, val_lbls, ev)
 
     def save_tree(self, filename: str = "trained_tree.obj"):
         Path("out").mkdir(parents=True, exist_ok=True)
