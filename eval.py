@@ -95,16 +95,7 @@ class Evaluator(object):
 
         # TODO(seb): make this dynamic
         accurate = confusion.trace()
-<<<<<<< HEAD
         accuracy = float(accurate/np.sum(confusion))
-=======
-<<<<<<< HEAD
-        accuracy = float(str(float(accurate/np.sum(confusion)))
-                         [0:len(confusion)])
-=======
-        accuracy = float(accurate/np.sum(confusion))
->>>>>>> ethan
->>>>>>> master
 
         return accuracy
 
