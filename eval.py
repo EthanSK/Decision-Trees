@@ -94,7 +94,7 @@ class Evaluator(object):
         # accuracy = np.sum(accuracy_array) / len(confusion)
 
         accurate = confusion.trace()
-        accuracy = float(str(float(accurate/np.sum(confusion)))[0:5])
+        accuracy = float(accurate/np.sum(confusion))
 
         return accuracy
 

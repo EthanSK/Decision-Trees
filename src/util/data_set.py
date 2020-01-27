@@ -17,9 +17,6 @@ class DataEntry:
     def __eq__(self, other):
         return np.array_equal(self.features, other.features) and self.label == other.label
 
-    def __hash__(self):
-        return hash(self.id)
-
 
 class Dataset:
     """
