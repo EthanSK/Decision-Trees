@@ -93,23 +93,15 @@ class BinTree:
             return NodeBinTree(NodeData(label=dataset.entries[0].label))
         else:
             node = self.find_best_node(dataset)
+            if node is None:
+                return NodeBinTree(NodeData(label=self.find_majority_label(dataset)))
             false_set, true_set = self.split_dataset(node, dataset)
-
-            # check if data can't be split any further
-            if np.array_equal(false_set.entries, dataset.entries):
-                return NodeBinTree(NodeData(label=self.find_majority_label(dataset)))
-            else:
-                node.set_false_child_node(
-                    self.induce_decision_tree(false_set))
-
-            if np.array_equal(true_set.entries, dataset.entries):
-                return NodeBinTree(NodeData(label=self.find_majority_label(dataset)))
-            else:
-                node.set_true_child_node(self.induce_decision_tree(true_set))
-
+            node.set_false_child_node(
+                self.induce_decision_tree(false_set))
+            node.set_true_child_node(self.induce_decision_tree(true_set))
             return node
 
-    def split_dataset(self, node: NodeBinTree, dataset: Dataset) -> Array[Dataset, Dataset]:
+    def split_dataset(self, node: NodeBinTree, dataset: Dataset) -> [Dataset, Dataset]:
         true_set, false_set = [], []
         lt_f_idx = node.data.lt_operand_feature_idx  # the feature to use
         gt_op = node.data.gt_operand
@@ -126,11 +118,15 @@ class BinTree:
         for feature_idx in range(num_features):
             feature_col = [entry.features[feature_idx]
                            for entry in dataset.entries]
+            print("feature_col", len(feature_col))
             sorted_entry_indices = np.argsort(feature_col)
             prev_entry = None
+            # we can get the first entry's feature (since its now sorted.) and make sure that when we compare against min entropy, we also make sure the value is greater than that feature. hmm but that wouldn't work for the second column. oh wait it would, because it wouldn't consider the 14, because the previous label is the same. if it were different, then it would consider it, whic is what we want, because theyre different labels that can be split on different labels
+
             for entry_idx in sorted_entry_indices:
                 entry = dataset.entries[entry_idx]
-                if prev_entry is None or entry.label != prev_entry.label:
+                # we don't need to check if prev_entry is none because it should skip the first one because nothing will be less than the first one if its sorted
+                if prev_entry is not None and entry.label != prev_entry.label:
                     # the feature idx is feature_idx, the operand is entry.features[entry_idx][feature_idx]]
                     # construct a potential 'test' node to calculate entropy against and see if min entropy
                     test_node = NodeBinTree(NodeData(
@@ -142,11 +138,12 @@ class BinTree:
                         self.calc_entropy(false_set) + \
                         len(true_set.entries)/len(dataset.entries) * \
                         self.calc_entropy(true_set)
-                    if child_entropy_combined < min_entropy:
+                    if child_entropy_combined < min_entropy and dataset.entries[sorted_entry_indices[0]].features[feature_idx] != entry.features[feature_idx]:
                         min_entropy = child_entropy_combined
                         node_min_entropy = test_node
                 prev_entry = entry
-        node_min_entropy.data.set_entropy(min_entropy)
+        if node_min_entropy is not None:
+            node_min_entropy.data.set_entropy(min_entropy)
         # print("durationnnn: ", time.time() - start_time)
         return node_min_entropy
 
