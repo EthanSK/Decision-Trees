@@ -80,7 +80,7 @@ def old_test():
 
 if __name__ == "__main__":
     test_DecisionTreeClassifier(
-        dataset_filename="train_sub.txt", should_load_file=False)
+        dataset_filename="train_full.txt", should_load_file=True)
     # test_tree_load_file()
     # run_manual_test()
     # run_all()
