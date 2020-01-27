@@ -26,7 +26,7 @@ def data_read(filename: str) -> Dataset:
             DataEntry(features=[int(el) for el in temp[0:-1]], label=temp[-1])
         )
 
-    return Dataset(data_entries)
+    return Dataset(np.array(data_entries))
 
 
 if __name__ == "__main__":

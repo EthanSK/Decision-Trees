@@ -7,6 +7,7 @@ from pathlib import Path
 import pickle
 from nptyping import Array
 import time
+import itertools
 
 
 class NodeData:
@@ -116,49 +117,51 @@ class BinTree:
         min_entropy = math.inf
         node_min_entropy = None
         for feature_idx in range(num_features):
-            feature_col = [entry.features[feature_idx]
-                           for entry in dataset.entries]
-            sorted_entry_indices = np.argsort(feature_col)
+            sorted_entries = sorted(
+                dataset.entries, key=lambda en: en.features[feature_idx])
             prev_entry = None
-            for entry_idx in sorted_entry_indices:
-                entry = dataset.entries[entry_idx]
+            for i in range(len(sorted_entries)):
+                entry = sorted_entries[i]
                 if prev_entry is not None and entry.label != prev_entry.label:
-                    # the feature idx is feature_idx, the operand is entry.features[entry_idx][feature_idx]]
-                    # construct a potential 'test' node to calculate entropy against and see if min entropy
-                    test_node = NodeBinTree(NodeData(
-                        lt_operand_feature_idx=feature_idx, gt_operand=entry.features[feature_idx]))
-                    # false_set, true_set = self.split_dataset(
-                    #     test_node, dataset)
-                    # why THE FUCK are we looping through and splitting. we ALREADY KNOW there is single split point, coz theyre in order duhhhhh
-                    child_entropy_combined = len(false_set.entries)/len(dataset.entries) * \
-                        self.calc_entropy(false_set) + \
-                        len(true_set.entries)/len(dataset.entries) * \
-                        self.calc_entropy(true_set)
-                    if child_entropy_combined < min_entropy and dataset.entries[sorted_entry_indices[0]].features[feature_idx] != entry.features[feature_idx]:
+                    false_entries, true_entries = sorted_entries[i:], sorted_entries[:i]
+                    child_entropy_combined = len(false_entries)/len(dataset.entries) * \
+                        self.calc_entropy(false_entries) + \
+                        len(true_entries)/len(dataset.entries) * \
+                        self.calc_entropy(true_entries)
+
+                    if child_entropy_combined < min_entropy and sorted_entries[0].features[feature_idx] != entry.features[feature_idx]:
                         min_entropy = child_entropy_combined
-                        node_min_entropy = test_node
+                        node_min_entropy = NodeBinTree(NodeData(
+                            lt_operand_feature_idx=feature_idx, gt_operand=entry.features[feature_idx]))
                 prev_entry = entry
         if node_min_entropy is not None:
             node_min_entropy.data.set_entropy(min_entropy)
         # print("durationnnn: ", time.time() - start_time)
         return node_min_entropy
 
-    def calc_entropy(self, dataset: Dataset):
+    def calc_entropy(self, entries):
         label_counts = Counter(
-            [entry.label for entry in dataset.entries])
+            [entry.label for entry in entries])
         entropy = 0
         for label in label_counts:
-            probability = label_counts[label] / len(dataset.entries)
+            probability = label_counts[label] / len(entries)
             entropy += -probability * math.log2(probability)
         return entropy
 
-    def prune_any_leaf(self, node: NodeBinTree):
-        if node.false_child.data.label is not None and node.true_child.data.label is not None:
-            node.data.label = node.false_child.data.label  # no majority since 2 children
-            return
-        else:
-            self.prune_any_leaf(node.false_child)
-            self.prune_any_leaf(node.true_child)
+    def prune_tree(self):
+        count = 0
+        while prev_tree != self.root_node:
+            self.root_node = prev_tree
+            prune_leaf(self.root_node, count)
+            count += 1
+
+    # def prune(self, features: Array, node: NodeBinTree):
+    #     if node.data.label is not None:
+    #         return node.data.label
+    #     if features[node.data.lt_operand_feature_idx] < node.data.gt_operand:
+    #         return self.traverse_until_leaf(features, node.true_child)
+    #     else:
+    #         return self.traverse_until_leaf(features, node.false_child)
 
     def save_tree(self, filename: str = "trained_tree.obj"):
         Path("out").mkdir(parents=True, exist_ok=True)
