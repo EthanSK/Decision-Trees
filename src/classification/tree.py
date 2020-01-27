@@ -95,12 +95,6 @@ class BinTree:
                 dataset)  # fix false set true set not worknig
             if node is None:
                 return NodeBinTree(NodeData(label=self.find_majority_label(dataset)))
-            # false_set2, true_set2 = self.split_dataset(node, dataset)
-
-            # assert np.array_equal(false_set, false_set2), len(
-            # false_set.entries) + "\n\n" + len(false_set2.entries)
-            # assert np.array_equal(true_set, true_set2)
-
             node.set_false_child_node(
                 self.induce_decision_tree(false_set))
             node.set_true_child_node(self.induce_decision_tree(true_set))
@@ -120,7 +114,7 @@ class BinTree:
         num_features = len(dataset.entries[0].features)
         min_entropy = math.inf
         node_min_entropy = None
-        false_entries_min, true_entries_min = None, None
+        false_set_min, true_set_min = None, None
         for feature_idx in range(num_features):
             sorted_entries = sorted(
                 dataset.entries, key=lambda en: en.features[feature_idx])
@@ -132,22 +126,20 @@ class BinTree:
                         lt_operand_feature_idx=feature_idx, gt_operand=entry.features[feature_idx]))
                     false_set, true_set = self.split_dataset(
                         test_node, dataset)
-                    false_entries, true_entries = false_set.entries, true_set.entries
-                    child_entropy_combined = len(false_entries)/len(dataset.entries) * \
-                        self.calc_entropy(false_entries) + \
-                        len(true_entries)/len(dataset.entries) * \
-                        self.calc_entropy(true_entries)
+                    child_entropy_combined = len(false_set.entries)/len(dataset.entries) * \
+                        self.calc_entropy(false_set.entries) + \
+                        len(true_set.entries)/len(dataset.entries) * \
+                        self.calc_entropy(true_set.entries)
                     if child_entropy_combined < min_entropy and sorted_entries[0].features[feature_idx] < entry.features[feature_idx]:
                         min_entropy = child_entropy_combined
                         node_min_entropy = test_node
-                        false_entries_min = false_entries
-                        true_entries_min = true_entries
+                        false_set_min = false_set
+                        true_set_min = true_set
                 prev_entry = entry
 
         if node_min_entropy is not None:
             node_min_entropy.data.set_entropy(min_entropy)
-        # print("durationnnn: ", time.time() - start_time)
-        return node_min_entropy, Dataset(false_entries_min), Dataset(true_entries_min)
+        return node_min_entropy, false_set_min, true_set_min
 
     def calc_entropy(self, entries):
         label_counts = Counter(
@@ -158,14 +150,13 @@ class BinTree:
             entropy += -probability * math.log2(probability)
         return entropy
 
-  def prune_any_leaf(self, node: NodeBinTree):
+    def prune_any_leaf(self, node: NodeBinTree):
         if node.false_child.data.label is not None and node.true_child.data.label is not None:
             node.data.label = node.false_child.data.label  # no majority since 2 children
             return
         else:
             self.prune_any_leaf(node.false_child)
             self.prune_any_leaf(node.true_child)
-
 
     def save_tree(self, filename: str = "trained_tree.obj"):
         Path("out").mkdir(parents=True, exist_ok=True)
