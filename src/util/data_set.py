@@ -7,10 +7,9 @@ import numpy as np
 
 
 class DataEntry:
-    def __init__(self, features, label: str, id: int):
+    def __init__(self, features, label: str):
         self.features = features
         self.label = label
-        self.id = id
 
     def __repr__(self):  # for printing
         return f"Label: {self.label} Features: {self.features}\n"

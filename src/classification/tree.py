@@ -119,7 +119,6 @@ class BinTree:
         for feature_idx in range(num_features):
             sorted_entries = sorted(
                 dataset.entries, key=lambda en: en.features[feature_idx])
-            # sorted_entries = self.counting_sort(dataset, feature_idx)
             prev_entry = None
             for i in range(len(sorted_entries)):
                 entry = sorted_entries[i]
