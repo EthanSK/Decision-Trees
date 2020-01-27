@@ -127,8 +127,9 @@ class BinTree:
                     # construct a potential 'test' node to calculate entropy against and see if min entropy
                     test_node = NodeBinTree(NodeData(
                         lt_operand_feature_idx=feature_idx, gt_operand=entry.features[feature_idx]))
-                    false_set, true_set = self.split_dataset(
-                        test_node, dataset)
+                    # false_set, true_set = self.split_dataset(
+                    #     test_node, dataset)
+                    # why THE FUCK are we looping through and splitting. we ALREADY KNOW there is single split point, coz theyre in order duhhhhh
                     child_entropy_combined = len(false_set.entries)/len(dataset.entries) * \
                         self.calc_entropy(false_set) + \
                         len(true_set.entries)/len(dataset.entries) * \
@@ -151,20 +152,13 @@ class BinTree:
             entropy += -probability * math.log2(probability)
         return entropy
 
-    # def prune_tree(self):
-    #     count = 0
-    #     while prev_tree != self.root_node:
-    #         self.root_node = prev_tree
-    #         prune_leaf(self.root_node, count)
-    #         count += 1
-
-    def prune(self, features: Array, node: NodeBinTree):
-        if node.data.label is not None:
-            return node.data.label
-        if features[node.data.lt_operand_feature_idx] < node.data.gt_operand:
-            return self.traverse_until_leaf(features, node.true_child)
+    def prune_any_leaf(self, node: NodeBinTree):
+        if node.false_child.data.label is not None and node.true_child.data.label is not None:
+            node.data.label = node.false_child.data.label  # no majority since 2 children
+            return
         else:
-            return self.traverse_until_leaf(features, node.false_child)
+            self.prune_any_leaf(node.false_child)
+            self.prune_any_leaf(node.true_child)
 
     def save_tree(self, filename: str = "trained_tree.obj"):
         Path("out").mkdir(parents=True, exist_ok=True)
