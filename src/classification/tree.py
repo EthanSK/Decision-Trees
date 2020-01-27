@@ -1,5 +1,6 @@
 from ..util.data_set import Dataset
 from ..util.data_read import data_read
+from eval import Evaluator
 from collections import Counter
 import math  # piazza says this is allowed
 import numpy as np
@@ -150,13 +151,20 @@ class BinTree:
             entropy += -probability * math.log2(probability)
         return entropy
 
-    def prune_any_leaf(self, node: NodeBinTree):
+# first get all nodes where children are all leaves
+# then test each one and remove if accuracy is higher
+
+    def prune(self, node: NodeBinTree, val_set: Dataset, eval: Evaluator):
         if node.false_child.data.label is not None and node.true_child.data.label is not None:
             node.data.label = node.false_child.data.label  # no majority since 2 children
-            return
-        else:
-            self.prune_any_leaf(node.false_child)
-            self.prune_any_leaf(node.true_child)
+            self.root_node
+            return node  # needs to stop and do a test when we get here
+        elif node.false_child.data.label is None:
+            f = self.prune(node.false_child)
+        elif node.true_child.data.label is None:
+            t = self.prune(node.true_child)
+
+        return None
 
     def save_tree(self, filename: str = "trained_tree.obj"):
         Path("out").mkdir(parents=True, exist_ok=True)
