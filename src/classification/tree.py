@@ -166,13 +166,15 @@ class BinTree:
             acc_after = accuracy()
             if acc_after <= acc_before:
                 node.data.label = None  # back to being a non leaf node
-                print("prune failed")
+                # print("prune failed")
             else:
-                print("prune succ")
+                print("pruned leaves", node.false_child.data,
+                      node.true_child.data, " into ", node.data)
+                print("acc before: ", acc_before, "acc after: ", acc_after)
 
-        elif node.false_child.data.label is None:
+        if node.false_child.data.label is None:
             f = self.prune(node.false_child, val_feats, val_lbls, ev)
-        elif node.true_child.data.label is None:
+        if node.true_child.data.label is None:
             t = self.prune(node.true_child,  val_feats, val_lbls, ev)
 
     def save_tree(self, filename: str = "trained_tree.obj"):
