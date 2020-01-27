@@ -38,12 +38,12 @@ def test_DecisionTreeClassifier(dataset_filename: str = "toy.txt", should_load_f
     # predict
     test_dataset = data_read("data/test.txt")
     x_test, y_test = test_dataset.shim_to_arrays()
-    preds = cl.predict(x_val)
+    preds = cl.predict(x_test)
     # preds = [random.choice('ACEGOQ')
-    #  for _ in range(len(y_val))]  # testing random
+    #  for _ in range(len(y_test))]  # testing random
     # evaluate
     ev = Evaluator()
-    matrix = ev.confusion_matrix(preds, y_val)
+    matrix = ev.confusion_matrix(preds, y_test)
     print("real accuracy: ", accuracy_score(y_val, preds))
     print("\nour calc accuracy: ", str.format('{0:.15f}', ev.accuracy(matrix)))
     print("\n precision: ", ev.precision(matrix))
