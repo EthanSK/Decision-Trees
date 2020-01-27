@@ -4,13 +4,12 @@
 ##############################################################################
 
 import numpy as np
-from nptyping import Array
 from typing import List
 
 # Can't type hint List of numpy.array
 
 
-def data_split(array: Array, k: int):
+def data_split(array, k: int):
 
     if k > len(array) or k == 1:
         return array

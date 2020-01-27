@@ -5,9 +5,7 @@ import math  # piazza says this is allowed
 import numpy as np
 from pathlib import Path
 import pickle
-from nptyping import Array
 import time
-import itertools
 
 
 class NodeData:
@@ -67,10 +65,10 @@ class BinTree:
     def __repr__(self, max_depth: int):
         return self.root_node.__repr__(level=0, max_depth=max_depth)
 
-    def predict(self, features: Array) -> str:
+    def predict(self, features) -> str:
         return self.traverse_until_leaf(features=features, node=self.root_node)
 
-    def traverse_until_leaf(self, features: Array, node: NodeBinTree):
+    def traverse_until_leaf(self, features, node: NodeBinTree):
         if node.data.label is not None:
             return node.data.label
         if features[node.data.lt_operand_feature_idx] < node.data.gt_operand:
@@ -93,7 +91,8 @@ class BinTree:
         if all(x.label == dataset.entries[0].label for x in dataset.entries):
             return NodeBinTree(NodeData(label=dataset.entries[0].label))
         else:
-            node = self.find_best_node(dataset)
+            node, false_set, true_set = self.find_best_node(
+                dataset)  # fix false set true set not worknig
             if node is None:
                 return NodeBinTree(NodeData(label=self.find_majority_label(dataset)))
             false_set, true_set = self.split_dataset(node, dataset)
@@ -116,6 +115,7 @@ class BinTree:
         num_features = len(dataset.entries[0].features)
         min_entropy = math.inf
         node_min_entropy = None
+        false_entries_min, true_entries_min = None, None
         for feature_idx in range(num_features):
             sorted_entries = sorted(
                 dataset.entries, key=lambda en: en.features[feature_idx])
@@ -133,11 +133,13 @@ class BinTree:
                         min_entropy = child_entropy_combined
                         node_min_entropy = NodeBinTree(NodeData(
                             lt_operand_feature_idx=feature_idx, gt_operand=entry.features[feature_idx]))
+                        false_entries_min = false_entries
+                        true_entries_min = true_entries
                 prev_entry = entry
         if node_min_entropy is not None:
             node_min_entropy.data.set_entropy(min_entropy)
         # print("durationnnn: ", time.time() - start_time)
-        return node_min_entropy
+        return node_min_entropy, Dataset(false_entries_min), Dataset(true_entries_min)
 
     def calc_entropy(self, entries):
         label_counts = Counter(
@@ -155,7 +157,7 @@ class BinTree:
             prune_leaf(self.root_node, count)
             count += 1
 
-    # def prune(self, features: Array, node: NodeBinTree):
+    # def prune(self, features, node: NodeBinTree):
     #     if node.data.label is not None:
     #         return node.data.label
     #     if features[node.data.lt_operand_feature_idx] < node.data.gt_operand:

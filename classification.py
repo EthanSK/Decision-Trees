@@ -8,7 +8,6 @@
 ##############################################################################
 
 import numpy as np
-from nptyping import Array
 from src.util.data_set import Dataset, DataEntry
 from src.classification.tree import BinTree
 
@@ -35,7 +34,7 @@ class DecisionTreeClassifier(object):
         self.is_trained = False
         self.saved_tree_file = saved_tree_file
 
-    def train(self, x: Array, y: Array):
+    def train(self, x, y):
         """ Constructs a decision tree classifier from data
 
         Parameters
@@ -72,7 +71,7 @@ class DecisionTreeClassifier(object):
         self.is_trained = True
         return self
 
-    def predict(self, x: Array) -> Array:
+    def predict(self, x):
         """ Predicts a set of samples using the trained DecisionTreeClassifier.
 
         Assumes that the DecisionTreeClassifier has already been trained.
