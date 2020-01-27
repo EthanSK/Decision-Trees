@@ -93,8 +93,18 @@ class Evaluator(object):
         # # divide macro accuracy by number of classes to normalise
         # accuracy = np.sum(accuracy_array) / len(confusion)
 
+        # TODO(seb): make this dynamic
         accurate = confusion.trace()
+<<<<<<< HEAD
         accuracy = float(accurate/np.sum(confusion))
+=======
+<<<<<<< HEAD
+        accuracy = float(str(float(accurate/np.sum(confusion)))
+                         [0:len(confusion)])
+=======
+        accuracy = float(accurate/np.sum(confusion))
+>>>>>>> ethan
+>>>>>>> master
 
         return accuracy
 
@@ -118,20 +128,20 @@ class Evaluator(object):
             The macro-averaged precision score across C classes.
         """
 
-        # Initialise array to store precision for C classes
-        # NOTA BENE: We do not use this
+        # Initialise array to store recall for C classes
+        # NOTA BENE: we don't use this
         p = np.zeros((len(confusion), ))
 
         #######################################################################
-        #                 ** TASK 3.3: COMPLETE THIS METHOD **
+        #                 ** TASK 3.4: COMPLETE THIS METHOD **
         #######################################################################
 
         true_pos = np.diag(confusion)
-        false_pos = np.sum(confusion, axis=0) - true_pos
+        false_neg = np.sum(confusion, axis=1) - true_pos
 
         # where= attribute specifies not to divide by zero
-        p = np.divide(true_pos, (false_pos + true_pos),
-                      where=(false_pos+true_pos != 0))
+        p = np.divide(true_pos, (true_pos + false_neg),
+                      where=(true_pos+false_neg) != 0)
         macro_p = p.sum() / len(confusion)
 
         return (p, macro_p)
@@ -157,20 +167,20 @@ class Evaluator(object):
             The macro-averaged recall score across C classes.
         """
 
-        # Initialise array to store recall for C classes
-        # NOTA BENE: we don't use this
-        r = np.zeros((len(confusion), ))
+        # Initialise array to store precision for C classes
+        # NOTA BENE: We do not use this
+        p = np.zeros((len(confusion), ))
 
         #######################################################################
-        #                 ** TASK 3.4: COMPLETE THIS METHOD **
+        #                 ** TASK 3.3: COMPLETE THIS METHOD **
         #######################################################################
 
         true_pos = np.diag(confusion)
-        false_neg = np.sum(confusion, axis=1) - true_pos
+        false_pos = np.sum(confusion, axis=0) - true_pos
 
         # where= attribute specifies not to divide by zero
-        r = np.divide(true_pos, (true_pos + false_neg),
-                      where=(true_pos+false_neg) != 0)
+        r = np.divide(true_pos, (false_pos + true_pos),
+                      where=(false_pos+true_pos != 0))
         macro_r = r.sum() / len(confusion)
 
         return (r, macro_r)
