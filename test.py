@@ -44,7 +44,7 @@ def test_DecisionTreeClassifier(dataset_filename: str = "toy.txt", should_load_f
     # evaluate
     ev = Evaluator()
     matrix = ev.confusion_matrix(preds, y_test)
-    print("real accuracy: ", accuracy_score(y_val, preds))
+    print("real accuracy: ", accuracy_score(y_test, preds))
     print("\nour calc accuracy: ", str.format('{0:.15f}', ev.accuracy(matrix)))
     print("\n precision: ", ev.precision(matrix))
     print("\n recall: ", ev.recall(matrix))
