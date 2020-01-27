@@ -111,33 +111,32 @@ class BinTree:
         return [Dataset(false_set), Dataset(true_set)]
 
     def find_best_node(self, dataset: Dataset) -> NodeBinTree:
-        # start_time = time.time()
+        start_time = time.time()
         num_features = len(dataset.entries[0].features)
         min_entropy = math.inf
         node_min_entropy = None
         for feature_idx in range(num_features):
             feature_col = [entry.features[feature_idx]
                            for entry in dataset.entries]
-            print("feature_col", len(feature_col))
+            # print("feature_col", len(feature_col))
             sorted_entry_indices = np.argsort(feature_col)
             prev_entry = None
-            # we can get the first entry's feature (since its now sorted.) and make sure that when we compare against min entropy, we also make sure the value is greater than that feature. hmm but that wouldn't work for the second column. oh wait it would, because it wouldn't consider the 14, because the previous label is the same. if it were different, then it would consider it, whic is what we want, because theyre different labels that can be split on different labels
-
             for entry_idx in sorted_entry_indices:
                 entry = dataset.entries[entry_idx]
-                # we don't need to check if prev_entry is none because it should skip the first one because nothing will be less than the first one if its sorted
                 if prev_entry is not None and entry.label != prev_entry.label:
                     # the feature idx is feature_idx, the operand is entry.features[entry_idx][feature_idx]]
                     # construct a potential 'test' node to calculate entropy against and see if min entropy
                     test_node = NodeBinTree(NodeData(
                         lt_operand_feature_idx=feature_idx, gt_operand=entry.features[feature_idx]))
-                    false_set, true_set = self.split_dataset(
-                        test_node, dataset)
+                    # false_set, true_set = self.split_dataset(
+                    #     test_node, dataset)  # why do we need to call this here? it does the same thing as the current loop. we can be efficient. also calc_entrpy loops through all entries. there must be a way to combine functionality to just this loop
                     # we don't need to calculate the entropy of the parent node in order to find IG coz it's the same
-                    child_entropy_combined = len(false_set.entries)/len(dataset.entries) * \
-                        self.calc_entropy(false_set) + \
-                        len(true_set.entries)/len(dataset.entries) * \
-                        self.calc_entropy(true_set)
+                    # child_entropy_combined = len(false_set.entries)/len(dataset.entries) * \
+                    #     self.calc_entropy(false_set) + \
+                    #     len(true_set.entries)/len(dataset.entries) * \
+                    #     self.calc_entropy(true_set)
+                    child_entropy_combined = self.calc_entropy_children(
+                        dataset, test_node)
                     if child_entropy_combined < min_entropy and dataset.entries[sorted_entry_indices[0]].features[feature_idx] != entry.features[feature_idx]:
                         min_entropy = child_entropy_combined
                         node_min_entropy = test_node
@@ -155,6 +154,47 @@ class BinTree:
             probability = label_counts[label] / len(dataset.entries)
             entropy += -probability * math.log2(probability)
         return entropy
+
+    def calc_entropy_children(self, dataset: Dataset, test_node: NodeBinTree):
+        # label_counts = Counter(
+        # [entry.label for entry in dataset.entries])
+        # we need a separate label count for each set.
+        # entropy = 0
+        # for label in label_counts:
+        #     probability = label_counts[label] / len(dataset.entries)
+        #     entropy += -probability * math.log2(probability)
+
+        false_label_counts, true_label_counts = {}, {}
+        lt_f_idx = test_node.data.lt_operand_feature_idx  # the feature to use
+        gt_op = test_node.data.gt_operand
+        false_set_entropy, true_set_entropy = 0, 0
+        false_set_size, true_set_size = 0, 0
+        for entry in dataset.entries:
+            if entry.features[lt_f_idx] < gt_op:
+                true_set_size += 1
+                true_label_counts[entry.label] = true_label_counts.get(
+                    entry.label, 0) + 1
+            else:
+                false_set_size += 1
+                false_label_counts[entry.label] = false_label_counts.get(
+                    entry.label, 0) + 1
+
+        for label in false_label_counts:
+            probability = false_label_counts[label] / false_set_size
+            false_set_entropy += -probability * math.log2(probability)
+
+        for label in true_label_counts:
+            probability = true_label_counts[label] / true_set_size
+            true_set_entropy += -probability * math.log2(probability)
+
+        # for entry in dataset.entries:
+        #     if entry.features[lt_f_idx] < gt_op:
+        #         probability = true_label_counts[entry.label] / true_set_size
+        #         true_set_entropy += -probability * math.log2(probability)
+        #     else:
+        #         probability = false_label_counts[entry.label] / false_set_size
+        #         false_set_entropy += -probability * math.log2(probability)
+        return (false_set_size / len(dataset.entries)) * false_set_entropy + (true_set_size / len(dataset.entries)) * true_set_entropy
 
     def prune_tree(self):
         count = 0
