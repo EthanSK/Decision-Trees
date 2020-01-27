@@ -9,7 +9,7 @@ from .data_set import Dataset, DataEntry
 
 def data_read(filename: str) -> Dataset:
     """Returns two numpy arrays containing features and ground truths
-    respectively. Arrays are dynamically sized based on amount of 
+    respectively. Arrays are dynamically sized based on amount of
     features in the given .txt file.
 
     Args:
@@ -23,9 +23,7 @@ def data_read(filename: str) -> Dataset:
     for line in file_object:
         temp = [attr.strip() for attr in line.split(',')]
         data_entries.append(
-            DataEntry(features=[int(el) for el in temp[0:-1]], label=temp[-1])
-        )
-
+            DataEntry(features=[int(el) for el in temp[0:-1]], label=temp[-1]))
     return Dataset(np.array(data_entries))
 
 
