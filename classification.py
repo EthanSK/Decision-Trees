@@ -96,7 +96,7 @@ class DecisionTreeClassifier(object):
 
         # set up empty N-dimensional vector to store predicted labels
         # feel free to change this if needed
-        predictions = np.zeros((x.shape[0],), dtype=np.object)
+        # predictions = np.zeros((x.shape[0],), dtype=np.object)
 
         #######################################################################
         #                 ** TASK 2.2: COMPLETE THIS METHOD **
