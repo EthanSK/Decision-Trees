@@ -14,8 +14,7 @@ def prune(tree: BinTree):
 
 
 if __name__ == "__main__":
-
-    train_file = "train_full"
+    train_file = "train_noisy"
     dataset = data_read(f"data/{train_file}.txt")
     tree = BinTree(train_file, f"tree_{train_file}.obj")
     test_dataset = data_read("data/test.txt")

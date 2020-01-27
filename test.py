@@ -15,7 +15,7 @@ from sklearn.metrics import f1_score
 
 def run_all():
     files = ["simple1.txt", "simple2.txt",
-             "test.txt", "train_sub.txt", "toy.txt"]
+             "test.txt", "train_sub.txt", "toy.txt", "train_noisy.txt"]
     for file in files:
         test_DecisionTreeClassifier(file)
 
@@ -49,11 +49,11 @@ def test_DecisionTreeClassifier(dataset_filename: str = "toy.txt", should_load_f
     matrix = ev.confusion_matrix(preds, y_test)
     print("real accuracy: ", accuracy_score(y_test, preds))
     print("\nour calc accuracy: ", str.format('{0:.15f}', ev.accuracy(matrix)))
-    print("\n precision:", precision_score(y_val, preds, average="macro"))
+    print("\n precision:", precision_score(y_test, preds, average="macro"))
     print("\n our precision: ", ev.precision(matrix))
-    print("\nreal recall: ", recall_score(y_val, preds, average="macro"))
+    print("\nreal recall: ", recall_score(y_test, preds, average="macro"))
     print("\n our recall: ", ev.recall(matrix))
-    print("\n f1_score", f1_score(y_val, preds, average="macro"))
+    print("\n f1_score", f1_score(y_test, preds, average="macro"))
     print("\n f1_score: ", ev.f1_score(matrix))
 
 
@@ -85,8 +85,8 @@ def old_test():
 
 
 if __name__ == "__main__":
-    test_DecisionTreeClassifier(
-        dataset_filename="train_sub.txt", should_load_file=False)
+    # test_DecisionTreeClassifier(
+    #     dataset_filename="train_full.txt", should_load_file=False)
     # test_tree_load_file()
     # run_manual_test()
-    # run_all()
+    run_all()
