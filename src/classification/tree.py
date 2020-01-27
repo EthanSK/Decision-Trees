@@ -95,7 +95,12 @@ class BinTree:
                 dataset)  # fix false set true set not worknig
             if node is None:
                 return NodeBinTree(NodeData(label=self.find_majority_label(dataset)))
-            false_set, true_set = self.split_dataset(node, dataset)
+            # false_set2, true_set2 = self.split_dataset(node, dataset)
+
+            # assert np.array_equal(false_set, false_set2), len(
+            # false_set.entries) + "\n\n" + len(false_set2.entries)
+            # assert np.array_equal(true_set, true_set2)
+
             node.set_false_child_node(
                 self.induce_decision_tree(false_set))
             node.set_true_child_node(self.induce_decision_tree(true_set))
@@ -123,19 +128,22 @@ class BinTree:
             for i in range(len(sorted_entries)):
                 entry = sorted_entries[i]
                 if prev_entry is not None and entry.label != prev_entry.label:
-                    false_entries, true_entries = sorted_entries[i:], sorted_entries[:i]
+                    test_node = NodeBinTree(NodeData(
+                        lt_operand_feature_idx=feature_idx, gt_operand=entry.features[feature_idx]))
+                    false_set, true_set = self.split_dataset(
+                        test_node, dataset)
+                    false_entries, true_entries = false_set.entries, true_set.entries
                     child_entropy_combined = len(false_entries)/len(dataset.entries) * \
                         self.calc_entropy(false_entries) + \
                         len(true_entries)/len(dataset.entries) * \
                         self.calc_entropy(true_entries)
-
-                    if child_entropy_combined < min_entropy and sorted_entries[0].features[feature_idx] != entry.features[feature_idx]:
+                    if child_entropy_combined < min_entropy and sorted_entries[0].features[feature_idx] < entry.features[feature_idx]:
                         min_entropy = child_entropy_combined
-                        node_min_entropy = NodeBinTree(NodeData(
-                            lt_operand_feature_idx=feature_idx, gt_operand=entry.features[feature_idx]))
+                        node_min_entropy = test_node
                         false_entries_min = false_entries
                         true_entries_min = true_entries
                 prev_entry = entry
+
         if node_min_entropy is not None:
             node_min_entropy.data.set_entropy(min_entropy)
         # print("durationnnn: ", time.time() - start_time)
