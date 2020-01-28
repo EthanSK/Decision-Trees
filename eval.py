@@ -49,7 +49,7 @@ class Evaluator(object):
             class_labels = np.unique(annotation)
 
         confusion = np.zeros(
-            (len(class_labels), len(class_labels)), dtype=np.float)
+            (len(class_labels), len(class_labels)), dtype=np.int)
 
         #######################################################################
         #                 ** TASK 3.1: COMPLETE THIS METHOD **
@@ -115,7 +115,6 @@ class Evaluator(object):
         #                 ** TASK 3.4: COMPLETE THIS METHOD **
         #######################################################################
 
-
         true_pos = np.diag(confusion)
         false_pos = np.sum(confusion, axis=0) - true_pos
 
@@ -154,7 +153,7 @@ class Evaluator(object):
         #######################################################################
         #                 ** TASK 3.3: COMPLETE THIS METHOD **
         #######################################################################
-        
+
         true_pos = np.diag(confusion)
         false_neg = np.sum(confusion, axis=1) - true_pos
 
@@ -164,7 +163,6 @@ class Evaluator(object):
         macro_r = r.sum() / len(confusion)
 
         return (r, macro_r)
-
 
     def f1_score(self, confusion):
         """ Computes the f1 score per class given a confusion matrix.
