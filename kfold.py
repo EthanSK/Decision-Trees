@@ -26,17 +26,29 @@ def kfold(dataset: Dataset, k):
     return accuracies
 
 
-def process_kfold_results(accuracies):
+def kfold_average_std(accuracies):
     folds_accuracies = [np.mean(fold_res) for fold_res in accuracies]
-    print("folds_accuracies", folds_accuracies)
     average = np.mean(folds_accuracies)
     std = np.std(folds_accuracies)
     return (average, std)
+
+
+def kfold_best_subset_vs_full():
+    ev = Evaluator()
+    matrix = ev.confusion_matrix(preds, y_test)
+    print("real accuracy: ", accuracy_score(y_test, preds))
+    print("\nour calc accuracy: ", str.format('{0:.15f}', ev.accuracy(matrix)))
+    print("\n precision:", precision_score(y_test, preds, average="macro"))
+    print("\n our precision: ", ev.precision(matrix))
+    print("\nreal recall: ", recall_score(y_test, preds, average="macro"))
+    print("\n our recall: ", ev.recall(matrix))
+    print("\n f1_score", f1_score(y_test, preds, average="macro"))
+    print("\n f1_score: ", ev.f1_score(matrix))
 
 
 if __name__ == "__main__":
     train_file = "train_sub"
     dataset = data_read(f"data/{train_file}.txt")
     accs = kfold(dataset, 10)
-    average, std = process_kfold_results(accs)
+    average, std = kfold_average_std(accs)
     print("kfold average: ", average, " ± ", std)
