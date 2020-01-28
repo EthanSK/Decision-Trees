@@ -26,8 +26,17 @@ def kfold(dataset: Dataset, k):
     return accuracies
 
 
+def process_kfold_results(accuracies):
+    folds_accuracies = [np.mean(fold_res) for fold_res in accuracies]
+    print("folds_accuracies", folds_accuracies)
+    average = np.mean(folds_accuracies)
+    std = np.std(folds_accuracies)
+    return (average, std)
+
+
 if __name__ == "__main__":
     train_file = "train_sub"
     dataset = data_read(f"data/{train_file}.txt")
     accs = kfold(dataset, 10)
-    print(accs)
+    average, std = process_kfold_results(accs)
+    print("kfold average: ", average, " ± ", std)
