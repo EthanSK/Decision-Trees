@@ -45,7 +45,7 @@ class Evaluator(object):
             Rows are ground truth per class, columns are predictions.
         """
 
-        if not class_labels:
+        if class_labels is None:
             class_labels = np.unique(annotation)
 
         confusion = np.zeros(

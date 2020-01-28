@@ -34,4 +34,5 @@ class Dataset:
         return (np.array([entry.features for entry in self.entries]), np.array([entry.label for entry in self.entries]))
 
     def split_k_subsets(self, k):
-        return np.array_split(np.random.shuffle(self.entries), k)
+        np.random.shuffle(self.entries)
+        return [Dataset(entries) for entries in np.array_split(self.entries, k)]
