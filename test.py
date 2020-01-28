@@ -55,6 +55,7 @@ def test_DecisionTreeClassifier(dataset_filename: str = "toy.txt", should_load_f
     print("\n our recall: ", ev.recall(matrix))
     print("\n f1_score", f1_score(y_test, preds, average="macro"))
     print("\n f1_score: ", ev.f1_score(matrix))
+    print(matrix)
 
 
 def test_tree_load_file():
@@ -85,8 +86,8 @@ def old_test():
 
 
 if __name__ == "__main__":
-    run_all()
+    #run_all()
     test_DecisionTreeClassifier(
-        dataset_filename="train_full.txt", should_load_file=False)
+        dataset_filename="train_noisy.txt", should_load_file=False)
     # test_tree_load_file()
     # run_manual_test()
