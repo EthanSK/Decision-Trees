@@ -32,3 +32,6 @@ class Dataset:
 
     def shim_to_arrays(self):
         return (np.array([entry.features for entry in self.entries]), np.array([entry.label for entry in self.entries]))
+
+    def split_k_subsets(self, k):
+        return np.array_split(np.random.shuffle(self.entries), k)
