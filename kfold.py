@@ -31,21 +31,24 @@ def kfold_average_std(accuracies):
     return (average, std)
 
 
-def kfold_best_subset_vs_full(accuracies, trees):
+def kfold_best_subset_vs_full(accuracies, trees, train_file: str):
     ev = Evaluator()
+
+    # it's fine if the prediction accuracy of max_sub_tree is significatntly lower than the average accuracy of the kfold results, because we are testing against test data here, in kfold the test data was part of the actual set, so it makes sense if it got higher prediction accuracy.
     max_sub_tree = trees[np.argmax(accuracies)]
 
-    train_file = "train_full"
     dataset = data_read(f"data/{train_file}.txt")
     full_tree = BinTree(dataset, f"tree_{train_file}.obj")
 
     test_dataset = data_read("data/test.txt")
+    unique_lbls = np.unique([e.label for e in test_dataset.entries])
     x_test, y_test = test_dataset.shim_to_arrays()
     sub_tree_preds = [max_sub_tree.predict(f) for f in x_test]
     full_tree_preds = [full_tree.predict(f) for f in x_test]
 
-    sub_tree_matrix = ev.confusion_matrix(sub_tree_preds, y_test)
-    full_tree_matrix = ev.confusion_matrix(full_tree_preds, y_test)
+    sub_tree_matrix = ev.confusion_matrix(sub_tree_preds, y_test, unique_lbls)
+    full_tree_matrix = ev.confusion_matrix(
+        full_tree_preds, y_test, unique_lbls)
 
     print("\nsub_tree_preds our calc accuracy: ",
           str.format('{0:.15f}', ev.accuracy(sub_tree_matrix)))
@@ -66,4 +69,4 @@ if __name__ == "__main__":
     accs, trees = kfold(dataset, 10)
     average, std = kfold_average_std(accs)
     print("kfold average: ", average, " ± ", std)
-    kfold_best_subset_vs_full(accs, trees)
+    kfold_best_subset_vs_full(accs, trees, train_file)

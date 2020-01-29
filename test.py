@@ -30,6 +30,7 @@ def test_DecisionTreeClassifier(dataset_filename: str = "toy.txt", should_load_f
     cl = DecisionTreeClassifier(
         saved_tree_file=saved_tree_file)
     dataset = data_read("data/" + dataset_filename)
+    unique_lbls = np.unique([e.label for e in dataset.entries])
     x, y = dataset.shim_to_arrays()
     cl.train(x, y)
     cl.tree.save_tree("tree_" + extless_filename + ".obj")
@@ -46,7 +47,7 @@ def test_DecisionTreeClassifier(dataset_filename: str = "toy.txt", should_load_f
     #  for _ in range(len(y_test))]  # testing random
     # evaluate
     ev = Evaluator()
-    matrix = ev.confusion_matrix(preds, y_test)
+    matrix = ev.confusion_matrix(preds, y_test, unique_lbls)
     print("real accuracy: ", accuracy_score(y_test, preds))
     print("\nour calc accuracy: ", str.format('{0:.15f}', ev.accuracy(matrix)))
     print("\n precision:", precision_score(y_test, preds, average="macro"))
@@ -81,8 +82,8 @@ def old_test():
 
 
 if __name__ == "__main__":
-    run_all()
+    # run_all()
     test_DecisionTreeClassifier(
-        dataset_filename="train_full.txt", should_load_file=False)
+        dataset_filename="train_sub.txt", should_load_file=False)
     # test_tree_load_file()
     # run_manual_test()
