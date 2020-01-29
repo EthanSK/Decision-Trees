@@ -53,11 +53,11 @@ def kfold_best_subset_vs_full(accuracies, trees):
     print("\nsub_tree_preds our recall: ", ev.recall(sub_tree_matrix))
     print("\nsub_tree_preds f1_score: ", ev.f1_score(sub_tree_matrix))
 
-    print("\full_tree_preds our calc accuracy: ",
+    print("\n full_tree_preds our calc accuracy: ",
           str.format('{0:.15f}', ev.accuracy(full_tree_matrix)))
-    print("\full_tree_preds our precision: ", ev.precision(full_tree_matrix))
-    print("\full_tree_preds our recall: ", ev.recall(full_tree_matrix))
-    print("\full_tree_preds f1_score: ", ev.f1_score(full_tree_matrix))
+    print("\n full_tree_preds our precision: ", ev.precision(full_tree_matrix))
+    print("\n full_tree_preds our recall: ", ev.recall(full_tree_matrix))
+    print("\n full_tree_preds f1_score: ", ev.f1_score(full_tree_matrix))
 
 
 if __name__ == "__main__":
@@ -66,4 +66,4 @@ if __name__ == "__main__":
     accs, trees = kfold(dataset, 10)
     average, std = kfold_average_std(accs)
     print("kfold average: ", average, " ± ", std)
-    kfold_best_subset_vs_full(accs, trees)
+    kfold_best_subset_vs_full(accs, trees)full_treefull_treefull_tree
