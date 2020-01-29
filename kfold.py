@@ -41,11 +41,11 @@ def kfold_best_subset_vs_full(accuracies, trees):
 
     test_dataset = data_read("data/test.txt")
     x_test, y_test = test_dataset.shim_to_arrays()
-    sub_tree_preds = max_sub_tree.predict(x_test)
-    full_tree_preds = full_tree.predict(x_test)
+    sub_tree_preds = [max_sub_tree.predict(f) for f in x_test]
+    full_tree_preds = [full_tree.predict(f) for f in x_test]
 
     sub_tree_matrix = ev.confusion_matrix(sub_tree_preds, y_test)
-    full_tre_matrix = ev.confusion_matrix(full_tree_preds, y_test)
+    full_tree_matrix = ev.confusion_matrix(full_tree_preds, y_test)
 
     print("\nsub_tree_preds our calc accuracy: ",
           str.format('{0:.15f}', ev.accuracy(sub_tree_matrix)))
@@ -54,14 +54,14 @@ def kfold_best_subset_vs_full(accuracies, trees):
     print("\nsub_tree_preds f1_score: ", ev.f1_score(sub_tree_matrix))
 
     print("\full_tree_preds our calc accuracy: ",
-          str.format('{0:.15f}', ev.accuracy(full_tre_matrix)))
-    print("\full_tree_preds our precision: ", ev.precision(full_tre_matrix))
-    print("\full_tree_preds our recall: ", ev.recall(full_tre_matrix))
-    print("\full_tree_preds f1_score: ", ev.f1_score(full_tre_matrix))
+          str.format('{0:.15f}', ev.accuracy(full_tree_matrix)))
+    print("\full_tree_preds our precision: ", ev.precision(full_tree_matrix))
+    print("\full_tree_preds our recall: ", ev.recall(full_tree_matrix))
+    print("\full_tree_preds f1_score: ", ev.f1_score(full_tree_matrix))
 
 
 if __name__ == "__main__":
-    train_file = "train_sub"
+    train_file = "train_full"
     dataset = data_read(f"data/{train_file}.txt")
     accs, trees = kfold(dataset, 10)
     average, std = kfold_average_std(accs)
