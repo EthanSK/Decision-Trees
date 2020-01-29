@@ -5,12 +5,13 @@ import random
 
 
 def prune(tree: BinTree):
-    val_dataset = data_read("data/validation.txt")
-    x_val, y_val = val_dataset.shim_to_arrays()
+    vld_dataset = data_read("data/validation.txt")
+    x_val, y_val = vld_dataset.shim_to_arrays()
     ev = Evaluator()
     for i in range(10):
-        print(f"----prune attempt {i}---")
-        tree.prune(node=tree.root_node, val_feats=x_val, val_lbls=y_val, ev=ev)
+        print(f"----prune attempt {i + 1}---")
+        tree.prune(node=tree.root_node, og_vld_feats=x_val,
+                   og_vld_lbls=y_val, dataset=vld_dataset, ev=ev)
 
 
 if __name__ == "__main__":

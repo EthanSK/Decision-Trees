@@ -77,16 +77,15 @@ class BinTree:
         else:
             return self.traverse_until_leaf(features, node.false_child)
 
-    def find_majority_label(self, dataset: Dataset):
+    def find_majority_label(self, dataset):
         max_value = 0
         label_max_value = None
-        label_counts = Counter(
-            [entry.label for entry in dataset.entries])
+        label_counts = Counter([entry.label for entry in dataset.entries])
         for label in label_counts:
             if label_counts[label] > max_value:
                 max_value = label_counts[label]
                 label_max_value = label
-        return label
+        return label_max_value
 
     def induce_decision_tree(self, dataset: Dataset):
         if all(x.label == dataset.entries[0].label for x in dataset.entries):
@@ -154,15 +153,15 @@ class BinTree:
 # first get all nodes where children are all leaves
 # then test each one and remove if accuracy is higher
 
-    def prune(self, node: NodeBinTree, val_feats, val_lbls, ev: Evaluator):
+    def prune(self, node: NodeBinTree, og_vld_feats, og_vld_lbls, dataset: Dataset, ev: Evaluator):
         def accuracy():
             conf = ev.confusion_matrix([self.predict(f)
-                                        for f in val_feats], val_lbls)
+                                        for f in og_vld_feats], og_vld_lbls)
             return ev.accuracy(conf)
 
         if node.false_child.data.label is not None and node.true_child.data.label is not None:
             acc_before = accuracy()
-            node.data.label = node.false_child.data.label  # no majority since 2 children
+            node.data.label = self.find_majority_label(dataset)
             acc_after = accuracy()
             if acc_after <= acc_before:
                 node.data.label = None  # back to being a non leaf node
@@ -171,11 +170,15 @@ class BinTree:
                 print("pruned leaves", node.false_child.data,
                       node.true_child.data, " into ", node.data)
                 print("acc before: ", acc_before, "acc after: ", acc_after)
+        else:
+            false_set, true_set = self.split_dataset(node, dataset)
 
         if node.false_child.data.label is None:
-            f = self.prune(node.false_child, val_feats, val_lbls, ev)
+            self.prune(node.false_child, og_vld_feats,
+                       og_vld_lbls, false_set, ev)
         if node.true_child.data.label is None:
-            t = self.prune(node.true_child,  val_feats, val_lbls, ev)
+            self.prune(node.true_child,  og_vld_feats,
+                       og_vld_lbls, true_set, ev)
 
     def save_tree(self, filename: str = "trained_tree.obj"):
         Path("out").mkdir(parents=True, exist_ok=True)
