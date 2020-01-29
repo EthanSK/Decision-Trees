@@ -15,7 +15,7 @@ from sklearn.metrics import f1_score
 
 def run_all():
     files = ["simple1.txt", "simple2.txt",
-             "test.txt", "train_sub.txt", "toy.txt", "train_noisy.txt"]
+             "train_sub.txt", "toy.txt", "train_noisy.txt"]
     for file in files:
         test_DecisionTreeClassifier(file)
 
@@ -58,11 +58,6 @@ def test_DecisionTreeClassifier(dataset_filename: str = "toy.txt", should_load_f
     print(matrix)
 
 
-def test_tree_load_file():
-    tree = BinTree(should_load_file=True)
-    visualize_tree(tree)
-
-
 def run_manual_test():
     start = time.time()
     dataset = data_read("data/train.txt")
@@ -86,8 +81,8 @@ def old_test():
 
 
 if __name__ == "__main__":
-    # run_all()
+    run_all()
     test_DecisionTreeClassifier(
-        dataset_filename="train_sub.txt", should_load_file=False)
+        dataset_filename="train_full.txt", should_load_file=False)
     # test_tree_load_file()
     # run_manual_test()

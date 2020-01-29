@@ -10,45 +10,60 @@ def kfold(dataset: Dataset, k):
     ev = Evaluator()
     subsets = dataset.split_k_subsets(k)
     accuracies = []
+    trees = []
     unique_lbls = np.unique([e.label for e in dataset.entries])
     for i in range(k):
-        validation = subsets[i]
-        accuracies_inner = []
-        for j in range(k):
-            if i == j:
-                continue
-            tree = BinTree(subsets[j])
-            val_feats, val_lbls = validation.shim_to_arrays()
-            preds = [tree.predict(f) for f in val_feats]
-            conf_mat = ev.confusion_matrix(preds, val_lbls, unique_lbls)
-            accuracies_inner.append(ev.accuracy(conf_mat))
-        accuracies.append(accuracies_inner)
-    return accuracies
+        test = subsets[i]
+        train = Dataset(np.ravel(
+            [subsets[j].entries for j in range(len(subsets)) if i != j]))
+        tree = BinTree(train)
+        test_feats, test_lbls = test.shim_to_arrays()
+        preds = [tree.predict(f) for f in test_feats]
+        conf_mat = ev.confusion_matrix(preds, test_lbls, unique_lbls)
+        accuracies.append(ev.accuracy(conf_mat))
+        trees.append(tree)
+    return accuracies, trees
 
 
 def kfold_average_std(accuracies):
-    folds_accuracies = [np.mean(fold_res) for fold_res in accuracies]
-    average = np.mean(folds_accuracies)
-    std = np.std(folds_accuracies)
+    average = np.mean(accuracies)
+    std = np.std(accuracies)
     return (average, std)
 
 
-def kfold_best_subset_vs_full():
+def kfold_best_subset_vs_full(accuracies, trees):
     ev = Evaluator()
-    matrix = ev.confusion_matrix(preds, y_test)
-    print("real accuracy: ", accuracy_score(y_test, preds))
-    print("\nour calc accuracy: ", str.format('{0:.15f}', ev.accuracy(matrix)))
-    print("\n precision:", precision_score(y_test, preds, average="macro"))
-    print("\n our precision: ", ev.precision(matrix))
-    print("\nreal recall: ", recall_score(y_test, preds, average="macro"))
-    print("\n our recall: ", ev.recall(matrix))
-    print("\n f1_score", f1_score(y_test, preds, average="macro"))
-    print("\n f1_score: ", ev.f1_score(matrix))
+    max_sub_tree = trees[np.argmax(accuracies)]
+
+    train_file = "train_full"
+    dataset = data_read(f"data/{train_file}.txt")
+    full_tree = BinTree(dataset, f"tree_{train_file}.obj")
+
+    test_dataset = data_read("data/test.txt")
+    x_test, y_test = test_dataset.shim_to_arrays()
+    sub_tree_preds = max_sub_tree.predict(x_test)
+    full_tree_preds = full_tree.predict(x_test)
+
+    sub_tree_matrix = ev.confusion_matrix(sub_tree_preds, y_test)
+    full_tre_matrix = ev.confusion_matrix(full_tree_preds, y_test)
+
+    print("\nsub_tree_preds our calc accuracy: ",
+          str.format('{0:.15f}', ev.accuracy(sub_tree_matrix)))
+    print("\nsub_tree_preds our precision: ", ev.precision(sub_tree_matrix))
+    print("\nsub_tree_preds our recall: ", ev.recall(sub_tree_matrix))
+    print("\nsub_tree_preds f1_score: ", ev.f1_score(sub_tree_matrix))
+
+    print("\full_tree_preds our calc accuracy: ",
+          str.format('{0:.15f}', ev.accuracy(full_tre_matrix)))
+    print("\full_tree_preds our precision: ", ev.precision(full_tre_matrix))
+    print("\full_tree_preds our recall: ", ev.recall(full_tre_matrix))
+    print("\full_tree_preds f1_score: ", ev.f1_score(full_tre_matrix))
 
 
 if __name__ == "__main__":
     train_file = "train_sub"
     dataset = data_read(f"data/{train_file}.txt")
-    accs = kfold(dataset, 10)
+    accs, trees = kfold(dataset, 10)
     average, std = kfold_average_std(accs)
     print("kfold average: ", average, " ± ", std)
+    kfold_best_subset_vs_full(accs, trees)

@@ -92,7 +92,7 @@ class BinTree:
             return NodeBinTree(NodeData(label=dataset.entries[0].label))
         else:
             node, false_set, true_set = self.find_best_node(
-                dataset)  # fix false set true set not worknig
+                dataset)
             if node is None:
                 return NodeBinTree(NodeData(label=self.find_majority_label(dataset)))
             node.set_false_child_node(
@@ -110,7 +110,6 @@ class BinTree:
         return [Dataset(false_set), Dataset(true_set)]
 
     def find_best_node(self, dataset: Dataset) -> NodeBinTree:
-        start_time = time.time()
         num_features = len(dataset.entries[0].features)
         min_entropy = math.inf
         node_min_entropy = None
