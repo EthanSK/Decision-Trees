@@ -66,4 +66,4 @@ if __name__ == "__main__":
     accs, trees = kfold(dataset, 10)
     average, std = kfold_average_std(accs)
     print("kfold average: ", average, " ± ", std)
-    kfold_best_subset_vs_full(accs, trees)full_treefull_treefull_tree
+    kfold_best_subset_vs_full(accs, trees)
