@@ -88,6 +88,8 @@ def combined_pred(trees, train_file: str):
     combined_tree_matrix = ev.confusion_matrix(combined_preds, y_test, unique_lbls)
     full_tree_matrix = ev.confusion_matrix(full_tree_preds, y_test, unique_lbls)
 
+    print("\nsub_tree_preds our calc accuracy: ",
+          str.format('{0:.15f}', ev.accuracy(combined_tree_matrix)))
     print("\combined_tree_preds our precision: ", ev.precision(combined_tree_matrix))
     print("\combined_tree_preds our recall: ", ev.recall(combined_tree_matrix))
     print("\combined_tree_preds f1_score: ", ev.f1_score(combined_tree_matrix))
