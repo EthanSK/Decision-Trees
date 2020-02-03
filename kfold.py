@@ -4,6 +4,7 @@ from src.util.data_read import data_read
 from src.util.data_set import Dataset
 import numpy as np
 import random
+from collections import Counter
 
 
 def kfold(dataset: Dataset, k):
@@ -63,10 +64,45 @@ def kfold_best_subset_vs_full(accuracies, trees, train_file: str):
     print("\n full_tree_preds f1_score: ", ev.f1_score(full_tree_matrix))
 
 
+def combined_pred(trees, train_file: str):
+    ev = Evaluator()
+
+    test_dataset = data_read("data/test.txt")
+    unique_lbls = np.unique([e.label for e in test_dataset.entries])
+    x_test, y_test = test_dataset.shim_to_arrays()
+
+    combined_preds = []
+    for row in x_test:
+        preds = []
+        print(len(combined_preds))
+        for tree in trees:
+            preds.append(tree.predict(row))
+        vote = Counter(preds).most_common(1)[0][0]
+        combined_preds.append(vote)
+    
+    dataset = data_read(f"data/{train_file}.txt")
+    full_tree = BinTree(dataset, f"tree_{train_file}.obj")
+    full_tree_preds = [full_tree.predict(f) for f in x_test]
+    assert len(combined_preds) == len(full_tree_preds)
+
+    combined_tree_matrix = ev.confusion_matrix(combined_preds, y_test, unique_lbls)
+    full_tree_matrix = ev.confusion_matrix(full_tree_preds, y_test, unique_lbls)
+
+    print("\combined_tree_preds our precision: ", ev.precision(combined_tree_matrix))
+    print("\combined_tree_preds our recall: ", ev.recall(combined_tree_matrix))
+    print("\combined_tree_preds f1_score: ", ev.f1_score(combined_tree_matrix))
+
+    print("\n full_tree_preds our calc accuracy: ",
+          str.format('{0:.15f}', ev.accuracy(full_tree_matrix)))
+    print("\n full_tree_preds our precision: ", ev.precision(full_tree_matrix))
+    print("\n full_tree_preds our recall: ", ev.recall(full_tree_matrix))
+    print("\n full_tree_preds f1_score: ", ev.f1_score(full_tree_matrix))
+
 if __name__ == "__main__":
     train_file = "train_full"
     dataset = data_read(f"data/{train_file}.txt")
     accs, trees = kfold(dataset, 10)
     average, std = kfold_average_std(accs)
     print("kfold average: ", average, " ± ", std)
-    kfold_best_subset_vs_full(accs, trees, train_file)
+    # kfold_best_subset_vs_full(accs, trees, train_file)
+    combined_pred(trees, train_file)
