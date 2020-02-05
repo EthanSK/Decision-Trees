@@ -1,6 +1,6 @@
 from src.util.data_read import data_read
 from eval import Evaluator
-from src.classification.visualize_tree import visualize_tree
+from src.classification.visualize_tree import image_visualize_tree
 from src.classification.tree import BinTree
 from classification import DecisionTreeClassifier
 import sys
@@ -19,6 +19,12 @@ def run_all():
     for file in files:
         test_DecisionTreeClassifier(file)
 
+def test_print(dataset_filename: str = "train_sub.txt", should_load_file=False):
+    dataset = data_read("data/" + dataset_filename)
+    tree = BinTree(dataset)
+    image_visualize_tree(
+        tree, max_depth=3,save_filename=f"visualize_tree_image_toy.txt")
+    return
 
 def test_DecisionTreeClassifier(dataset_filename: str = "toy.txt", should_load_file=False):
     # train
@@ -82,7 +88,8 @@ def old_test():
 
 if __name__ == "__main__":
     # run_all()
-    test_DecisionTreeClassifier(
-        dataset_filename="train_full.txt", should_load_file=True)
+   # test_DecisionTreeClassifier(
+        #dataset_filename="train_full.txt", should_load_file=True)
     # test_tree_load_file()
+    test_print()
     # run_manual_test()
