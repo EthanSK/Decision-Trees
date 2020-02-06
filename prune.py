@@ -11,7 +11,7 @@ def prune(tree: BinTree):
     for i in range(10):
         print(f"----prune attempt {i + 1}---")
         tree.prune(node=tree.root_node, og_vld_feats=x_val,
-                   og_vld_lbls=y_val, dataset=vld_dataset, ev=ev)
+                   og_vld_lbls=y_val, dataset=vld_dataset, ev=ev, is_aggressive=False)
 
 
 if __name__ == "__main__":

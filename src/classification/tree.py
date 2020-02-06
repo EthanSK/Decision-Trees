@@ -152,7 +152,7 @@ class BinTree:
 # first get all nodes where children are all leaves
 # then test each one and remove if accuracy is higher
 
-    def prune(self, node: NodeBinTree, og_vld_feats, og_vld_lbls, dataset: Dataset, ev: Evaluator):
+    def prune(self, node: NodeBinTree, og_vld_feats, og_vld_lbls, dataset: Dataset, ev: Evaluator, is_aggressive=False):
         def accuracy():
             conf = ev.confusion_matrix([self.predict(f)
                                         for f in og_vld_feats], og_vld_lbls)
@@ -162,7 +162,7 @@ class BinTree:
             acc_before = accuracy()
             node.data.label = self.find_majority_label(dataset)
             acc_after = accuracy()
-            if acc_after <= acc_before:
+            if (is_aggressive == True and acc_after < acc_before) or (is_aggressive == False and acc_after <= acc_before):
                 node.data.label = None  # back to being a non leaf node
                 # print("prune failed")
             else:
@@ -174,10 +174,10 @@ class BinTree:
 
         if node.false_child.data.label is None:
             self.prune(node.false_child, og_vld_feats,
-                       og_vld_lbls, false_set, ev)
+                       og_vld_lbls, false_set, ev, is_aggressive)
         if node.true_child.data.label is None:
             self.prune(node.true_child,  og_vld_feats,
-                       og_vld_lbls, true_set, ev)
+                       og_vld_lbls, true_set, ev, is_aggressive)
 
     def save_tree(self, filename: str = "trained_tree.obj"):
         Path("out").mkdir(parents=True, exist_ok=True)
